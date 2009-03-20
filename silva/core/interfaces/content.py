@@ -858,10 +858,13 @@ class IImage(IAsset):
     def set_web_presentation_properties(web_format, web_scale, web_crop):
         """Sets format and scaling for web presentation.
 
-        - ``web_format`` (str): either JPEG or PNG (or whatever other format
-          makes sense, must be recognised by PIL).
+        - ``web_format`` (str): either JPEG or PNG (or whatever other
+          format makes sense, must be recognised by PIL).
+
         - ``web_scale`` (str): WidthXHeight or nn.n%.
-        - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no cropping.
+
+        - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no
+          cropping.
 
         Raises ValueError if web_scale cannot be parsed.
 
