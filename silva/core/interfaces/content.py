@@ -3,13 +3,17 @@
 # $Id$
 
 
-from zope.interface import Interface, Attribute
+from zope import interface
 from zope.annotation import IAttributeAnnotatable
-from silva.core.layout.interfaces import ICustomizable
 from grokcore.component.interfaces import IContext
 
 
-class ISecurity(Interface):
+class ICustomizable(interface.Interface):
+    """Customizable contents.
+    """
+
+
+class ISecurity(interface.Interface):
     """Can be mixed in with an object to support Silva security.
     (built on top of Zope security)
     Methods prefixed with sec_ so as not to disrupt similarly named
@@ -213,7 +217,7 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
         """
 
 
-class IPublishable(Interface):
+class IPublishable(interface.Interface):
     # MANIPULATORS
 
     # ACCESSORS
@@ -233,7 +237,7 @@ class IPublishable(Interface):
 
 class IContainer(ISilvaObject, IPublishable):
 
-    used_space = Attribute(u"Used space by assets.")
+    used_space = interface.Attribute(u"Used space by assets.")
 
     # MANIPULATORS
     def move_object_up(id):
@@ -486,7 +490,7 @@ class IIndexer(IContent):
 ### Versioned content
 ###############################################################
 
-class IVersioning(Interface):
+class IVersioning(interface.Interface):
     """Can be mixed in with an object to support simple versioning.
     This interface only keeps a reference id to the version and the
     various datetimes. The versioned objects themselves are not
@@ -934,7 +938,7 @@ class IImage(IAsset):
 ### Ghost
 ###############################################################
 
-class IGhost(Interface):
+class IGhost(interface.Interface):
     """Interface for ghosts (and ghost folders)"""
 
     def haunted_path():
