@@ -860,9 +860,7 @@ class IImage(IAsset):
 
         - ``web_format`` (str): either JPEG or PNG (or whatever other
           format makes sense, must be recognised by PIL).
-
         - ``web_scale`` (str): WidthXHeight or nn.n%.
-
         - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no
           cropping.
 
@@ -885,6 +883,7 @@ class IImage(IAsset):
         - Raises ValueError if there is no way of determining the dimenstions,
         - Return 0, 0 if there is no image,
         - Returns width, height otherwise.
+
         """
 
     def getFormat():
