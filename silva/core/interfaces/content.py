@@ -14,23 +14,21 @@ class ICustomizable(interface.Interface):
 
 
 class ISecurity(interface.Interface):
-    """Can be mixed in with an object to support Silva security.
-    (built on top of Zope security)
-    Methods prefixed with sec_ so as not to disrupt similarly named
-    Zope's security methods. (ugly..)
+    """Silva security support (built on top of Zope security).
     """
 
     # MANIPULATORS
     def sec_assign(userid, role):
-        """Assign role to userid for this object.
+        """Assign ``role`` to ``userid`` for this object.
         """
 
     def sec_remove(userid):
-        """Remove a user completely from this object.
+        """Remove a user ``user`` completely from this object.
         """
 
     def sec_revoke(userid, revoke_roles):
-        """Remove roles from user in this object.
+        """Remove roles ``revoke_roles`` from user ``userid`` in this
+        object.
         """
 
     def sec_create_lock():
@@ -266,28 +264,28 @@ class IContainer(ISilvaObject, IPublishable):
         """
 
     def action_cut(ids, REQUEST):
-        """Cut ids in this folder, putting them on clipboard in REQUEST.
-        Cannot cut approved or published content.
+        """Cut ``ids`` in this folder, putting them on clipboard in
+        ``REQUEST``.  Cannot cut approved or published content.
         """
 
     def action_copy(ids, REQUEST):
-        """Copy ids in this folder, putting them on clipboard in REQUEST.
+        """Copy ``ids`` in this folder, putting them on clipboard in
+        ``REQUEST``.
         """
 
     def action_paste(REQUEST):
-        """Paste clipboard to this folder.
-        After paste, approved or published content is automatically
-        unapproved and/or closed.
+        """Paste clipboard to this folder.  After paste, approved or
+        published content is automatically unapproved and/or closed.
         """
 
-    def update_quota(self, delta):
-        """Update used space, and verify quota for this folder.
+    def update_quota(delta):
+        """Update used space with ``delta``, and verify quota for this folder.
         """
 
     # ACCESSORS
     def get_silva_addables():
-        """Get a list of meta_type_dicts (from filtered_meta_types()) that
-        are addable to this container.
+        """Get a list of meta_type dictionnaries (from
+        ``filtered_meta_types()``) that are addable to this container.
         """
 
     def get_silva_addables_all():
@@ -309,7 +307,7 @@ class IContainer(ISilvaObject, IPublishable):
         """
 
     def is_transparent():
-        """Show this subtree in get_tree().
+        """Show this subtree in ``get_tree()``.
         """
 
     def is_delete_allowed(id):
@@ -439,9 +437,7 @@ class IContent(ISilvaObject, IPublishable):
     # ACCESSORS
     def get_content():
         """Used by acquisition to get the nearest containing content object.
-        PUBLIC
         """
-        pass
 
     def is_cacheable():
         """Return true if the public view of this object can be safely
@@ -451,16 +447,12 @@ class IContent(ISilvaObject, IPublishable):
 
     def content_url():
         """Used by acquisition to get the URL of the containing content object.
-        PUBLIC
         """
-        pass
 
     def is_default():
         """True if this content object is the default content object of
         the folder.
-        PUBLIC
         """
-        pass
 
 
 class IAutoTOC(IContent):
@@ -578,83 +570,68 @@ class IVersioning(interface.Interface):
     def is_version_approved():
         """Check whether there exists an approved version.
         """
-        pass
 
     def is_version_published():
         """Check whether there exists a published version.
-        PUBLIC
         """
-        pass
 
     def is_version_approval_requested():
         """Check if there exists an unapproved version
         which has a request for approval.
         """
-        pass
 
 
     def get_unapproved_version():
         """Get the id of the unapproved version.
         """
-        pass
 
     def get_unapproved_version_publication_datetime():
         """Get the publication datetime for the unapproved version,
         or None if no publication datetime yet.
         """
-        pass
 
     def get_unapproved_version_expiration_datetime():
         """Get the expiration datetime for the unapproved version,
         or None if no publication datetime yet.
         """
-        pass
 
     def get_approved_version():
         """Get the id of the approved version.
         """
-        pass
 
     def get_approved_version_publication_datetime():
         """Get the publication of the approved version.
         """
-        pass
 
     def get_approved_version_expiration_datetime():
         """Get the expiration datetime for the approved version,
         or None if no expiration datetime yet.
         """
-        pass
 
     def get_next_version():
         """Get the id of the next version. This is the approved version
         if available, or the unapproved version otherwise, or None if
         there is no next version at all.
         """
-        pass
 
     def get_next_version_publication_datetime():
         """Get the publication datetime of the next version, or None
         if no such datetime is known.
         """
-        pass
 
     def get_next_version_expiration_datetime():
         """Get the expiration datetime of the next version, or None
         if there is no expiration datetime.
         """
-        pass
 
     def get_next_version_status():
         """Get the status of the next version.
         Result can be 'not_approved', 'approved', or 'no_next_version'.
         """
-        pass
 
     def get_public_version():
         """Get the id of the public version.
         """
-        pass
 
     def get_first_publication_date(self):
         """Get the earliest publication date of any version of this Content.
@@ -663,36 +640,28 @@ class IVersioning(interface.Interface):
 
     def get_public_version_publication_datetime():
         """Get the publication datetime of the public version.
-        PUBLIC
         """
-        pass
 
     def get_public_version_expiration_datetime():
         """Get the expiration datetime of the public version, or
         None if this version never expires.
-        PUBLIC
         """
-        pass
 
     def get_public_version_status():
-        """Get the status of the published version.
-        Result can be 'published', 'closed', or 'no_public_version'
-        PUBLIC
+        """Get the status of the published version.  Result can be
+        ``published``, ``closed``, or ``no_public_version``.
         """
-        pass
 
     def get_previous_versions():
         """Get a list of the ids of the most recent versions (that
         are not public anymore. Index 0 is oldest, up is more recent
         versions).
         """
-        pass
 
     def get_last_closed_version():
         """Get the id of the version that was last closed, or None if
         no such version.
         """
-        pass
 
     def get_approval_requester():
         """Return the id of the user requesting approval
@@ -702,7 +671,6 @@ class IVersioning(interface.Interface):
         withdrawn/rejected the request.
         (Maybe write another method for this?)
         """
-        pass
 
     def get_approval_request_message():
         """Get the current message associated with
@@ -711,14 +679,13 @@ class IVersioning(interface.Interface):
         May return None if there is no such message or
         the message has been purged by an approval.
         """
-        pass
 
     def get_approval_request_datetime():
         """Get the date when the currently unapproved version
         did get a request for approval as a DateTime object,
         or None if there is no such version or request.
         """
-        pass
+
 
 class IVersionedContent(IVersioning, IContent):
     """This is a content object that is versioned. Presumed is that
@@ -734,11 +701,12 @@ class IVersionedContent(IVersioning, IContent):
         next version. If there is already a next version, this
         operation will fail.
         """
-        pass
+
 
 class ICatalogedVersionedContent(IVersionedContent):
-    """Content object that is also in the catalog.
+    """Versiioned content object that is also in the catalog.
     """
+
     def indexVersions():
         """Reindex with catalog all the versions that need to be indexed.
         """
@@ -751,33 +719,34 @@ class ICatalogedVersionedContent(IVersionedContent):
         """Get all versions that need to be indexed by the catalog.
         """
 
+
 class IVersion(IAttributeAnnotatable):
     """Version of a versioned object
     """
 
     def version_status():
         """Returns the current status of this version (unapproved, approved,
-        public, last closed of closed)
+        public, last closed of closed).
         """
 
     def object_path():
-        """Returns the physical path of the object this is a version of
+        """Returns the physical path of the object this is a version of.
         """
 
     def version():
-        """Returns the version-id
+        """Returns the version identifiant.
         """
 
     def object():
-        """Returns the object this is a version of
+        """Returns the object this is a version of.
         """
 
     def publication_datetime():
-        """Returns the version's publication datetime
+        """Returns the version's publication datetime.
         """
 
     def expiration_datetime():
-        """Returns the version's expiration datetime
+        """Returns the version's expiration datetime.
         """
 
     def get_version():
@@ -785,19 +754,21 @@ class IVersion(IAttributeAnnotatable):
            neared version.
         """
 
-class INonPublishable(ISilvaObject):
-    """An object that does not appear in the public view or table of
-    contents directly.
-    """
-    pass
 
 ###############################################################
 ### Asset
 ###############################################################
 
 
+class INonPublishable(ISilvaObject):
+    """An object that does not appear in the public view or table of
+    contents directly.
+    """
+
+
 class IAsset(INonPublishable):
-    """An Asset.
+    """An asset is a resource which is not a content object by itself,
+    but contain data. Files and Images are assets for example.
     """
 
     # MANIPULATORS
@@ -813,22 +784,16 @@ class IAsset(INonPublishable):
     # ACCESSORS
 
     def get_filename():
-        """Object's id is filename
-        PUBLIC
+        """Return filename of the asset.
         """
-        pass
 
     def get_file_size():
-        """Get the size of the file as it will be downloaded.
-        PUBLIC
+        """Get data size as it will be downloaded.
         """
-        pass
 
     def get_mime_type():
-        """Get the mime-type for this file.
-        PUBLIC
+        """Get data mime-type.
         """
-        pass
 
 
 class IFile(IAsset):
@@ -838,32 +803,27 @@ class IFile(IAsset):
 
     def set_file_data(file):
         """Re-upload data for this file object. It will change the
-        content_type, however id, _title, etc. will not change.
+        content_type, however id, title, etc. will not change.
         """
-        pass
 
     def set_text_file_data(datastr):
         """Set content of the file from the given string.
         """
-        pass
 
     # ACCESSORS
 
     def tag(**kw):
         """Generate a tag to download file content.
         """
-        pass
 
     def get_text_content():
         """Return the text content of the file or TypesError is it's
         not a text file.
         """
-        pass
 
     def get_content():
         """Return the content of the file in any cases.
         """
-        pass
 
     def get_content_fd():
         """Return a file descriptor to access the content of the file.
@@ -873,7 +833,6 @@ class IFile(IAsset):
         """Obtain the public URL the public could use to download this
         file. Typically it's the URL used in ``tag``.
         """
-        pass
 
 
 class IZODBFile(IFile):
@@ -899,10 +858,10 @@ class IImage(IAsset):
     def set_web_presentation_properties(web_format, web_scale, web_crop):
         """Sets format and scaling for web presentation.
 
-        web_format (str): either JPEG or PNG (or whatever other format
-        makes sense, must be recognised by PIL).
-        web_scale (str): WidthXHeight or nn.n%.
-        web_crop (str): X1xY1-X2xY2, crop-box or empty for no cropping.
+        - ``web_format`` (str): either JPEG or PNG (or whatever other format
+          makes sense, must be recognised by PIL).
+        - ``web_scale`` (str): WidthXHeight or nn.n%.
+        - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no cropping.
 
         Raises ValueError if web_scale cannot be parsed.
 
@@ -920,9 +879,9 @@ class IImage(IAsset):
     def getDimensions(img=None):
         """Returns width, heigt of (hi res) image.
 
-        Raises ValueError if there is no way of determining the dimenstions,
-        Return 0, 0 if there is no image,
-        Returns width, height otherwise.
+        - Raises ValueError if there is no way of determining the dimenstions,
+        - Return 0, 0 if there is no image,
+        - Returns width, height otherwise.
         """
 
     def getFormat():
@@ -939,27 +898,34 @@ class IImage(IAsset):
 ###############################################################
 
 class IGhost(interface.Interface):
-    """Interface for ghosts (and ghost folders)"""
+    """Interface for ghosts (and ghost folders).
+    """
 
     def haunted_path():
-        """return path to haunted objecy"""
+        """Return path to haunted objecy.
+        """
 
     def get_haunted_url():
-        """return haunted object's url"""
+        """Return haunted object's url.
+        """
 
     def get_haunted():
-        """return the haunted object"""
+        """Return the haunted object.
+        """
 
     def _factory(container, id, content_url):
-        """call factory method in container context"""
+        """call factory method in container context.
+        """
 
 
 class IGhostContent(IGhost):
-    """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost"""
+    """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
+    """
 
 
 class IGhostFolder(IGhost):
-    """Marker interface for ghost folders"""
+    """Marker interface for Ghost Folders.
+    """
 
 
 ###############################################################
