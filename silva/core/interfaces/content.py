@@ -175,7 +175,7 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
         view registry.
 
         This should use methods on the object itself and the version object
-        obtained by get_previewable() to render the object to HTML.
+        obtained by ``get_previewable()`` to render the object to HTML.
         """
 
     def view():
@@ -186,32 +186,8 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
         obtained by get_viewable() to render the object to HTML.
         """
 
-
-    # This should be only in a view code ?
-
-    def implements_publishable():
-        """This object implements IPublishable."""
-
-    def implements_asset():
-        """This object implements IAsset."""
-
-    def implements_content():
-        """This object implements IContent."""
-
-    def implements_container():
-        """This object implements IContainer."""
-
-    def implements_publication():
-        """This object implements IPublication."""
-
-    def implements_root():
-        """This object implements IRoot."""
-
-    def implements_versioned_content():
-        """This object implements IVersionedContent."""
-
     def is_deletable():
-        """Returns True if object is deletable right now
+        """Returns True if object is deletable right now.
         """
 
 
@@ -803,7 +779,7 @@ class IFile(IAsset):
 
     def set_file_data(file):
         """Re-upload data for this file object. It will change the
-        content_type, however id, title, etc. will not change.
+        ``content_type``, however id, title, etc. will not change.
         """
 
     def set_text_file_data(datastr):
@@ -866,8 +842,7 @@ class IImage(IAsset):
         - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no
           cropping.
 
-        Raises ValueError if web_scale cannot be parsed.
-
+        Raises ``ValueError`` if ``web_scale`` cannot be parsed.
         Automaticaly updates cached web presentation image.
         """
 
@@ -876,13 +851,14 @@ class IImage(IAsset):
         """
 
     def getOrientation():
-        """Returns translated Image orientation (string).
+        """Returns translated image orientation as a string.
         """
 
     def getDimensions(img=None):
         """Returns width, heigt of (hi res) image.
 
-        - Raises ValueError if there is no way of determining the dimenstions,
+        - Raises ``ValueError`` if there is no way of determining the
+          dimenstions,
 
         - Return 0, 0 if there is no image,
 
