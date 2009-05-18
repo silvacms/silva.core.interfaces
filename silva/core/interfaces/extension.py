@@ -42,6 +42,9 @@ class IExtensionInstaller(Interface):
     def uninstall(root):
         """Uninstall the extension in root.
         """
+        
+    def refresh(root):
+        """Refresh the extension in root."""
 
     def is_installed(root):
         """Return true if the extension is installed in root.
