@@ -680,7 +680,7 @@ class IVersionedContent(IVersioning, IContent):
 
 
 class ICatalogedVersionedContent(IVersionedContent):
-    """Versiioned content object that is also in the catalog.
+    """Versioned content object that is also in the catalog.
     """
 
     def indexVersions():
@@ -694,7 +694,13 @@ class ICatalogedVersionedContent(IVersionedContent):
     def _get_indexable_versions():
         """Get all versions that need to be indexed by the catalog.
         """
-
+        
+class ILink(ICatalogedVersionedContent):
+    """A Silva Link it possible to include links to external
+       sites &#8211; outside of Silva &#8211; in a Table of Contents. The
+       content of a Link is simply a hyperlink, beginning with
+       &#8220;http://....&#8221;, or https, ftp, news, and mailto.
+    """
 
 class IVersion(IAttributeAnnotatable):
     """Version of a versioned object
@@ -730,6 +736,11 @@ class IVersion(IAttributeAnnotatable):
            neared version.
         """
 
+class ICatalogedVersion(IVersion):
+    """A Version object that is also in the catalog"""
+    
+class ILinkVersion(ICatalogedVersion):
+    """The version of an ILink"""
 
 ###############################################################
 ### Asset
