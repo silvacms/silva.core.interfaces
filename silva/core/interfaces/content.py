@@ -742,6 +742,16 @@ class ICatalogedVersion(IVersion):
 class ILinkVersion(ICatalogedVersion):
     """The version of an ILink"""
 
+class ILink(ICatalogedVersionedContent):
+    """An object linking to an user defined URL.
+    """
+
+class ILinkVersion(IVersion):
+    """A version of a Link object.
+    """
+
+
+
 ###############################################################
 ### Asset
 ###############################################################
