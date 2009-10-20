@@ -694,7 +694,7 @@ class ICatalogedVersionedContent(IVersionedContent):
     def _get_indexable_versions():
         """Get all versions that need to be indexed by the catalog.
         """
-        
+
 class ILink(ICatalogedVersionedContent):
     """A Silva Link it possible to include links to external
        sites &#8211; outside of Silva &#8211; in a Table of Contents. The
@@ -738,7 +738,7 @@ class IVersion(IAttributeAnnotatable):
 
 class ICatalogedVersion(IVersion):
     """A Version object that is also in the catalog"""
-    
+
 class ILinkVersion(ICatalogedVersion):
     """The version of an ILink"""
 

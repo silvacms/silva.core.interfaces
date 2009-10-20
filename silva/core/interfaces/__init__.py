@@ -23,7 +23,9 @@ class RequiredParameterNotSetError(Exception):
 
 
 class IMember(Interface):
-    # ACCESSORS
+    """A Silva member object.
+    """
+
     def userid():
         """Return unique id for member/username
         """
@@ -34,11 +36,6 @@ class IMember(Interface):
 
     def email():
         """Return users's email address if known, None otherwise.
-        """
-
-    def departments():
-        """Return list of departments user is in, or None if no such
-        information.
         """
 
     def extra(name):
@@ -55,10 +52,23 @@ class IMember(Interface):
         can have.
         """
 
-# there is also expected to be a 'Members' object that is traversable
-# to a Member object. Users can then modify information in the member
-# object (if they have the permissions to do so, but the user associated
-# with the member should do so)
+
+class IEditableMember(IMember):
+    """A member which is able to see its information to be modified.
+    """
+
+    def set_fullname(fullname):
+        """Change the fullname of the user.
+        """
+
+    def set_email(email):
+        """Change member email.
+        """
+
+    def set_editor(editor):
+        """Change editor email.
+        """
+
 
 
 class IContainerPolicy(Interface):
