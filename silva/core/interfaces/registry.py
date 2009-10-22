@@ -34,29 +34,23 @@ class IUpgradeRegistry(IRegistry):
     """
 
     def registerUpgrader(upgrader, version=None, meta_type=None):
-        pass
-
-    def registerSetUp(function, version):
-        pass
-
-    def registerTearDown(function, version):
-        pass
+        """Register an upgrade step to go to the given version for the
+        given object type.
+        """
 
     def getUpgraders(version, meta_type):
-        """Return the registered upgrade_handlers of meta_type
+        """Return the registered upgrade_handlers of meta_type.
         """
 
     def upgradeObject(obj, version):
-        pass
+        """Upgrade only one object up for the given version.
+        """
 
-    def upgradeTree(root, version):
-        """Upgrade a whole tree to version."""
+    def upgradeTree(obj, version):
+        """Upgrade obj and all its children up for the given version.
+        """
 
     def upgrade(root, from_version, to_version):
-        pass
-
-    def setUp(root, version):
-        pass
-
-    def tearDown(root, version):
-        pass
+        """Upgrade obj and all its children for all version between
+        from_version and to_version.
+        """
