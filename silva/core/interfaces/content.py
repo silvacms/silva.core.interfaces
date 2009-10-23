@@ -695,13 +695,6 @@ class ICatalogedVersionedContent(IVersionedContent):
         """Get all versions that need to be indexed by the catalog.
         """
 
-class ILink(ICatalogedVersionedContent):
-    """A Silva Link it possible to include links to external
-       sites &#8211; outside of Silva &#8211; in a Table of Contents. The
-       content of a Link is simply a hyperlink, beginning with
-       &#8220;http://....&#8221;, or https, ftp, news, and mailto.
-    """
-
 class IVersion(IAttributeAnnotatable):
     """Version of a versioned object
     """
@@ -745,12 +738,6 @@ class ILinkVersion(ICatalogedVersion):
 class ILink(ICatalogedVersionedContent):
     """An object linking to an user defined URL.
     """
-
-class ILinkVersion(IVersion):
-    """A version of a Link object.
-    """
-
-
 
 ###############################################################
 ### Asset
