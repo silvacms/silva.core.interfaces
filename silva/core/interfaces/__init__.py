@@ -26,20 +26,25 @@ class IMember(Interface):
     """A Silva member object.
     """
 
-    def userid():
-        """Return unique id for member/username
+    def allowed_roles():
+        """Private method which return a list of roles that that user
+        can have.
         """
 
-    def fullname():
-        """Return full name
+    def editor():
+        """Return the default user prefered WYSIWYG editor.
         """
 
     def email():
-        """Return users's email address if known, None otherwise.
+        """Return user's email address if known, None otherwise.
         """
 
     def extra(name):
         """Return bit of extra information, keyed by name.
+        """
+
+    def fullname():
+        """Return full name
         """
 
     def is_approved():
@@ -47,9 +52,8 @@ class IMember(Interface):
         may face restrictions on the Silva site.
         """
 
-    def allowed_roles():
-        """Private method which return a list of roles that that user
-        can have.
+    def userid():
+        """Return unique id for member/username
         """
 
 
@@ -57,16 +61,16 @@ class IEditableMember(IMember):
     """A member which is able to see its information to be modified.
     """
 
-    def set_fullname(fullname):
-        """Change the fullname of the user.
+    def set_editor(editor):
+        """Change the default prefered WYSIWYG editor.
         """
 
     def set_email(email):
         """Change member email.
         """
 
-    def set_editor(editor):
-        """Change the default prefered WYSIWYG editor.
+    def set_fullname(fullname):
+        """Change the fullname of the user.
         """
 
 
