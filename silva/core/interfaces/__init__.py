@@ -70,7 +70,7 @@ class IEditableMember(IMember):
         """
 
     def set_fullname(fullname):
-        """Change the fullname of the user.
+        """Change member fullname.
         """
 
 
