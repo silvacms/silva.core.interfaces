@@ -66,7 +66,7 @@ class IEditableMember(IMember):
         """
 
     def set_editor(editor):
-        """Change editor email.
+        """Change the default prefered WYSIWYG editor.
         """
 
 
