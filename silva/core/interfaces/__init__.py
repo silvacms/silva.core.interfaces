@@ -122,8 +122,8 @@ class ISubscription(Interface):
         pass
 
 
-from content import *
-from extension import *
-from registry import *
-from service import *
-from adapters import *
+from silva.core.interfaces.content import *
+from silva.core.interfaces.extension import *
+from silva.core.interfaces.registry import *
+from silva.core.interfaces.service import *
+from silva.core.interfaces.adapters import *
