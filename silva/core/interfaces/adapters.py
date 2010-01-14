@@ -213,23 +213,6 @@ class IPath(interface.Interface):
         """
 
 
-class ICatalogIndexable(interface.Interface):
-    """Index and reindex an object.
-    """
-
-    def index():
-        """Index an object.
-        """
-
-    def unindex():
-        """Unindex an object.
-        """
-
-    def reindex():
-        """Reindex an object.
-        """
-
-
 class IFeedEntry(interface.Interface):
     """Interface for objects that can act like an item in a atom or rss
     feed.
