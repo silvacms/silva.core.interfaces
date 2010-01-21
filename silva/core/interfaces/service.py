@@ -101,7 +101,7 @@ class IFilesService(ISilvaLocalService):
     """Configure File storage.
     """
 
-    storage = schema.Choice(title=u"Files Storage",
+    storage = schema.Choice(title=u"File Storage",
                             description=u"Method used to store files",
                             required=True,
                             vocabulary="File Storage Type")
