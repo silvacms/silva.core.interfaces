@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.2dev'
+version = '2.2b1dev'
 
 setup(name='silva.core.interfaces',
       version=version,
-      description="Interfaces used in Silva",
+      description="Define Zope interfaces used in Silva",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
@@ -17,7 +17,7 @@ setup(name='silva.core.interfaces',
       keywords='silva cms interfaces zope',
       author='Infrae',
       author_email='info@infrae.com',
-      url='',
+      url='http://infrae.com/products/silva',
       license='BSD',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['silva', 'silva.core',],
