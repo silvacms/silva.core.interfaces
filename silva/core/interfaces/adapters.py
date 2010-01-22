@@ -213,37 +213,57 @@ class IPath(interface.Interface):
         """
 
 
+class IFeedEntryProvider(interface.Interface):
+    """Adapter to a object which provides a list feed entry that can
+    used to build a RSS/Atom feed.
+    """
+
+    def entries():
+        """Generate IFeedEntry objects.
+        """
+
+
 class IFeedEntry(interface.Interface):
-    """Interface for objects that can act like an item in a atom or rss
-    feed.
+    """Adapter to object to provide information to include in a
+    RSS/Atom feed.
     """
 
     def id():
+        """Give the id of the object.
+        """
         pass
 
     def title():
-        pass
+        """Give the title.
+        """
 
     def html_description():
-        pass
+        """Give an HTML description.
+        """
 
     def description():
-        pass
+        """Give an non-HTML description.
+        """
 
     def url():
-        pass
+        """Give the URL of the object.
+        """
 
     def authors():
-        pass
+        """Give a list of authors.
+        """
 
     def date_updated():
-        pass
+        """Date at which the content have been updated.
+        """
 
     def date_published():
-        pass
+        """Publication date.
+        """
 
     def keywords():
-        pass
+        """Give a list of keywords matching the content
+        """
 
 
 class IVirtualHosting(interface.Interface):
