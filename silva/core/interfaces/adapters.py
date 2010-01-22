@@ -261,6 +261,10 @@ class IFeedEntry(interface.Interface):
         """Publication date.
         """
 
+    def subject():
+        """Content subject.
+        """
+
     def keywords():
         """Give a list of keywords matching the content
         """
