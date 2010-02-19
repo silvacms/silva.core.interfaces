@@ -683,17 +683,6 @@ class ICatalogedVersionedContent(IVersionedContent):
     """Versioned content object that is also in the catalog.
     """
 
-    def indexVersions():
-        """Reindex with catalog all the versions that need to be indexed.
-        """
-
-    def unindexVersions():
-        """Unindex all versions.
-        """
-
-    def _get_indexable_versions():
-        """Get all versions that need to be indexed by the catalog.
-        """
 
 class IVersion(IAttributeAnnotatable):
     """Version of a versioned object
@@ -901,10 +890,6 @@ class IGhost(interface.Interface):
 
     def get_haunted():
         """Return the haunted object.
-        """
-
-    def _factory(container, id, content_url):
-        """call factory method in container context.
         """
 
 
