@@ -306,7 +306,6 @@ class IContainer(ISilvaObject, IPublishable):
         """Get a list of nonactive publishables. This is not in
         any fixed order.
         """
-        pass
 
     def get_assets():
         """Get a list of assets objects in this folder.  (not in any
