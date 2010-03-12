@@ -470,41 +470,34 @@ class IVersioning(interface.Interface):
                        expiration_datetime):
         """Add unapproved version.
         """
-        pass
 
     def approve_version():
         """Approve the current unapproved version.
         """
-        pass
 
     def unapprove_version():
         """Unapproved an approved but not yet published version.
         """
-        pass
 
     def close_version():
         """Close the public version.
         """
-        pass
 
-
-    def request_version_approval(self, message):
+    def request_version_approval(message):
         """Request approval for the current unapproved version
         Implementation should raise VersioningError, if there
         is no such version.
         Returns None otherwise
         """
-        pass
 
-    def withdraw_version_approval(self, message):
+    def withdraw_version_approval(message):
         """Withdraw a previous request for approval
         Implementation should raise VersioningError, if the
         currently unapproved version has no request for approval yet,
         or if there is no unapproved version.
         """
-        pass
 
-    def reject_version_approval(self, message):
+    def reject_version_approval(message):
         """Reject a request for approval made by some Author
         Implementation should raise VersioningError, if the
         currently unapproved version has no request for approval yet,
@@ -512,33 +505,25 @@ class IVersioning(interface.Interface):
         One need to have the ApproveSilvaContent permission to call
         this method
         """
-        pass
-
 
     def set_unapproved_version_publication_datetime(dt):
         """Set the publicationd datetime for the unapproved version,
         or None if this is not yet known.
         """
-        pass
 
     def set_unapproved_version_expiration_datetime(dt):
         """Set the expiration datetime of the unapproved version,
         or None if it never expires.
         """
-        pass
 
     def set_approved_version_publication_datetime(dt):
         """Change the publication datetime for the approved version.
         """
-        pass
 
     def set_approved_version_expiration_datetime(dt):
         """Change the expiration datetime for the approved version, or
         None if there is no expiration.
         """
-        pass
-
-
 
     # ACCESSORS
 
@@ -608,7 +593,7 @@ class IVersioning(interface.Interface):
         """Get the id of the public version.
         """
 
-    def get_first_publication_date(self):
+    def get_first_publication_date():
         """Get the earliest publication date of any version of this Content.
         Needed for rss/atom feeds.
         """
