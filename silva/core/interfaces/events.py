@@ -25,11 +25,11 @@ class SecurityRoleChangedEvent(ObjectEvent):
         self.role = role
 
 
-class SecurityRoleAddedEvent(SecurityChangedEvent):
+class SecurityRoleAddedEvent(SecurityRoleChangedEvent):
     implements(ISecurityRoleAddedEvent)
 
 
-class SecurityRoleRemovedEvent(SecurityChangedEvent):
+class SecurityRoleRemovedEvent(SecurityRoleChangedEvent):
     implements(ISecurityRoleRemovedEvent)
 
 
