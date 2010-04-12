@@ -128,3 +128,5 @@ from silva.core.interfaces.extension import *
 from silva.core.interfaces.registry import *
 from silva.core.interfaces.service import *
 from silva.core.interfaces.adapters import *
+from silva.core.interfaces.events import *
+
