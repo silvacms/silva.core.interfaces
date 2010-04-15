@@ -19,10 +19,10 @@ class ISecurityRoleRemovedEvent(ISecurityRoleChangedEvent):
 class SecurityRoleChangedEvent(ObjectEvent):
     implements(ISecurityRoleChangedEvent)
 
-    def __init__(self, obj, username, role):
+    def __init__(self, obj, username, roles):
         super(SecurityRoleChangedEvent, self).__init__(obj)
         self.username = username
-        self.role = role
+        self.roles = roles
 
 
 class SecurityRoleAddedEvent(SecurityRoleChangedEvent):
