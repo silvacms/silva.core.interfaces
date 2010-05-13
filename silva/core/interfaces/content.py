@@ -877,12 +877,16 @@ class IGhost(interface.Interface):
         """
 
 
+class IGhostVersion(ICatalogedVersion):
+    """Version of a ghost object.
+    """
+
 class IGhostContent(IGhost):
     """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
     """
 
 
-class IGhostFolder(IGhost):
+class IGhostFolder(IGhost, IContainer):
     """Marker interface for Ghost Folders.
     """
 
