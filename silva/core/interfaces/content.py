@@ -881,7 +881,8 @@ class IGhostVersion(ICatalogedVersion):
     """Version of a ghost object.
     """
 
-class IGhostContent(IGhost):
+
+class IGhostContent(IGhost, ICatalogedVersionedContent):
     """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
     """
 
