@@ -23,15 +23,30 @@ class IContentClosedEvent(IContentPublicationEvent):
 # Content import/export
 
 class IContentImportedExported(IObjectEvent):
-    pass
+    """A content have been imported or exported from the site.
+    """
 
 
 class IContentImported(IContentImportedExported):
-    pass
+    """A new content have been imported in the site.
+    """
 
 
 class IContentExported(IContentImportedExported):
-    pass
+    """A content have been exported from the site.
+    """
+
+
+class ContentImportedExported(ObjectEvent):
+    implements(IContentImportedExported)
+
+
+class ContentImported(ContentImportedExported):
+    implements(IContentImported)
+
+
+class ContentExported(ContentImportedExported):
+    implements(IContentExported)
 
 
 # Security
