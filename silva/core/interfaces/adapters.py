@@ -52,6 +52,7 @@ class IContentImporter(interface.Interface):
 
 
 class IArchiveFileImporter(IContentImporter):
+
     def importArchive(archivefile, assettitle=None, recreatedirs=1, replace=0):
         """Import archive file
 
@@ -70,18 +71,19 @@ class IArchiveFileImporter(IContentImporter):
         """
 
 
-class IZipfileImporter(IContentImporter):
-    def isFullmediaArchive(zipname):
+class IZipFileImporter(IContentImporter):
+
+    def isFullmediaArchive(input_archive):
         """Tests if the zip archive is a fullmedia archive
         """
 
-    def importFromZip(context, zipname, replace=False):
-        """Import Silva content from a full media zip file.
-
-        context -- The content object to be imported into
-        zipname -- The filename of the zip archive
-        replace -- Replace content objects with identical ids.
+    def importFromZip(input_archive, replace=False):
+        """Import Silva content from a full media opened zip
+        file. Optionaly replace content.
         """
+
+
+IZipfileImporter = IZipFileImporter
 
 
 class IContentExporter(interface.Interface):
