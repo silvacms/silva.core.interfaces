@@ -105,3 +105,13 @@ class IFilesService(ISilvaLocalService):
                             description=u"Method used to store files",
                             required=True,
                             vocabulary="File Storage Type")
+
+    def new_file(id):
+        """Allocate a new file with the given ID.
+        """
+
+    def is_file_using_correct_storage(content):
+        """Return true if the given content is a file and using the
+        correct selected storage in the service.
+        """
+
