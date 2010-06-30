@@ -860,34 +860,45 @@ class IImage(IAsset):
 ### Ghost
 ###############################################################
 
-class IGhost(interface.Interface):
+
+class IGhostAware(interface.Interface):
+    """This mark any ghost content.
+    """
+
+
+class IGhostManagable(IGhostAware):
     """Interface for ghosts (and ghost folders).
     """
 
-    def haunted_path():
-        """Return path to haunted objecy.
-        """
-
     def get_haunted_url():
-        """Return haunted object's url.
+        """Return haunted object's path.
         """
 
     def get_haunted():
         """Return the haunted object.
         """
 
+    def set_haunted(content):
+        """Set content to be haunted.
+        """
 
-class IGhostVersion(ICatalogedVersion):
+    def get_link_status():
+        """Report a marker indicating the status of the ghost: broken,
+        link not set, to a folder ...
+        """
+
+
+class IGhostVersion(IGhostManagable, ICatalogedVersion):
     """Version of a ghost object.
     """
 
 
-class IGhostContent(IGhost, ICatalogedVersionedContent):
+class IGhost(IGhostAware, ICatalogedVersionedContent):
     """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
     """
 
 
-class IGhostFolder(IGhost, IContainer):
+class IGhostFolder(IGhostManagable, IContainer):
     """Marker interface for Ghost Folders.
     """
 
