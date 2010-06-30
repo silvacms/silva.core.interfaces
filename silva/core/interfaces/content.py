@@ -870,10 +870,6 @@ class IGhostManagable(IGhostAware):
     """Interface for ghosts (and ghost folders).
     """
 
-    def get_haunted_url():
-        """Return haunted object's path.
-        """
-
     def get_haunted():
         """Return the haunted object.
         """
