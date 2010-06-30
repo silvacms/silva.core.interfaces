@@ -164,17 +164,6 @@ class IVersionManagement(interface.Interface):
         """
 
 
-class IAddables(interface.Interface):
-
-    def getAddables():
-        """Return a list of Metatypes that are addable to this container.
-        """
-
-    def setAddables(addables):
-        """Set the the Metatypes that are addable to this container.
-        """
-
-
 class IIndexable(interface.Interface):
 
     def getTitle():
