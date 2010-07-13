@@ -9,7 +9,7 @@ from grokcore.component.interfaces import IContext
 
 
 class ICustomizable(interface.Interface):
-    """Customizable contents.
+    """Customizable content
     """
 
 
@@ -123,7 +123,7 @@ class ISecurity(interface.Interface):
 
 
 class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
-    """Interface that should be supported by all Silva objects.
+    """Silva content objects
     """
     # MANIPULATORS
     def set_title(title):
@@ -210,6 +210,8 @@ class IPublishable(interface.Interface):
 ###############################################################
 
 class IContainer(ISilvaObject, IPublishable):
+    """Silva containers
+    """
 
     used_space = interface.Attribute(u"Used space by assets.")
 
@@ -350,7 +352,7 @@ class IContainer(ISilvaObject, IPublishable):
 
 
 class IFolder(IContainer):
-    """Basic Silva Folder.
+    """Silva Folder
     """
 
     def set_silva_addables_allowed_in_container(addables):
@@ -373,12 +375,12 @@ class IFolder(IContainer):
 
 
 class IPublication(IContainer):
-    """An interface supported by publication objects.
+    """Silva Publication
     """
 
 
 class IRoot(IPublication):
-    """An interface supported by Silva root objects.
+    """Silva Root
     """
 
     def get_root():
@@ -406,7 +408,9 @@ class IRoot(IPublication):
 ###############################################################
 
 class IContent(ISilvaObject, IPublishable):
-    """An object that can be published directly and would appear
+    """Silva non-container content
+
+    Those objects that can be published directly and would appear
     in the table of contents. Can be ordered.
     """
     # ACCESSORS
@@ -431,11 +435,12 @@ class IContent(ISilvaObject, IPublishable):
 
 
 class IAutoTOC(IContent):
-    pass
+    """Auto TOC content
+    """
 
 
 class IIndexer(IContent):
-    """Index object.
+    """Indexer content
     """
 
     def getIndexNames():
@@ -648,10 +653,7 @@ class IVersioning(interface.Interface):
 
 
 class IVersionedContent(IVersioning, IContent):
-    """This is a content object that is versioned. Presumed is that
-    upon creation of the content object it is assigned a version id
-    that is registered with the Versioning interface as the unapproved
-    version.
+    """Content that can have versions
     """
 
     # MANIPULATORS
@@ -664,12 +666,12 @@ class IVersionedContent(IVersioning, IContent):
 
 
 class ICatalogedVersionedContent(IVersionedContent):
-    """Versioned content object that is also in the catalog.
+    """Cataloged versioned content
     """
 
 
 class IVersion(IAttributeAnnotatable):
-    """Version of a versioned object
+    """Version of a versioned content
     """
 
     def version_status():
@@ -703,13 +705,20 @@ class IVersion(IAttributeAnnotatable):
         """
 
 class ICatalogedVersion(IVersion):
-    """A Version object that is also in the catalog"""
+    """Cataloged version content
+    """
+
 
 class ILinkVersion(ICatalogedVersion):
-    """The version of an ILink"""
+    """Version of a Silva Link content
+    """
+
 
 class ILink(ICatalogedVersionedContent):
-    """An object linking to an user defined URL.
+    """Silva Link content
+
+    Silva Link can be used to create links to either other contents in
+    Silva or to external URLs.
     """
 
 ###############################################################
@@ -724,7 +733,9 @@ class INonPublishable(ISilvaObject):
 
 
 class IAsset(INonPublishable):
-    """An asset is a resource which is not a content object by itself,
+    """Asset content
+
+    An asset is a resource which is not a content object by itself,
     but contain data. Files and Images are assets for example.
     """
 
@@ -754,7 +765,7 @@ class IAsset(INonPublishable):
 
 
 class IFile(IAsset):
-    """A File object to encapsulate "downloadable" data
+    """Silva File content to encapsulate "downloadable" data
     """
     # MANIPULATORS
 
@@ -805,7 +816,7 @@ class IBlobFile(IFile):
     """
 
 class IImage(IAsset):
-    """Images.
+    """Silva Images
     """
 
     def set_image(file):
