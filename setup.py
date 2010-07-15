@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.3b1dev'
+version = '2.3b1'
 
 setup(name='silva.core.interfaces',
       version=version,
