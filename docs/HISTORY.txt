@@ -9,7 +9,9 @@ Changelog
 2.3b1 (2010-10-15)
 ------------------
 
-* Lots of cleanup
+* Remove unused interfaces,
+
+* Add missing interfaces for contents.
 
 2.2 (2010-03-31)
 ----------------
