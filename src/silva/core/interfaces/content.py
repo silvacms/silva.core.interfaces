@@ -86,12 +86,6 @@ class ISecurity(interface.Interface):
         level of the tree, or None
         """
 
-    def sec_get_downward_defined_userids():
-        """Get the list of userids with roles defined in a lower
-        level of the tree (these users do not have rights on this
-        local level), or None
-        """
-
     def sec_get_local_defined_groups():
         """Get the list of groups with locally defined roles.
         """
@@ -107,11 +101,6 @@ class ISecurity(interface.Interface):
 
     def sec_get_upward_roles_for_group(group):
         """Get the roles that a group has here, defined in a higer
-        level of the tree.
-        """
-
-    def sec_get_downward_defined_groups():
-        """Get the list of groups with roles defined in a lower
         level of the tree.
         """
 
@@ -280,10 +269,6 @@ class IContainer(ISilvaObject, IPublishable):
         (this one)
         """
 
-    def container_url():
-        """Get the url of the nearest container.
-        """
-
     def is_transparent():
         """Show this subtree in ``get_tree()``.
         """
@@ -302,11 +287,6 @@ class IContainer(ISilvaObject, IPublishable):
     def get_ordered_publishables():
         """Get list of active publishables of this folder, in
         order.
-        """
-
-    def get_nonactive_publishables():
-        """Get a list of nonactive publishables. This is not in
-        any fixed order.
         """
 
     def get_assets():
