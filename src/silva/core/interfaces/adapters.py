@@ -3,47 +3,66 @@
 # $Id$
 
 
-from zope import interface
+from zope import interface, schema
+from silva.translations import translate as _
 
-class IViewerSecurity(interface.Interface):
+
+class IAccessSecurity(interface.Interface):
+    """Manage access restriction to the content.
+    """
+
     def setAcquired():
-        """Set minimum viewer role restriction to acquire from above.
+        """Set the access restriction to acquire its settings.
         """
 
     def setMinimumRole(role):
-        """Set the minimum (viewer) role needed for view permission here.
+        """Set `role` as the minimum role needed to access this
+        content.
 
-        If role is Anonymous, viewer role restriction will be set to
-        acquire from above.
+        If `role` is Anonymous, the access restriction will be
+        acquired.
         """
 
     def isAcquired():
-        """Check whether minimum role is acquired.
+        """Check whether the access restriction is acquired (the
+        current restriction is set on one of the parents, not the
+        content itself).
         """
 
     def getMinimumRole():
-        """Get the minimum role needed for view permission here.
+        """Get the minimum role needed to access the content here.
         """
 
     def getMinimumRoleAbove():
-        """Get the minimum role needed for view permission in parent.
+        """Get the minimum role needed to access the parent content.
         """
 
+# BBB
+IViewerSecurity = IAccessSecurity
 
-class ILockable(interface.Interface):
-    def createLock():
-        """Create lock for context object.
 
-        Return false if already locked, otherwise true.
+class IUserAuthorization(interface.Interface):
+    """A user authorization.
+    """
+
+    userid = schema.TextLine(
+        title=_(u"username"))
+    acquired_roles = schema.List(
+        title=_(u"roles defined above"),
+        value_type=schema.TextLine(),
+        required=False)
+    local_roles = schema.List(
+        title=_(u"roles defined here"),
+        value_type=schema.TextLine(),
+        required=False)
+
+
+class IUserAccessSecurity(interface.Interface):
+
+    def getAuthorizations():
+        """Return a list of authorization.
         """
 
-    def breakLock():
-        """Break the lock.
-        """
-
-    def isLocked():
-        """Check whether this object is locked by another user.
-        """
 
 
 class IContentImporter(interface.Interface):
@@ -379,4 +398,3 @@ class IHaunted(interface.Interface):
     def getHaunting():
         """Return iterator of objects (ghosts) haunting the adapted object.
         """
-        pass

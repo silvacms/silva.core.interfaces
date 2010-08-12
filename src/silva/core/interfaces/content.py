@@ -86,24 +86,6 @@ class ISecurity(interface.Interface):
         level of the tree, or None
         """
 
-    def sec_get_local_defined_groups():
-        """Get the list of groups with locally defined roles.
-        """
-
-    def sec_get_local_roles_for_group(group):
-        """Get a list of local roles that are defined for a group here.
-        """
-
-    def sec_get_upward_defined_groups():
-        """Get the list of groups with roles defined in a higer
-        level of the tree.
-        """
-
-    def sec_get_upward_roles_for_group(group):
-        """Get the roles that a group has here, defined in a higer
-        level of the tree.
-        """
-
     def sec_get_last_author_info():
         """Get information about the last author of this object.
         This is *not* the last author of the public version of this
@@ -890,29 +872,3 @@ class IGhostFolder(IGhostManagable, IContainer):
     """
 
 
-###############################################################
-### Group
-###############################################################
-
-class IBaseGroup(INonPublishable):
-    """A group implementation.
-    """
-
-    def isValid():
-        """Returns whether the group asset is valid.
-        """
-
-
-class IGroup(IBaseGroup):
-    """Simple Group with user in it.
-    """
-
-
-class IIPGroup(IBaseGroup):
-    """Group using IP as members.
-    """
-
-
-class IVirtualGroup(IBaseGroup):
-    """Virtual group.
-    """
