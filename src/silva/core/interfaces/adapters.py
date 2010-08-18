@@ -4,6 +4,7 @@
 
 
 from zope import interface, schema
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from silva.translations import translate as _
 
 
@@ -40,20 +41,34 @@ class IAccessSecurity(interface.Interface):
 # BBB
 IViewerSecurity = IAccessSecurity
 
+@apply
+def role_vocabulary():
+    terms = [SimpleTerm(value=None, token='None', title=u'-')]
+    for value, title in [('Viewer', _('Viewer')),
+                         ('Viewer +', _('Viewer +')),
+                         ('Viewer ++', _('Viewer ++')),
+                         ('Reader', _('Reader')),
+                         ('Author', _('Author')),
+                         ('Editor', _('Editor')),
+                         ('ChiefEditor', _('ChiefEditor')),
+                         ('Manager', _('Manager')),]:
+        terms.append(SimpleTerm(value=value, token=value, title=title))
+    return SimpleVocabulary(terms)
+
 
 class IUserAuthorization(interface.Interface):
     """A user authorization.
     """
 
-    userid = schema.TextLine(
+    username = schema.TextLine(
         title=_(u"username"))
-    acquired_roles = schema.List(
-        title=_(u"roles defined above"),
-        value_type=schema.TextLine(),
+    acquired_role = schema.Choice(
+        title=_(u"role defined above"),
+        source=role_vocabulary,
         required=False)
-    local_roles = schema.List(
-        title=_(u"roles defined here"),
-        value_type=schema.TextLine(),
+    local_role = schema.Choice(
+        title=_(u"role defined here"),
+        source=role_vocabulary,
         required=False)
 
 
