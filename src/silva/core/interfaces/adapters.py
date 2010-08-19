@@ -12,11 +12,21 @@ class IAccessSecurity(interface.Interface):
     """Manage access restriction to the content.
     """
 
-    def setAcquired():
+    minimum_role = interface.Attribute(
+        u"Property giving access to set_minimum_role/get_minimum_role")
+    acquired = interface.Attribute(u"Property giving access to is_acquired")
+
+    def set_acquired():
         """Set the access restriction to acquire its settings.
         """
 
-    def setMinimumRole(role):
+    def is_acquired():
+        """Check whether the access restriction is acquired (the
+        current restriction is set on one of the parents, not the
+        content itself).
+        """
+
+    def set_minimum_role(role):
         """Set `role` as the minimum role needed to access this
         content.
 
@@ -24,22 +34,10 @@ class IAccessSecurity(interface.Interface):
         acquired.
         """
 
-    def isAcquired():
-        """Check whether the access restriction is acquired (the
-        current restriction is set on one of the parents, not the
-        content itself).
-        """
-
-    def getMinimumRole():
+    def get_minimum_role():
         """Get the minimum role needed to access the content here.
         """
 
-    def getMinimumRoleAbove():
-        """Get the minimum role needed to access the parent content.
-        """
-
-# BBB
-IViewerSecurity = IAccessSecurity
 
 @apply
 def role_vocabulary():
