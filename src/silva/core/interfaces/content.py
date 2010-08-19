@@ -17,79 +17,12 @@ class ISecurity(interface.Interface):
     """Silva security support (built on top of Zope security).
     """
 
-    # MANIPULATORS
-    def sec_assign(userid, role):
-        """Assign ``role`` to ``userid`` for this object.
-        """
-
-    def sec_remove(userid):
-        """Remove a user ``user`` completely from this object.
-        """
-
-    def sec_revoke(userid, revoke_roles):
-        """Remove roles ``revoke_roles`` from user ``userid`` in this
-        object.
-        """
-
-    def sec_create_lock():
-        """Create lock for this object. Return true if successful.
-        """
-
-    # ACCESSORS
-
-    def sec_is_locked():
-        """Check whether this object is locked by a user currently
-        editing.
-        """
-
-    def sec_have_management_rights():
-        """Check whether we have management rights here.
-        """
-
-    def sec_get_userids():
-        """Get the userids that have local roles here.
-        """
-
-    def sec_get_roles_for_userid(userid):
-        """Get the local roles that a userid has here.
-        """
-
-    def sec_get_roles():
-        """Get all roles defined here that we're interested in managing.
-        """
-
-    def sec_find_users(search_string):
-        """Look up users in user database. Return a dictionary of
-        users with userid as key, and dictionaries with user info
-        as value.
-        """
-
-    def sec_get_member(userid):
-        """Get member object for user id.
-        """
-
-    def sec_get_local_defined_userids():
-        """Get the list of userids with locally defined roles, or None
-        """
-
-    def sec_get_local_roles_for_userid(userid):
-        """Get a list of local roles that a userid has here, or None
-        """
-
-    def sec_get_upward_defined_userids():
-        """Get the list of userids with roles defined in a higer
-        level of the tree, or None
-        """
-
-    def sec_get_upward_roles_for_userid(userid):
-        """Get the roles that a userid has here, defined in a higer
-        level of the tree, or None
-        """
-
     def sec_get_last_author_info():
         """Get information about the last author of this object.
-        This is *not* the last author of the public version of this
-        object.
+        """
+
+    def sec_get_creator_info():
+        """Get information about the creator of this object.
         """
 
 
