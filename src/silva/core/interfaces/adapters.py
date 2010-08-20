@@ -86,18 +86,29 @@ class IUserAccessSecurity(interface.Interface):
         pass
 
     def get_user_authorization(user_id=None, dont_acquire=False):
-        """Return authorization object for the given user. If no user
-        is specified, return authorization object for the current
-        authenticated user.
+        """Return authorization object for the given user.
+
+        If no user is specified, return authorization object for the
+        current authenticated user.
+
+        If dont_acquire is set to True, no acquired roles would be
+        looked up (only local roles).
         """
 
     def get_users_authorization(user_ids, dont_acquire=False):
-        """Return all current authorizations at this level, and
-        authorization objects for given users.
+        """Return all authorizations objects at this level for the
+        given list of users.
+
+        If dont_acquire is set to True, no acquired roles would be
+        looked up (only local roles).
         """
 
-    def get_authorizations(dont_acquire=False):
-        """Return current all authorizations at this level.
+    def get_defined_authorizations(dont_acquire=False):
+        """Return current all authorizations objects that defines
+        authorization in Silva for users at this level.
+
+        If dont_acquire is set to True, no acquired roles would be
+        looked up (only local roles).
         """
 
 
