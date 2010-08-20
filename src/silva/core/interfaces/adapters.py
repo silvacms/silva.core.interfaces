@@ -57,7 +57,6 @@ def role_vocabulary():
 class IUserAuthorization(interface.Interface):
     """A user authorization.
     """
-
     username = schema.TextLine(
         title=_(u"username"))
     acquired_role = schema.Choice(
@@ -69,11 +68,36 @@ class IUserAuthorization(interface.Interface):
         source=role_vocabulary,
         required=False)
 
+    def grant(role):
+        """Grant a new role to the user, if it doesn't already have it
+        The current user must have at least that role.
+        """
+
+    def revoke():
+        """Revoke all Silva roles defined at this level for this user,
+        if the current user have at least that role.
+        """
+
 
 class IUserAccessSecurity(interface.Interface):
 
-    def getAuthorizations():
-        """Return a list of authorization.
+
+    def get_user_role(user_id=None):
+        pass
+
+    def get_user_authorization(user_id=None, dont_acquire=False):
+        """Return authorization object for the given user. If no user
+        is specified, return authorization object for the current
+        authenticated user.
+        """
+
+    def get_users_authorization(user_ids, dont_acquire=False):
+        """Return all current authorizations at this level, and
+        authorization objects for given users.
+        """
+
+    def get_authorizations(dont_acquire=False):
+        """Return current all authorizations at this level.
         """
 
 
