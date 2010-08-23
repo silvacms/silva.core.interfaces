@@ -799,9 +799,6 @@ class IGhost(IGhostAware, ICatalogedVersionedContent):
     """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
     """
 
-
 class IGhostFolder(IGhostManagable, IContainer):
     """Marker interface for Ghost Folders.
     """
-
-
