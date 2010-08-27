@@ -32,10 +32,6 @@ class IMember(Interface):
         can have.
         """
 
-    def editor():
-        """Return the default user prefered WYSIWYG editor.
-        """
-
     def email():
         """Return user's email address if known, None otherwise.
         """
