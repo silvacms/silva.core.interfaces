@@ -51,14 +51,14 @@ def _add_silva_role(terms):
 
 @apply
 def role_vocabulary():
-    terms = [SimpleTerm(value=None, token='None', title=u'-')]
+    terms = [SimpleTerm(value=None, token='None', title=_(u'select:'))]
     _add_silva_role(terms)
     return SimpleVocabulary(terms)
 
 
 @apply
 def authenticated_role_vocabulary():
-    terms = [SimpleTerm(value=None, token='None', title=u'-'),
+    terms = [SimpleTerm(value=None, token='None', title=_(u'select:')),
              SimpleTerm(value='Authenticated',
                         token='Authenticated',
                         title=_('Authenticated'))]
