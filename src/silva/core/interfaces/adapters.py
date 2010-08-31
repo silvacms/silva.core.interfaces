@@ -38,10 +38,7 @@ class IAccessSecurity(interface.Interface):
         """Get the minimum role needed to access the content here.
         """
 
-
-@apply
-def role_vocabulary():
-    terms = [SimpleTerm(value=None, token='None', title=u'-')]
+def _add_silva_role(terms):
     for value, title in [('Viewer', _('Viewer')),
                          ('Viewer +', _('Viewer +')),
                          ('Viewer ++', _('Viewer ++')),
@@ -51,6 +48,21 @@ def role_vocabulary():
                          ('ChiefEditor', _('ChiefEditor')),
                          ('Manager', _('Manager')),]:
         terms.append(SimpleTerm(value=value, token=value, title=title))
+
+@apply
+def role_vocabulary():
+    terms = [SimpleTerm(value=None, token='None', title=u'-')]
+    _add_silva_role(terms)
+    return SimpleVocabulary(terms)
+
+
+@apply
+def authenticated_role_vocabulary():
+    terms = [SimpleTerm(value=None, token='None', title=u'-'),
+             SimpleTerm(value='Authenticated',
+                        token='Authenticated',
+                        title=_('Authenticated'))]
+    _add_silva_role(terms)
     return SimpleVocabulary(terms)
 
 
