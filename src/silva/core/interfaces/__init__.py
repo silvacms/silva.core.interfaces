@@ -23,62 +23,11 @@ class RequiredParameterNotSetError(Exception):
     pass
 
 
-class IMember(Interface):
-    """A Silva member object.
-    """
-
-    def allowed_roles():
-        """Private method which return a list of roles that that user
-        can have.
-        """
-
-    def email():
-        """Return user's email address if known, None otherwise.
-        """
-
-    def extra(name):
-        """Return bit of extra information, keyed by name.
-        """
-
-    def fullname():
-        """Return full name
-        """
-
-    def is_approved():
-        """Return true if this member is approved. Unapproved members
-        may face restrictions on the Silva site.
-        """
-
-    def userid():
-        """Return unique id for member/username
-        """
-
-
-class IEditableMember(IMember):
-    """A member which is able to see its information to be modified.
-    """
-
-    def set_editor(editor):
-        """Change the default prefered WYSIWYG editor.
-        """
-
-    def set_email(email):
-        """Change member email.
-        """
-
-    def set_fullname(fullname):
-        """Change member fullname.
-        """
-
-
-
 class IContainerPolicy(Interface):
     """Policy for container's default documents"""
 
     def createDefaultDocument(container, title):
         """create default document in given container"""
-
-
 
 
 class IIcon(Interface):
@@ -125,4 +74,4 @@ from silva.core.interfaces.registry import *
 from silva.core.interfaces.service import *
 from silva.core.interfaces.adapters import *
 from silva.core.interfaces.events import *
-
+from silva.core.interfaces.auth import *
