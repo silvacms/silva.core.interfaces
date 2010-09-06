@@ -62,6 +62,11 @@ class IGroup(interface.Interface):
         """Return friendly group name (or identifier if unknown).
         """
 
+    def allowed_roles():
+        """Private method which return a list of roles that that the
+        group can have.
+        """
+
 
 class IAccessSecurity(interface.Interface):
     """Manage access restriction to the content.
@@ -120,11 +125,12 @@ def authenticated_role_vocabulary():
     return SimpleVocabulary(terms)
 
 
-class IUserAuthorization(interface.Interface):
+class IAuthorization(interface.Interface):
     """A user authorization.
     """
-    username = schema.TextLine(
-        title=_(u"username"))
+    identifier = schema.TextLine(
+        title=_(u"identifier"))
+    type = interface.Attribute(u"user or group")
     acquired_role = schema.Choice(
         title=_(u"role defined above"),
         source=role_vocabulary,
@@ -145,25 +151,26 @@ class IUserAuthorization(interface.Interface):
         """
 
 
-class IUserAccessSecurity(interface.Interface):
-
+class IAuthorizationManager(interface.Interface):
+    """Manage authorization at a given level.
+    """
 
     def get_user_role(user_id=None):
         pass
 
-    def get_user_authorization(user_id=None, dont_acquire=False):
-        """Return authorization object for the given user.
+    def get_authorization(identifer=None, dont_acquire=False):
+        """Return authorization object for the given user or group.
 
-        If no user is specified, return authorization object for the
+        If no identifier is specified, return authorization object for the
         current authenticated user.
 
         If dont_acquire is set to True, no acquired roles would be
         looked up (only local roles).
         """
 
-    def get_users_authorization(user_ids, dont_acquire=False):
+    def get_authorizations(identifiers, dont_acquire=False):
         """Return all authorizations objects at this level for the
-        given list of users.
+        given list of users or groups.
 
         If dont_acquire is set to True, no acquired roles would be
         looked up (only local roles).
@@ -171,7 +178,7 @@ class IUserAccessSecurity(interface.Interface):
 
     def get_defined_authorizations(dont_acquire=False):
         """Return current all authorizations objects that defines
-        authorization in Silva for users at this level.
+        authorization in Silva for users and groups at this level.
 
         If dont_acquire is set to True, no acquired roles would be
         looked up (only local roles).
@@ -180,5 +187,5 @@ class IUserAccessSecurity(interface.Interface):
 
 __all__ = [
     'IMember', 'IEditableMember', 'IGroup',
-    'IAccessSecurity', 'IUserAccessSecurity', 'IUserAuthorization',
+    'IAccessSecurity', 'IAuthorizationManager', 'IAuthorization',
     'authenticated_role_vocabulary', 'role_vocabulary']
