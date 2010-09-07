@@ -8,16 +8,100 @@ from zope.component.interfaces import IObjectEvent, ObjectEvent
 
 # Content publication
 
-class IContentPublicationEvent(IObjectEvent):
-    pass
+class IPublishingEvent(IObjectEvent):
+    """A publication action has been done.
+    """
 
 
-class IContentApprovedEvent(IContentPublicationEvent):
-    pass
+class IApprovalEvent(IPublishingEvent):
+    """A approval operation is going on.
+    """
 
 
-class IContentClosedEvent(IContentPublicationEvent):
-    pass
+class IContentApprovedEvent(IApprovalEvent):
+    """A content has been approved.
+    """
+
+
+class IContentUnApprovedEvent(IApprovalEvent):
+    """A content has been unapproved.
+    """
+
+
+class IRequestApprovalEvent(IApprovalEvent):
+    """An approval request is being managed.
+    """
+
+
+class IRequestApprovalFailedEvent(IRequestApprovalEvent):
+    """An approval request has been managed.
+    """
+
+
+class IContentRequestApprovalEvent(IRequestApprovalEvent):
+    """A content seeks to be approved.
+    """
+
+
+class IContentApprovalRequestCanceledEvent(IRequestApprovalFailedEvent):
+    """A content request for approval have been cancelled.
+    """
+
+
+class IContentApprovalRequestRefusedEvent(IRequestApprovalFailedEvent):
+    """A content request for approval have been refused.
+    """
+
+
+class IContentPublishedEvent(IPublishingEvent):
+    """A content has been published.
+    """
+
+
+class IContentClosedEvent(IPublishingEvent):
+    """A content as been closed.
+    """
+
+
+class IContentExpiredEvent(IContentClosedEvent):
+    """A content expired.
+    """
+
+
+class PublishingEvent(ObjectEvent):
+    implements(IPublishingEvent)
+
+
+class ContentApprovedEvent(PublishingEvent):
+    implements(IContentApprovedEvent)
+
+
+class ContentUnApprovedEvent(PublishingEvent):
+    implements(IContentUnApprovedEvent)
+
+
+class ContentRequestApprovalEvent(PublishingEvent):
+    implements(IContentRequestApprovalEvent)
+
+
+class ContentApprovalRequestCanceledEvent(PublishingEvent):
+    implements(IContentApprovalRequestCanceledEvent)
+
+
+class ContentApprovalRequestRefusedEvent(PublishingEvent):
+    implements(IContentApprovalRequestRefusedEvent)
+
+
+class ContentPublishedEvent(PublishingEvent):
+    implements(IContentPublishedEvent)
+
+
+class ContentClosedEvent(PublishingEvent):
+    implements(IContentClosedEvent)
+
+
+class ContentExpiredEvent(ContentClosedEvent):
+    implements(IContentExpiredEvent)
 
 
 # Content import/export
