@@ -319,10 +319,6 @@ class IContent(ISilvaObject, IPublishable):
         dynamically generated content.
         """
 
-    def content_url():
-        """Used by acquisition to get the URL of the containing content object.
-        """
-
     def is_default():
         """True if this content object is the default content object of
         the folder.
