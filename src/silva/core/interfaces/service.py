@@ -27,8 +27,9 @@ class ISilvaLocalService(ISilvaService):
     """
 
 
-
-class IMessageService(ISilvaService):
+class IMessageService(ISilvaService, ISilvaLocalService):
+    """Send messages to members.
+    """
 
     def send_message(from_memberid, to_memberid, subject, message):
         """Send a message from one member to another.
