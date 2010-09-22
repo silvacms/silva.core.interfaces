@@ -52,22 +52,6 @@ class IUpgrader(Interface):
         change.
         """
 
-
-class ISubscription(Interface):
-    """Subscription interface.
-    """
-
-    def emailaddress():
-        """Return emailaddress for the subscription.
-        """
-        pass
-
-    def contentSubscribedTo():
-        """Return object for this subscription.
-        """
-        pass
-
-
 from silva.core.interfaces.content import *
 from silva.core.interfaces.extension import *
 from silva.core.interfaces.registry import *

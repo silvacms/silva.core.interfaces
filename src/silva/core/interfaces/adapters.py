@@ -3,9 +3,7 @@
 # $Id$
 
 
-from zope import interface, schema
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from silva.translations import translate as _
+from zope import interface
 
 
 class IContentImporter(interface.Interface):
@@ -251,70 +249,6 @@ class IVirtualHosting(interface.Interface):
     def containsVirtualRoot():
         """ Return true if object contains the current virtual host root.
         """
-
-
-class ISubscribable(interface.Interface):
-    """Subscribable interface
-    """
-
-    def isSubscribable():
-        """Return True if the adapted object is actually subscribable,
-        False otherwise.
-        """
-        pass
-
-    def subscribability():
-        """
-        """
-        pass
-
-    def getSubscribedEmailaddresses():
-        """
-        """
-        pass
-
-    def getSubscriptions():
-        """Return a list of ISubscription objects
-        """
-        pass
-
-    def isValidSubscription(emailaddress, token):
-        """Return True is the specified emailaddress and token depict a
-        valid subscription request. False otherwise.
-        """
-        pass
-
-    def isValidCancellation(emailaddress, token):
-        """Return True is the specified emailaddress and token depict a
-        valid cancellation request. False otherwise.
-        """
-        pass
-
-    def isSubscribed(emailaddress):
-        """Return True is the specified emailaddress is already subscribed
-        for the adapted object. False otherwise.
-        """
-        pass
-
-    def setSubscribable(bool):
-        """Set the subscribability to True or False for the adapted object.
-        """
-        pass
-
-    def subscribe(emailaddress):
-        """Subscribe emailaddress for adapted object.
-        """
-        pass
-
-    def unsubscribe(emailaddress):
-        """Unsubscribe emailaddress for adapted object.
-        """
-        pass
-
-    def generateConfirmationToken(emailaddress):
-        """Generate a token used for the subscription/cancellation cycle.
-        """
-        pass
 
 
 class ISiteManager(interface.Interface):
