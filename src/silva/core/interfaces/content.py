@@ -643,11 +643,16 @@ class IAsset(INonPublishable):
     # ACCESSORS
 
     def get_filename():
-        """Return filename of the asset.
+        """Return filename of the asset as it is downloaded by the
+        user.
         """
 
     def get_file_size():
         """Get data size as it will be downloaded.
+        """
+
+    def get_file_system_path():
+        """Return file system path of the asset.
         """
 
     def get_mime_type():
@@ -669,10 +674,25 @@ class IFile(IAsset):
         """Set content of the file from the given string.
         """
 
+    def set_filename(filename):
+        """Set the filename as it is downloaded by the user.
+        """
+
+    def set_content_type(content_type):
+        """Set file content type. It will be sent to users downloading
+        that file. This is used as well to compute the
+        mime-type/extension of the file.
+        """
+
     # ACCESSORS
 
     def tag(**kw):
         """Generate a tag to download file content.
+        """
+
+    def content_type():
+        """Return file content type as it is send to the user while
+        downloading the file.
         """
 
     def get_text_content():
