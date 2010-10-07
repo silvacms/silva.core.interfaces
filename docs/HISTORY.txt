@@ -1,10 +1,16 @@
 Changelog
 =========
 
-2.3 (unreleased)
+2.3 (2010-10-07)
 ----------------
 
-* ...
+* Subscription interfaces moved to silva.app.subscriptions.
+
+* Authorization management API have been updated.
+
+* Content interfaces have been updated and documentation improved.
+
+* Events have been added for publication actions.
 
 2.3b1 (2010-10-15)
 ------------------
@@ -22,4 +28,3 @@ Changelog
 ------------------
 
 * Initial release after splitting from Silva core.
-
