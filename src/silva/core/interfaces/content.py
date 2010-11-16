@@ -215,10 +215,6 @@ class IContainer(ISilvaObject, IPublishable):
         anything else that is not a publishable.
         """
 
-    def get_assets_of_type(meta_type):
-        """Get list of assets of a certain meta_type.
-        """
-
     def get_tree():
         """Get flattened tree of all active publishables.
         This is a list of indent, object tuples.
