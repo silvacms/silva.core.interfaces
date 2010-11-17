@@ -95,7 +95,7 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
         """
 
 
-class IPublishable(interface.Interface):
+class IPublishable(ISilvaObject):
     # MANIPULATORS
 
     # ACCESSORS
@@ -113,7 +113,7 @@ class IPublishable(interface.Interface):
 ### Container
 ###############################################################
 
-class IContainer(ISilvaObject, IPublishable):
+class IContainer(IPublishable):
     """Silva containers
     """
 
@@ -298,7 +298,7 @@ class IRoot(IPublication):
 ### Content
 ###############################################################
 
-class IContent(ISilvaObject, IPublishable):
+class IContent(IPublishable):
     """Silva non-container content
 
     Those objects that can be published directly and would appear
