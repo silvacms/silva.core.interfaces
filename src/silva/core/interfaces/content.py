@@ -13,6 +13,11 @@ class ICustomizable(interface.Interface):
     """
 
 
+class IDirectlyRendered(interface.Interface):
+    """Content directly rendered without the help of a layout.
+    """
+
+
 class ISecurity(interface.Interface):
     """Silva security support (built on top of Zope security).
     """
@@ -574,10 +579,6 @@ class IVersion(IAttributeAnnotatable):
         """Returns the version identifiant.
         """
 
-    def object():
-        """Returns the object this is a version of.
-        """
-
     def publication_datetime():
         """Returns the version's publication datetime.
         """
@@ -656,7 +657,7 @@ class IAsset(INonPublishable):
         """
 
 
-class IFile(IAsset):
+class IFile(IAsset, IDirectlyRendered):
     """Silva File content to encapsulate "downloadable" data
     """
     # MANIPULATORS
@@ -722,7 +723,7 @@ class IBlobFile(IFile):
     """A file as a blob.
     """
 
-class IImage(IAsset):
+class IImage(IAsset, IDirectlyRendered):
     """Silva Images
     """
 
