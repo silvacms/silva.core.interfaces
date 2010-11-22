@@ -140,7 +140,7 @@ class IContainer(IPublishable):
         """
 
     def move_to(move_ids, index):
-        """Move `ids just before index.
+        """Move ``ids`` just before index.
         Return true in case success.
         """
 
@@ -566,7 +566,7 @@ class ICatalogedVersionedContent(IVersionedContent):
     """
 
 
-class IVersion(IAttributeAnnotatable):
+class IVersion(ITitledObject, IAttributeAnnotatable):
     """Version of a versioned content
     """
 
