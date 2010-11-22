@@ -19,27 +19,24 @@ class IDirectlyRendered(interface.Interface):
 
 
 class ISecurity(interface.Interface):
-    """Silva security support (built on top of Zope security).
+    """Content object with author and creator information.
     """
 
     def sec_get_last_author_info():
-        """Get information about the last author of this object.
+        """Return the member object corresponding to the last author
+        who modified this content object.
         """
 
     def sec_get_creator_info():
-        """Get information about the creator of this object.
+        """Return the member object corresponding to the creator of
+        this content object.
         """
 
 
-class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
-    """Silva content objects
+class ITitledObject(interface.Interface):
+    """Content objects with a title.
     """
-    # MANIPULATORS
-    def set_title(title):
-        """Change the title of the content object.
-        """
 
-    # ACCESSORS
     def get_title():
         """The title of the content object.
         """
@@ -48,18 +45,23 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
         """The title or id of the content object.
         """
 
+    def set_title(title):
+        """Change the title of the content object.
+        """
+
+
+class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, ICustomizable):
+    """All Silva content object.
+    """
+
     def get_creation_datetime():
-        """Creation datetime of the object. Return None if not supported.
+        """Return of creation datetime of the object. Return None if
+        not supported.
         """
 
     def get_modification_datetime():
-        """Last modification datetime of the object. Return None if not
+        """Return the last modification datetime of the object. Return None if not
         supported.
-        """
-
-    def get_breadcrumbs():
-        """Get the objects above this item, until the Silva Root, in
-        order from Silva Root.
         """
 
     def get_editable():
@@ -101,7 +103,9 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ICustomizable):
 
 
 class IPublishable(ISilvaObject):
-    # MANIPULATORS
+    """Silva Objects that can be published to the public, and appear
+    in table of contents.
+    """
 
     # ACCESSORS
     def is_published():
@@ -119,24 +123,24 @@ class IPublishable(ISilvaObject):
 ###############################################################
 
 class IContainer(IPublishable):
-    """Silva containers
+    """Silva containers.
     """
 
     used_space = interface.Attribute(u"Used space by assets.")
 
     # MANIPULATORS
     def move_object_up(id):
-        """Move object with id up in the list of ordered publishables.
+        """Move object with ``id`` up in the list of ordered publishables.
         Return true in case of success.
         """
 
     def move_object_down(id):
-        """Move object with id down in the list of ordered publishables.
+        """Move object with ``id`` down in the list of ordered publishables.
         Return true in case of success.
         """
 
     def move_to(move_ids, index):
-        """Move ids just before index.
+        """Move `ids just before index.
         Return true in case success.
         """
 
@@ -215,9 +219,10 @@ class IContainer(IPublishable):
         """
 
     def get_non_publishables():
-        """Get a list of non-publishable objects in this folder. (not
-        in any fixed order) Includes assets, configuration objects and
-        anything else that is not a publishable.
+        """Get a list of non-publishable objects in this folder,
+        sorted in alphabetical order. This includes assets,
+        configuration objects and anything else that is not a
+        publishable.
         """
 
     def get_tree():
@@ -280,8 +285,7 @@ class IRoot(IPublication):
     """
 
     def get_root():
-        """Get root of site. Can be used with acquisition get the
-        'nearest' Silva root.
+        """Get root of site.
         """
 
     def add_silva_addable_forbidden(meta_type):
