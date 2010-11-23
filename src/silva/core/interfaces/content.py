@@ -568,19 +568,13 @@ class ICatalogedVersionedContent(IVersionedContent):
 
 class IVersion(ITitledObject, IAttributeAnnotatable):
     """Version of a versioned content
+
+    A version effectively store the data of the content.
     """
 
     def version_status():
         """Returns the current status of this version (unapproved, approved,
-        public, last closed of closed).
-        """
-
-    def object_path():
-        """Returns the physical path of the object this is a version of.
-        """
-
-    def version():
-        """Returns the version identifiant.
+        public, last closed or closed).
         """
 
     def publication_datetime():
@@ -591,10 +585,6 @@ class IVersion(ITitledObject, IAttributeAnnotatable):
         """Returns the version's expiration datetime.
         """
 
-    def get_version():
-        """Returns itself. Used by acquisition to get the
-           neared version.
-        """
 
 class ICatalogedVersion(IVersion):
     """Cataloged version content
@@ -619,8 +609,10 @@ class ILink(ICatalogedVersionedContent):
 
 
 class INonPublishable(ISilvaObject):
-    """An object that does not appear in the public view or table of
-    contents directly.
+    """A content which is not publicly viewable
+
+    A non publisable content never appears in the navigation or in
+    table of contents.
     """
 
 
@@ -692,8 +684,8 @@ class IFile(IAsset, IDirectlyRendered):
         """
 
     def content_type():
-        """Return file content type as it is send to the user while
-        downloading the file.
+        """Return the file content type as it is send to a visitor
+        while downloading the file.
         """
 
     def get_text_content():
@@ -706,7 +698,7 @@ class IFile(IAsset, IDirectlyRendered):
         """
 
     def get_content_fd():
-        """Return a file descriptor to access the content of the file.
+        """Return a file descriptor to access the file data.
         """
 
     def get_download_url():
@@ -728,54 +720,92 @@ class IBlobFile(IFile):
     """
 
 class IImage(IAsset, IDirectlyRendered):
-    """Silva Images
+    """Silva Image
+
+    A Silva Image can be used in a Silva Document. An image stored
+    three images for each uploaded image:
+
+    - The original image often called hires image,
+
+    - The web image (which can be a resized and cropped from the
+      original image),
+
+    - A thumbnail created from the original image.
     """
 
+    thumbnail_size = interface.Attribute(
+        u"Maximum width or height of the thumbnail image in pixels.")
+
     def set_image(file):
-        """Set the image object.
+        """Set the image from the given ``file``. It must have a
+        ``read`` method to retrieve the raw data of the image. This
+        will computed  web version and a thumbnail of the new image.
         """
 
     def set_web_presentation_properties(web_format, web_scale, web_crop):
-        """Sets format and scaling for web presentation.
+        """Sets format, scaling and cropping information to create the
+        web image.
 
-        - ``web_format`` (str): either JPEG or PNG (or whatever other
-          format makes sense, must be recognised by PIL).
+        - ``web_format`` (str): either ``JPEG``, ``GIF`` or ``PNG``,
 
         - ``web_scale`` (str): WidthXHeight or nn.n%.
 
         - ``web_crop`` (str): X1xY1-X2xY2, crop-box or empty for no
           cropping.
 
-        Raises ``ValueError`` if ``web_scale`` cannot be parsed.
-        Automaticaly updates cached web presentation image.
+        Raises ``ValueError`` if ``web_scale`` cannot be parsed.  If
+        changing the settings succeed, it will update the web version
+        of the image.
         """
 
-    def tag(hires=0, thumbnail=0, **kw):
-        """Generate a image tag.
+    def tag(hires=0, thumbnail=0, **extra_attributes):
+        """Generate a image tag to render either the original version
+        (if ``hires`` set to True), or the thumbnail (if ``thumbnail``
+        set to True) or the web version (by default).
+
+        If some ``extra_attributes`` are given, they will be added to
+        the image tag as HTML attributes.
         """
 
-    def getOrientation():
-        """Returns translated image orientation as a string.
+    def get_crop_box(crop=None):
+        """Return a tuple describing the current crop box used to
+        create the web image. The describe the coordinate of the top
+        left and the bottom right corner.
         """
 
-    def getDimensions(img=None):
-        """Returns width, heigt of (hi res) image.
+    def get_orientation():
+        """Returns the image orientation: ``square``, ``landscape`` or
+        ``portrait``.
+        """
+
+    def get_dimensions(img=None):
+        """Returns the width and height of the original image as a
+        tuple.
 
         - Raises ``ValueError`` if there is no way of determining the
-          dimenstions,
+          dimensions,
 
-        - Return 0, 0 if there is no image,
-
-        - Returns width, height otherwise.
-
+        - Return (0, 0) if there is no image,
         """
 
-    def getFormat():
-        """Returns image format.
+    def get_format():
+        """Return the orignal image format: ``PNG``, ``JPEG``, ``BMP`` ...
         """
 
-    def getImage(hires=1, webformat=0):
-        """Return image data.
+    def get_web_format():
+        """Return the web version image format: ``PNG`` or ``JPEG`` or
+        ``GIF``.
+        """
+
+    def get_web_scale():
+        """Return the scaling information used for the web version of
+        the image.
+        """
+
+    def get_image(hires=1, webformat=0):
+        """Return image raw data. If ``hires`` is set to True, the
+        original image data is returned. If ``webformat`` is set to
+        True, the web version image raw data is returned.
         """
 
 

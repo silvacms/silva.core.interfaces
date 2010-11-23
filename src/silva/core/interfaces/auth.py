@@ -48,6 +48,8 @@ class IEditableMember(IMember):
 
 
 class IGroup(interface.Interface):
+    """A group can be used to group users and give them roles.
+    """
 
     def groupid():
         """Return group unique identifier.
