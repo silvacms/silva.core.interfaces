@@ -66,7 +66,7 @@ class IGroup(interface.Interface):
 
 
 class IAccessSecurity(interface.Interface):
-    """Manage access restriction to a content.
+    """Adapter to manage access restriction to a content.
     """
     minimum_role = interface.Attribute(
         u"Property giving access to ``set_minimum_role``/``get_minimum_role``.")
@@ -152,7 +152,7 @@ class IAuthorization(interface.Interface):
 
 
 class IAuthorizationManager(interface.Interface):
-    """Manage authorization at a given level.
+    """Adapter to manage authorization access at a given level.
     """
 
     def get_user_role(user_id=None):
