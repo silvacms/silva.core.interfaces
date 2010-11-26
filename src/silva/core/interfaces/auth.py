@@ -127,14 +127,17 @@ class IAuthorization(interface.Interface):
     """Describe all authorizations (accorded roles) of a user a group.
     """
     identifier = schema.TextLine(
-        title=u"Unique identifier of the authorized entity.")
+        title=_(u"identifier"),
+        description=u"Unique identifier of the authorized entity.")
     type = interface.Attribute(u"``user`` or ``group`` depending of the authorized entity.")
     acquired_role = schema.Choice(
-        title=u"List of roles that the entity as above this content.",
+        title=_(u"role defined above"),
+        description=u"List of roles that the entity as above this content.",
         source=role_vocabulary,
         required=False)
     local_role = schema.Choice(
-        title=u"List of roles that the entity as here on this content.",
+        title=_(u"role defined here"),
+        description=u"List of roles that the entity as here on this content.",
         source=role_vocabulary,
         required=False)
 
