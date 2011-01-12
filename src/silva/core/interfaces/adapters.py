@@ -124,17 +124,13 @@ class IVersionManagement(interface.Interface):
         """
 
 
-class IIndexable(interface.Interface):
+class IIndexEntries(interface.Interface):
 
-    def getTitle():
+    def get_title():
         """Returns the title of the indexable.
         """
 
-    def getPath():
-        """Returns the path of the indexable.
-        """
-
-    def getIndexes():
+    def get_entries():
         """Returns the indexes for a certain object, or an empty list.
         """
 
