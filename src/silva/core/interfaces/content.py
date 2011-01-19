@@ -652,6 +652,11 @@ class IAsset(INonPublishable):
         """Get data mime-type.
         """
 
+class IVersionedAsset(IVersioning, IAsset):
+    """A versioned asset"""
+
+class ICatalogedVersionedAsset(IVersionedAsset):
+    """a versioned asset with catalog support"""
 
 class IFile(IAsset, IDirectlyRendered):
     """Silva File content to encapsulate "downloadable" data
