@@ -102,11 +102,7 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, IC
         """
 
 
-class IPublishable(ISilvaObject):
-    """Silva Objects that can be published to the public, and appear
-    in table of contents.
-    """
-
+class IPublishableBase(ISilvaObject):
     # ACCESSORS
     def is_published():
         """Return true if this object is visible to the public.
@@ -116,7 +112,47 @@ class IPublishable(ISilvaObject):
         """Return true if this object is versioned or contains
         versioned content that is approved.
         """
+        
+    def get_real_container():
+        """get the container, even if we're a container.
+        Can be used with acquisition to get the 'nearest' container
+        """
 
+class IPublishable(IPublishableBase):
+    """Silva Objects that can be published to the public, and appear
+    in table of contents.
+    """
+
+    def get_document_navigation_links():
+        """
+        Create a dictionary with top, up, first, previous, next, last links.
+
+        This can be used by Mozilla in the accessibility toolbar.
+        """
+
+    def get_navigation_links(self):
+        """
+        Create a dictionary with top, up, first, previous, next, last links.
+
+        This can be used by Mozilla in the accessibility toolbar.
+        """
+
+    def get_navigation_prev(self):
+        """ Returns the prev object in the publication tree 
+        """
+
+    def get_navigation_next(self):
+        """ Returns the next object in the Publication tree 
+        """
+
+    def get_public_tree_helper(self, depth):
+        """ wrapper method for get_public_tree()
+            returns the public tree without any publications
+        """
+
+    def get_navigation_last(self):
+        """ Returns the last object in the publication tree 
+        """
 
 ###############################################################
 ### Container
@@ -372,6 +408,13 @@ class IVersioning(interface.Interface):
         """Add unapproved version.
         """
 
+    def create_copy():
+        """Create a new copy of the public version. Automatically
+        assign a new id for this copy and register this as the
+        next version. If there is already a next version, this
+        operation will fail.
+        """
+
     def approve_version():
         """Approve the current unapproved version.
         """
@@ -547,19 +590,13 @@ class IVersioning(interface.Interface):
         or None if there is no such version or request.
         """
 
-
-class IVersionedContent(IVersioning, IContent):
-    """Content that can have versions
+class IVersionable(IVersioning):
+    """an in-between so that both assets and content can be versioned
     """
 
-    # MANIPULATORS
-    def create_copy():
-        """Create a new copy of the public version. Automatically
-        assign a new id for this copy and register this as the
-        next version. If there is already a next version, this
-        operation will fail.
-        """
-
+class IVersionedContent(IVersionable, IContent):
+    """Content that can have versions
+    """
 
 class ICatalogedVersionedContent(IVersionedContent):
     """Cataloged versioned content
@@ -652,7 +689,7 @@ class IAsset(INonPublishable):
         """Get data mime-type.
         """
 
-class IVersionedAsset(IVersioning, IAsset):
+class IVersionedAsset(IVersionable, IAsset):
     """A versioned asset"""
 
 class IFile(IAsset, IDirectlyRendered):
