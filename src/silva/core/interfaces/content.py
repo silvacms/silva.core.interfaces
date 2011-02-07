@@ -677,6 +677,10 @@ class IFile(IAsset, IDirectlyRendered):
         mime-type/extension of the file.
         """
 
+    def set_content_encoding(content_encoding):
+        """Set file content encoding.
+        """
+
     # ACCESSORS
 
     def tag(**kw):
@@ -685,6 +689,11 @@ class IFile(IAsset, IDirectlyRendered):
 
     def content_type():
         """Return the file content type as it is send to a visitor
+        while downloading the file.
+        """
+
+    def content_encoding():
+        """Return the file content encoding as it is send to a visitor
         while downloading the file.
         """
 
