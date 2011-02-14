@@ -271,3 +271,41 @@ class IHaunted(interface.Interface):
     def getHaunting():
         """Return iterator of objects (ghosts) haunting the adapted object.
         """
+
+
+class PublicationWorkflowError(StandardError):
+    """Base class for allow workflow errors.
+    """
+
+
+class IPublicationWorkflow(interface.Interface):
+    """ 
+    """
+    """ Define api to manage publication of silva objects.
+
+    All the following methods may raise a PublicationWorkflowError.
+    They all return True/False on Success/Failure.
+    """
+    def request_approval(message,
+            publication_datetime,
+            expiration_datetime=None,
+            **extras):
+        """Issue a request for approval from an author.
+        """
+
+    def withdraw_request(message, **extras):
+        """ Withdraw a previous request for approval.
+        """
+
+    def reject_request(message, **extras):
+        """ Reject a request for approval.
+        """
+
+    def close():
+        """ Close published version.
+        """
+
+    def approve(time=None):
+        """ Approve unapproved version.
+        """
+
