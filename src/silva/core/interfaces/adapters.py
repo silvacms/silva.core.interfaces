@@ -279,25 +279,19 @@ class PublicationWorkflowError(StandardError):
 
 
 class IPublicationWorkflow(interface.Interface):
-    """ 
-    """
-    """ Define api to manage publication of silva objects.
+    """ Publication workflow of silva objects.
 
     All the following methods may raise a PublicationWorkflowError.
-    They all return True/False on Success/Failure.
     """
-    def request_approval(message,
-            publication_datetime,
-            expiration_datetime=None,
-            **extras):
-        """Issue a request for approval from an author.
+    def request_approval(message):
+        """Issue a request for approval.
         """
 
-    def withdraw_request(message, **extras):
+    def withdraw_request(message):
         """ Withdraw a previous request for approval.
         """
 
-    def reject_request(message, **extras):
+    def reject_request(message):
         """ Reject a request for approval.
         """
 
