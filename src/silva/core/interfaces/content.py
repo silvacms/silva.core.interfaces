@@ -339,7 +339,7 @@ class IRoot(IPublication):
         """Returns true if meta_type should not show up in the SMI.
         """
 
-class IContainerIsDefaultContent(Interface):
+class IContainerIsDefaultContent(interface.Interface):
     """Marker interface for containers which are their
        default content (e.g. containers which render themselves,
        like the SilvaUCLGallery."""
