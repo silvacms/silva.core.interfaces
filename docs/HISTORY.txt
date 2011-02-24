@@ -12,6 +12,8 @@ Bethel Changes
 * add interfaces for VersionedAssets and exceptions (INotViewable, 
   INoDefaultDocument)
 
+* add IContainerIsDefaultContent interface
+
 2.3.1 (2010/12/20)
 ------------------
 
