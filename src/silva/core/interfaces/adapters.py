@@ -283,6 +283,11 @@ class IPublicationWorkflow(interface.Interface):
 
     All the following methods may raise a PublicationWorkflowError.
     """
+
+    def new_version():
+        """Create a new version if one is published or closed.
+        """
+
     def request_approval(message):
         """Issue a request for approval.
         """
