@@ -15,14 +15,15 @@ class IDefaultContentTemplate(Interface):
        Override this in your own layer to provide a custom-tailored default
        content template for your own layout.  You can also create layouts
        tailored for specific content types by changing the grok.context.
+       
+       Before calling this template, you ought to set the following properties:
+       
+       page 
+       -- the silva.core.views.views.Page
+       rendered_content
+       -- the rendered content being wrapped inside this default content 
+          template
     """
- 
-    def set_content(rendered_content):
-        """For a Default Content Template, the content has already been,
-           rendered.  Grok Views (of which DefaultContentTemplates are), do not
-           support passing in parameters to __call__.  Instead of overriding
-           __call__ (and breaking an implicit grok.View contract), we pass
-           in the content using this method before calling the object"""
 
 class IVersionedContentLayout(Interface):
     """Marker interface for VersionedContent objects wich
