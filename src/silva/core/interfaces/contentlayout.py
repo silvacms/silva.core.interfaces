@@ -23,6 +23,8 @@ class IDefaultContentTemplate(Interface):
        rendered_content
        -- the rendered content being wrapped inside this default content 
           template
+        layout
+        -- the Layout object the page is wrapped around
     """
 
 class IVersionedContentLayout(Interface):
