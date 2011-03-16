@@ -70,60 +70,6 @@ class IAssetData(interface.Interface):
         """
 
 
-class IVersionManagement(interface.Interface):
-    def getVersionById(id):
-        """get a version by id"""
-
-    def getPublishedVersion():
-        """return the current published version, None if it doesn't exist"""
-
-    def getUnapprovedVersion():
-        """return the current unapproved (editable) version, None if
-        it doesn't exist"""
-
-    def getApprovedVersion():
-        """return the current approved version, None if it doesn't exist"""
-
-    def revertPreviousToEditable(id):
-        """revert a previous version to be editable version
-
-        The current editable will become the last closed (last closed
-        will move to closed list). If the published version will not
-        be changed.
-
-        Raises AttributeError when version id is not available.
-
-        Raises VersioningError when 'editable' version is approved or
-        in pending for approval.
-        """
-
-    def getVersionIds():
-        """return a list of all version ids
-        """
-
-    def getVersions(sort_attribute='id'):
-        """return a list of version objects
-
-        If sort_attribute resolves to False, no sorting is done, by
-        default it sorts on id converted to int (so [0,1,2,3,...]
-        instead of [0,1,10,2,3,...] if values < 20).
-        """
-
-    def deleteVersion(id):
-        """Delete a version
-
-        Can raise AttributeError when the version doesn't exist,
-        VersioningError if the version is approved(XXX?) or published.
-        """
-
-    def deleteOldVersions(number_to_keep):
-        """Delete all but <number_to_keep> last closed versions.
-
-        Can be called only by managers, and should be used with great care,
-        since it can potentially remove interesting versions
-        """
-
-
 class IIndexEntries(interface.Interface):
 
     def get_title():
@@ -217,36 +163,6 @@ class IFeedEntry(interface.Interface):
         """
 
 
-class IVirtualHosting(interface.Interface):
-    """Access to virtual hosting information.
-    """
-
-    def getVirtualRootPhysicalPath():
-        """ Get the physical path of the object being the virtual host
-        root.
-
-        If there is no virtual hosting, return None
-        """
-
-    def getVirtualHostKey():
-        """ Get a key for the virtual host root.
-
-        If there is no virtual hosting, return None.
-        """
-
-    def getVirtualRoot():
-        """ Get the virtual host root object.
-        """
-
-    def getSilvaOrVirtualRoot():
-        """ Get either the virtual host root object, or the silva root.
-        """
-
-    def containsVirtualRoot():
-        """ Return true if object contains the current virtual host root.
-        """
-
-
 class ISiteManager(interface.Interface):
     """Site Manager adapter.
     """
@@ -293,18 +209,29 @@ class IPublicationWorkflow(interface.Interface):
         """
 
     def withdraw_request(message):
-        """ Withdraw a previous request for approval.
+        """Withdraw a previous request for approval.
         """
 
     def reject_request(message):
-        """ Reject a request for approval.
+        """Reject a request for approval.
+        """
+
+    def revoke_approval():
+        """Revoke the currently approved version.
+        """
+
+    def publish(time=None):
+        """Approve unapproved or last closed version. Set the
+        publication date to the given ``time``, or to now if it is
+        None.
+        """
+
+    def approve(time=None):
+        """ Approve unapproved version. Set the publication date to
+        the given ``time``, or to now if it is None.
         """
 
     def close():
         """ Close published version.
-        """
-
-    def approve(time=None):
-        """ Approve unapproved version.
         """
 
