@@ -193,6 +193,60 @@ class PublicationWorkflowError(StandardError):
     """Base class for allow workflow errors.
     """
 
+class IVersionManagement(interface.Interface):
+    def getVersionById(id):
+        """get a version by id"""
+
+    def getPublishedVersion():
+        """return the current published version, None if it doesn't exist"""
+
+    def getUnapprovedVersion():
+        """return the current unapproved (editable) version, None if
+        it doesn't exist"""
+
+    def getApprovedVersion():
+        """return the current approved version, None if it doesn't exist"""
+
+    def revertPreviousToEditable(id):
+        """revert a previous version to be editable version
+
+        The current editable will become the last closed (last closed
+        will move to closed list). If the published version will not
+        be changed.
+
+        Raises AttributeError when version id is not available.
+
+        Raises VersioningError when 'editable' version is approved or
+        in pending for approval.
+        """
+
+    def getVersionIds():
+        """return a list of all version ids
+        """
+
+    def getVersions(sort_attribute='id'):
+        """return a list of version objects
+
+        If sort_attribute resolves to False, no sorting is done, by
+        default it sorts on id converted to int (so [0,1,2,3,...]
+        instead of [0,1,10,2,3,...] if values < 20).
+        """
+
+    def deleteVersion(id):
+        """Delete a version
+
+        Can raise AttributeError when the version doesn't exist,
+        VersioningError if the version is approved(XXX?) or published.
+        """
+
+    def deleteOldVersions(number_to_keep):
+        """Delete all but <number_to_keep> last closed versions.
+
+        Can be called only by managers, and should be used with great care,
+        since it can potentially remove interesting versions
+        """
+
+
 
 class IPublicationWorkflow(interface.Interface):
     """ Publication workflow of silva objects.
