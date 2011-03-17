@@ -154,16 +154,6 @@ class IContainer(IPublishable):
         Cannot delete approved or published content.
         """
 
-    def action_cut(ids, REQUEST):
-        """Cut ``ids`` in this folder, putting them on clipboard in
-        ``REQUEST``.  Cannot cut approved or published content.
-        """
-
-    def action_copy(ids, REQUEST):
-        """Copy ``ids`` in this folder, putting them on clipboard in
-        ``REQUEST``.
-        """
-
     def action_paste(REQUEST):
         """Paste clipboard to this folder.  After paste, approved or
         published content is automatically unapproved and/or closed.
@@ -197,12 +187,6 @@ class IContainer(IPublishable):
         """Show this subtree in ``get_tree()``.
         """
 
-    def is_delete_allowed(id):
-        """Return true if subobject with name 'id' can be deleted.
-        This is only allowed if the subobject is not published or
-        approved.
-        """
-
     def get_default():
         """Get the default content object of the folder. If
         no default is available, return None.
@@ -211,11 +195,6 @@ class IContainer(IPublishable):
     def get_ordered_publishables():
         """Get list of active publishables of this folder, in
         order.
-        """
-
-    def get_assets():
-        """Get a list of assets objects in this folder.  (not in any
-        fixed order).
         """
 
     def get_non_publishables():

@@ -247,7 +247,6 @@ class IVersionManagement(interface.Interface):
         """
 
 
-
 class IPublicationWorkflow(interface.Interface):
     """ Publication workflow of silva objects.
 
@@ -287,5 +286,28 @@ class IPublicationWorkflow(interface.Interface):
 
     def close():
         """ Close published version.
+        """
+
+
+class IAddableContents(interface.Interface):
+    """Return addables that can be added in the adapted container.
+    """
+
+    def get_authorized_addables():
+        """Get a list of content that the current user is allowed to
+        add in the adapted container (they can be added to the site,
+        are not restricted in that container, and the current user
+        have the permission to add them).
+        """
+
+    def get_container_addables():
+        """Get a list of content that can be added in the adapter
+        container (they can be added to the site, and are not
+        restricted in that container).
+        """
+
+    def get_all_addables():
+        """Get a list of all content that could be added in the
+        adapted container (they can be added to the site).
         """
 
