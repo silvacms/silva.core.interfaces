@@ -143,21 +143,6 @@ class IContainer(IPublishable):
         Return true in case success.
         """
 
-    def action_rename(orig_id, new_id):
-        """Rename subobject with orig_id into new_id.
-        Cannot rename approved or published content.
-        """
-
-    def action_delete(ids):
-        """Delete ids in this container.
-        Cannot delete approved or published content.
-        """
-
-    def action_paste(REQUEST):
-        """Paste clipboard to this folder.  After paste, approved or
-        published content is automatically unapproved and/or closed.
-        """
-
     def update_quota(delta):
         """Update used space with ``delta``, and verify quota for this folder.
         """

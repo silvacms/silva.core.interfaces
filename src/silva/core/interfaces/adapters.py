@@ -193,6 +193,7 @@ class PublicationWorkflowError(StandardError):
     """Base class for allow workflow errors.
     """
 
+
 class IVersionManagement(interface.Interface):
     def getVersionById(id):
         """get a version by id"""
@@ -311,3 +312,26 @@ class IAddableContents(interface.Interface):
         adapted container (they can be added to the site).
         """
 
+
+class IContainerManager(interface.Interface):
+    """Operation on container contents.
+    """
+
+    def rename(content, new_identifier, new_title=None):
+        """Rename content into this container.
+        """
+    def copy():
+        """Copy content into this container.
+        """
+
+    def move():
+        """Move content into this container.
+        """
+
+    def ghost():
+        """Ghost content into this container.
+        """
+
+    def delete():
+        """Delete content that are in this container.
+        """
