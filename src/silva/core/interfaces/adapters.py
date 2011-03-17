@@ -320,11 +320,11 @@ class IContainerManager(interface.Interface):
     def rename(content, new_identifier, new_title=None):
         """Rename content into this container.
         """
-    def copy():
+    def copier():
         """Copy content into this container.
         """
 
-    def move():
+    def mover():
         """Move content into this container.
         """
 
@@ -332,6 +332,6 @@ class IContainerManager(interface.Interface):
         """Ghost content into this container.
         """
 
-    def delete():
+    def deleter():
         """Delete content that are in this container.
         """
