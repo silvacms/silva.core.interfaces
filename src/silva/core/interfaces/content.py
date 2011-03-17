@@ -125,7 +125,6 @@ class IPublishable(ISilvaObject):
 class IContainer(IPublishable):
     """Silva containers.
     """
-
     used_space = interface.Attribute(u"Used space by assets.")
 
     # MANIPULATORS
@@ -164,20 +163,6 @@ class IContainer(IPublishable):
         """
 
     # ACCESSORS
-    def get_silva_addables():
-        """Get a list of meta_type dictionnaries (from
-        ``filtered_meta_types()``) that are addable to this container.
-        """
-
-    def get_silva_addables_all():
-        """Get a list of meta_types of all addables that exist in
-        Silva.
-        """
-
-    def get_silva_addables_allowed():
-        """Gives a list of all meta_types that are explicitly allowed here.
-        """
-
     def get_container():
         """Get the nearest container in the acquisition hierarchy.
         (this one)
@@ -244,7 +229,7 @@ class IFolder(IContainer):
 
     def get_silva_addables_allowed_in_container():
         """Get a list of all addables explicitly allowed in this
-        container (and its subcontainers).
+        container.
         """
 
     def is_silva_addables_acquired():
