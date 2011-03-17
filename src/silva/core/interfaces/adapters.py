@@ -317,9 +317,10 @@ class IContainerManager(interface.Interface):
     """Operation on container contents.
     """
 
-    def rename(content, new_identifier, new_title=None):
+    def renamer():
         """Rename content into this container.
         """
+
     def copier():
         """Copy content into this container.
         """
