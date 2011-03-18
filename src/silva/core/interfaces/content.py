@@ -157,6 +157,13 @@ class IContainer(IPublishable):
         """Show this subtree in ``get_tree()``.
         """
 
+
+
+class IFolder(IContainer):
+    """Silva Folder
+    """
+
+    # Get content
     def get_default():
         """Get the default content object of the folder. If
         no default is available, return None.
@@ -174,37 +181,7 @@ class IContainer(IPublishable):
         publishable.
         """
 
-    def get_tree():
-        """Get flattened tree of all active publishables.
-        This is a list of indent, object tuples.
-        """
-
-    def get_container_tree():
-        """Get flattened tree of all sub-containers.
-        This is a list of indent, object tuples.
-        """
-
-    def get_public_tree():
-        """Get tree of all publishables that are public.
-        and not hidden from tocs
-        """
-
-    def get_public_tree_all():
-        """Get tree of all publishables that are public,
-        and not hidden from tocs
-        including the publishables in subpublications.
-        """
-
-    def get_status_tree():
-        """Get tree of all active content objects. For containers,
-        show the default object if available.
-        """
-
-
-class IFolder(IContainer):
-    """Silva Folder
-    """
-
+    # Set addables
     def set_silva_addables_allowed_in_container(addables):
         """Set the list of addables explicitly allowed in this
         container.  If 'addables' is set to None the list is acquired

@@ -314,7 +314,8 @@ class IAddableContents(interface.Interface):
 
 
 class IContainerManager(interface.Interface):
-    """Operation on container contents.
+    """Operation on container contents. Each method returns a comethod
+    object, that can be used as a context manager.
     """
 
     def renamer():
@@ -329,10 +330,45 @@ class IContainerManager(interface.Interface):
         """Move content into this container.
         """
 
-    def ghost():
+    def ghoster():
         """Ghost content into this container.
         """
 
     def deleter():
         """Delete content that are in this container.
+        """
+
+
+class ITreeContents(interface.Interface):
+
+    def get_tree(depth=-1):
+        """Get flattened tree of all active publishables. The 'depth'
+        argument limits the number of levels, defaults to unlimited.
+        This is a list of indent, object tuples.
+        """
+
+    def get_container_tree(depth=-1):
+        """Get flattened tree of all sub-containers. The 'depth'
+        argument limits the number of levels, defaults to unlimited.
+        This is a list of indent, object tuples.
+        """
+
+    def get_public_tree(depth=-1):
+        """Get flattened tree with public content not hidden from
+        tocs, excluding subpublications. The 'depth' argument limits
+        the number of levels, defaults to unlimited. This is a list
+        of indent, object tuples.
+        """
+
+    def get_public_tree_all(depth=-1):
+        """Get flattened tree with all public content, excluding
+        subpublications.  The 'depth' argument limits the number of
+        levels, defaults to unlimited.  This is a list of indent,
+        object tuples.
+        """
+
+    def get_status_tree(depth=-1):
+        """Get tree of all active content objects. For containers,
+        show the default object if available.  This is a list of
+        indent, object tuples.
         """
