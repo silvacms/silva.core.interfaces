@@ -199,6 +199,10 @@ class IPublication(IContainer):
     """Publication
     """
 
+    def get_publication():
+        """Return the nearest publication by acquisition.
+        """
+
 
 class IRoot(IPublication):
     """Root
@@ -222,6 +226,7 @@ class IRoot(IPublication):
     def is_silva_addable_forbidden(meta_type):
         """Returns true if meta_type should not show up in the SMI.
         """
+
 
 ###############################################################
 ### Content
