@@ -9,17 +9,17 @@ from grokcore.component.interfaces import IContext
 
 
 class ICustomizable(interface.Interface):
-    """Customizable content
+    """Layout-customizable content
     """
 
 
 class IDirectlyRendered(interface.Interface):
-    """Content directly rendered without the help of a layout.
+    """Content directly rendered without the help of a layout
     """
 
 
 class ISecurity(interface.Interface):
-    """Content object with author and creator information.
+    """Content with author and creator information
     """
 
     def sec_get_last_author_info():
@@ -34,7 +34,7 @@ class ISecurity(interface.Interface):
 
 
 class ITitledObject(interface.Interface):
-    """Content objects with a title.
+    """Content with a title
     """
 
     def get_title():
@@ -51,7 +51,7 @@ class ITitledObject(interface.Interface):
 
 
 class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, ICustomizable):
-    """All Silva content object.
+    """Silva Content
     """
 
     def get_creation_datetime():
@@ -103,8 +103,9 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, IC
 
 
 class IPublishable(ISilvaObject):
-    """Silva Objects that can be published to the public, and appear
-    in table of contents.
+    """Content that can be published to the public
+
+    They can appear in table of contents.
     """
 
     # ACCESSORS
@@ -123,25 +124,12 @@ class IPublishable(ISilvaObject):
 ###############################################################
 
 class IContainer(IPublishable):
-    """Silva containers.
+    """Container
+
+    Contains content.
     """
     used_space = interface.Attribute(u"Used space by assets.")
 
-    # MANIPULATORS
-    def move_object_up(id):
-        """Move object with ``id`` up in the list of ordered publishables.
-        Return true in case of success.
-        """
-
-    def move_object_down(id):
-        """Move object with ``id`` down in the list of ordered publishables.
-        Return true in case of success.
-        """
-
-    def move_to(move_ids, index):
-        """Move ``ids`` just before index.
-        Return true in case success.
-        """
 
     def update_quota(delta):
         """Update used space with ``delta``, and verify quota for this folder.
@@ -157,18 +145,24 @@ class IContainer(IPublishable):
         """Show this subtree in ``get_tree()``.
         """
 
-
-
-class IFolder(IContainer):
-    """Silva Folder
-    """
-
-    # Get content
     def get_default():
         """Get the default content object of the folder. If
         no default is available, return None.
         """
 
+
+class IOrderableContainer(IContainer):
+    """Ordered Container
+
+    Content in that container can be ordered.
+    """
+
+
+class IFolder(IOrderableContainer):
+    """Folder
+    """
+
+    # Get content
     def get_ordered_publishables():
         """Get list of active publishables of this folder, in
         order.
@@ -202,12 +196,12 @@ class IFolder(IContainer):
 
 
 class IPublication(IContainer):
-    """Silva Publication
+    """Publication
     """
 
 
 class IRoot(IPublication):
-    """Silva Root
+    """Root
     """
 
     def get_root():

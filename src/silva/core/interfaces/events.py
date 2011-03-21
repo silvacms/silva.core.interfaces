@@ -6,6 +6,24 @@ from zope.interface import Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
 
 
+# Ordered content move
+
+class IContentOrderChangedEvent(IObjectEvent):
+    """A content order have changed.
+    """
+    new_position = Attribute(u"New content position")
+    old_position = Attribute(u"Old content position")
+
+
+class ContentOrderChangedEvent(ObjectEvent):
+    implements(IContentOrderChangedEvent)
+
+    def __init__(self, obj, new_position, old_position):
+        super(ContentOrderChangedEvent, self).__init__(obj)
+        self.new_position = new_position
+        self.old_position = old_position
+
+
 # Content publication
 
 class IPublishingEvent(IObjectEvent):
