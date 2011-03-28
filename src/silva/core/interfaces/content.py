@@ -243,12 +243,6 @@ class IContent(IPublishable):
         """Used by acquisition to get the nearest containing content object.
         """
 
-    def is_cacheable():
-        """Return true if the public view of this object can be safely
-        cached.  This means the public view should not contain any
-        dynamically generated content.
-        """
-
     def is_default():
         """True if this content object is the default content object of
         the folder.
