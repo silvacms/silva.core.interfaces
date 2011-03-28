@@ -258,12 +258,12 @@ class IIndexer(IContent):
     """Indexer content
     """
 
-    def getIndexNames():
+    def get_index_names():
         """Returns a list of all index entry names in the index,
         sorted alphabetically.
         """
 
-    def getIndexEntry(indexTitle):
+    def get_index_entry(entry):
         """Returns a list of (title, path) tuples for an entry name in the
         index, sorted alphabetically on title
         """
