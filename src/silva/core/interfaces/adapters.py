@@ -163,6 +163,15 @@ class IFeedEntry(interface.Interface):
         """
 
 
+class IXMLSource(interface.Interface):
+    """Adapter to retrieve an XML version of an objet.
+    """
+
+    def get_XML():
+        """Return the XML content.
+        """
+
+
 class ISiteManager(interface.Interface):
     """Site Manager adapter.
     """
