@@ -480,42 +480,19 @@ class IVersionedContent(IVersioning, IContent):
         """
 
 
-class ICatalogedVersionedContent(IVersionedContent):
-    """Cataloged versioned content
-    """
-
-
 class IVersion(ITitledObject, IAttributeAnnotatable):
     """Version of a versioned content
 
     A version effectively store the data of the content.
     """
 
-    def version_status():
-        """Returns the current status of this version (unapproved, approved,
-        public, last closed or closed).
-        """
 
-    def publication_datetime():
-        """Returns the version's publication datetime.
-        """
-
-    def expiration_datetime():
-        """Returns the version's expiration datetime.
-        """
-
-
-class ICatalogedVersion(IVersion):
-    """Cataloged version content
-    """
-
-
-class ILinkVersion(ICatalogedVersion):
+class ILinkVersion(IVersion):
     """Version of a Silva Link content
     """
 
 
-class ILink(ICatalogedVersionedContent):
+class ILink(IVersionedContent):
     """Silva Link content
 
     Silva Link can be used to create links to either other contents in
@@ -756,14 +733,15 @@ class IGhostManagable(IGhostAware):
         """
 
 
-class IGhostVersion(IGhostManagable, ICatalogedVersion):
+class IGhostVersion(IGhostManagable, IVersion):
     """Version of a ghost object.
     """
 
 
-class IGhost(IGhostAware, ICatalogedVersionedContent):
+class IGhost(IGhostAware, IVersionedContent):
     """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
     """
+
 
 class IGhostFolder(IGhostManagable, IContainer):
     """Marker interface for Ghost Folders.

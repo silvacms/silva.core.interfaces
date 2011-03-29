@@ -198,26 +198,9 @@ class IHaunted(interface.Interface):
         """
 
 
-class PublicationWorkflowError(StandardError):
-    """Base class for allow workflow errors.
-    """
+class IVersionManager(interface.Interface):
 
-
-class IVersionManagement(interface.Interface):
-    def getVersionById(id):
-        """get a version by id"""
-
-    def getPublishedVersion():
-        """return the current published version, None if it doesn't exist"""
-
-    def getUnapprovedVersion():
-        """return the current unapproved (editable) version, None if
-        it doesn't exist"""
-
-    def getApprovedVersion():
-        """return the current approved version, None if it doesn't exist"""
-
-    def revertPreviousToEditable(id):
+    def make_editable():
         """revert a previous version to be editable version
 
         The current editable will become the last closed (last closed
@@ -230,30 +213,31 @@ class IVersionManagement(interface.Interface):
         in pending for approval.
         """
 
-    def getVersionIds():
-        """return a list of all version ids
+    def get_modification_datetime():
+        """Return last modification time for the given version.
         """
 
-    def getVersions(sort_attribute='id'):
-        """return a list of version objects
-
-        If sort_attribute resolves to False, no sorting is done, by
-        default it sorts on id converted to int (so [0,1,2,3,...]
-        instead of [0,1,10,2,3,...] if values < 20).
+    def get_publication_datetime():
+        """Return publication time for the given version.
         """
 
-    def deleteVersion(id):
-        """Delete a version
+    def get_expiration_datetime():
+        """Return expiration time for the given version.
+        """
+
+    def get_last_author():
+        """Return the last author of the given version.
+        """
+
+    def get_status():
+        """Return the version status.
+        """
+
+    def delete():
+        """Delete a version,
 
         Can raise AttributeError when the version doesn't exist,
         VersioningError if the version is approved(XXX?) or published.
-        """
-
-    def deleteOldVersions(number_to_keep):
-        """Delete all but <number_to_keep> last closed versions.
-
-        Can be called only by managers, and should be used with great care,
-        since it can potentially remove interesting versions
         """
 
 
@@ -296,6 +280,14 @@ class IPublicationWorkflow(interface.Interface):
 
     def close():
         """ Close published version.
+        """
+
+    def get_versions(sort_attribute='id'):
+        """Return a list of versions.
+
+        If sort_attribute resolves to False, no sorting is done, by
+        default it sorts on id converted to int (so [0,1,2,3,...]
+        instead of [0,1,10,2,3,...] if values < 20).
         """
 
 
@@ -349,6 +341,8 @@ class IContainerManager(interface.Interface):
 
 
 class IOrderManager(interface.Interface):
+    """Manage order of a container content.
+    """
 
     order = interface.Attribute(u"Order")
     ordered_only = interface.Attribute(u"Interface restricting ordered content")
