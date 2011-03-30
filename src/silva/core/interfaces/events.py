@@ -34,6 +34,7 @@ class IPublishingEvent(IObjectEvent):
 class IApprovalEvent(IPublishingEvent):
     """A approval operation is going on.
     """
+    info = Attribute('request for approval infos')
 
 
 class IContentApprovedEvent(IApprovalEvent):
@@ -59,16 +60,19 @@ class IRequestApprovalFailedEvent(IRequestApprovalEvent):
 class IContentRequestApprovalEvent(IRequestApprovalEvent):
     """A content seeks to be approved.
     """
+    last_author = Attribute("Last author")
 
 
 class IContentApprovalRequestCanceledEvent(IRequestApprovalFailedEvent):
     """A content request for approval have been cancelled.
     """
+    original_requester = Attribute("former author of the request approval")
 
 
 class IContentApprovalRequestRefusedEvent(IRequestApprovalFailedEvent):
     """A content request for approval have been refused.
     """
+    original_requester = Attribute("former author of the request approval")
 
 
 class IContentPublishedEvent(IPublishingEvent):
@@ -90,24 +94,40 @@ class PublishingEvent(ObjectEvent):
     implements(IPublishingEvent)
 
 
-class ContentApprovedEvent(PublishingEvent):
+class ApprovalEvent(PublishingEvent):
+    implements(IApprovalEvent)
+
+    def __init__(self, obj, info):
+        super(ApprovalEvent, self).__init__(obj)
+        self.info = info
+
+
+class ContentApprovedEvent(ApprovalEvent):
     implements(IContentApprovedEvent)
 
 
-class ContentUnApprovedEvent(PublishingEvent):
+class ContentUnApprovedEvent(ApprovalEvent):
     implements(IContentUnApprovedEvent)
 
 
-class ContentRequestApprovalEvent(PublishingEvent):
+class ContentRequestApprovalEvent(ApprovalEvent):
     implements(IContentRequestApprovalEvent)
 
 
-class ContentApprovalRequestCanceledEvent(PublishingEvent):
+class ContentApprovalRequestCanceledEvent(ApprovalEvent):
     implements(IContentApprovalRequestCanceledEvent)
 
+    def __init__(self, obj, info, original_requester):
+        super(ContentApprovalRequestCanceledEvent, self).__init__(obj, info)
+        self.original_requester = original_requester
 
-class ContentApprovalRequestRefusedEvent(PublishingEvent):
+
+class ContentApprovalRequestRefusedEvent(ApprovalEvent):
     implements(IContentApprovalRequestRefusedEvent)
+
+    def __init__(self, obj, info, original_requester):
+        super(ContentApprovalRequestCanceledEvent, self).__init__(obj, info)
+        self.original_requester = original_requester
 
 
 class ContentPublishedEvent(PublishingEvent):
