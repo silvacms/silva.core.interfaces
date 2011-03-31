@@ -63,7 +63,7 @@ class IContentRequestApprovalEvent(IRequestApprovalEvent):
     last_author = Attribute("Last author")
 
 
-class IContentApprovalRequestCanceledEvent(IRequestApprovalFailedEvent):
+class IContentApprovalRequestWithdrawnEvent(IRequestApprovalFailedEvent):
     """A content request for approval have been cancelled.
     """
     original_requester = Attribute("former author of the request approval")
@@ -114,11 +114,11 @@ class ContentRequestApprovalEvent(ApprovalEvent):
     implements(IContentRequestApprovalEvent)
 
 
-class ContentApprovalRequestCanceledEvent(ApprovalEvent):
-    implements(IContentApprovalRequestCanceledEvent)
+class ContentApprovalRequestWithdrawnEvent(ApprovalEvent):
+    implements(IContentApprovalRequestWithdrawnEvent)
 
     def __init__(self, obj, info, original_requester):
-        super(ContentApprovalRequestCanceledEvent, self).__init__(obj, info)
+        super(ContentApprovalRequestWithdrawnEvent, self).__init__(obj, info)
         self.original_requester = original_requester
 
 
@@ -126,7 +126,7 @@ class ContentApprovalRequestRefusedEvent(ApprovalEvent):
     implements(IContentApprovalRequestRefusedEvent)
 
     def __init__(self, obj, info, original_requester):
-        super(ContentApprovalRequestCanceledEvent, self).__init__(obj, info)
+        super(ContentApprovalRequestRefusedEvent, self).__init__(obj, info)
         self.original_requester = original_requester
 
 
