@@ -60,8 +60,8 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, IC
         """
 
     def get_modification_datetime():
-        """Return the last modification datetime of the object. Return None if not
-        supported.
+        """Return the last modification datetime of the object. Return
+        None if not supported.
         """
 
     def get_editable():

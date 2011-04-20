@@ -2,9 +2,14 @@
 # See also LICENSE.txt
 # $Id$
 
-from zope import schema
 from zope.interface import Interface
+import zope.deferredimport
 from grokcore.component.interfaces import IContext
+
+zope.deferredimport.deprecated(
+    'IFilesService moved to silva.core.services.interfaces. '
+    'This import will be removed in Silva 3.1',
+    IFilesService='silva.core.services.interfaces:SMIView')
 
 
 class IZMIObject(IContext):
@@ -42,21 +47,3 @@ class IMessageService(ISilvaService, ISilvaLocalService):
         messages pending may be lost.
         """
 
-
-class IFilesService(ISilvaLocalService):
-    """Configure File storage.
-    """
-
-    storage = schema.Choice(title=u"File Storage",
-                            description=u"Method used to store files",
-                            required=True,
-                            vocabulary="File Storage Type")
-
-    def new_file(id):
-        """Allocate a new file with the given ID.
-        """
-
-    def is_file_using_correct_storage(content):
-        """Return true if the given content is a file and using the
-        correct selected storage in the service.
-        """
