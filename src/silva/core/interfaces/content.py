@@ -347,19 +347,18 @@ class IVersioning(interface.Interface):
 
     # ACCESSORS
 
-    def is_version_approved():
+    def is_approved():
         """Check whether there exists an approved version.
         """
 
-    def is_version_published():
+    def is_published():
         """Check whether there exists a published version.
         """
 
-    def is_version_approval_requested():
+    def is_approval_requested():
         """Check if there exists an unapproved version
         which has a request for approval.
         """
-
 
     def get_unapproved_version():
         """Get the id of the unapproved version.
