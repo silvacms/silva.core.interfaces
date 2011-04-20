@@ -351,7 +351,7 @@ class IVersioning(interface.Interface):
         """Check whether there exists an approved version.
         """
 
-    def is_published():
+    def is_published(update_status=True):
         """Check whether there exists a published version.
         """
 
