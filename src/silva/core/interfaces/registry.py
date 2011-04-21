@@ -10,6 +10,26 @@ class IRegistry(interface.Interface):
     (it's not dump in the ZOBD).
     """
 
+
+class IContentMimetypeRegistry(IRegistry):
+    """Associate content factory to content mimetype.
+    """
+
+    def get(mimetype, default=None):
+        """Return a content factory associated to this mimetype, or
+        return default (which default to None).
+        """
+
+    def register(mimetype, factory, extension):
+        """Register the factory ``factory`` to create a content of
+        type ``mimetype``. Factory comes from ``extension``.
+        """
+
+    def unregister(factory):
+        """Unregister the given factory.
+        """
+
+
 class IIconRegistry(IRegistry):
     """A registry which contains icons.
     """
