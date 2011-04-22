@@ -9,17 +9,28 @@ from grokcore.component.interfaces import IContext
 
 
 class ICustomizable(interface.Interface):
-    """Layout-customizable content
+    """Layout-customizable content.
+    """
+
+
+class IXMLExportable(interface.Interface):
+    """Exportable content in Silva XML
+    """
+
+
+class IXMLZEXPExportable(IXMLExportable):
+    """Content that is exportable via the fallback ZEXP exportable
+    handler.
     """
 
 
 class IDirectlyRendered(interface.Interface):
-    """Content directly rendered without the help of a layout
+    """Content directly rendered without the help of a layout.
     """
 
 
 class ISecurity(interface.Interface):
-    """Content with author and creator information
+    """Content with author and creator information.
     """
 
     def sec_get_last_author_info():
@@ -42,15 +53,27 @@ class ITitledObject(interface.Interface):
         """
 
     def get_title_or_id():
-        """The title or id of the content object.
+        """The title, or the identifier if there is no title of the
+        content object.
+        """
+
+    def get_short_title():
+        """Return the short title of the content object. If there is
+        no short title, when the title is returned. If there is no
+        title, when the identifier is returned.
         """
 
     def set_title(title):
-        """Change the title of the content object.
+        """Change the title of the content object if possible.
         """
 
 
-class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, ICustomizable):
+class ISilvaObject(IContext,
+                   IAttributeAnnotatable,
+                   ISecurity,
+                   ITitledObject,
+                   IXMLExportable,
+                   ICustomizable):
     """Silva Content
     """
 
@@ -103,12 +126,16 @@ class ISilvaObject(IContext, IAttributeAnnotatable, ISecurity, ITitledObject, IC
 
 
 class IPublishable(ISilvaObject):
-    """Content that can be published to the public
+    """Content that can be published to the public.
 
     They can appear in table of contents.
     """
 
-    # ACCESSORS
+    def is_default():
+        """True if this content object is the default content object
+        of the folder.
+        """
+
     def is_published(update_status=True):
         """Return true if this object is visible to the public.
         """
@@ -243,19 +270,14 @@ class IContent(IPublishable):
         """Used by acquisition to get the nearest containing content object.
         """
 
-    def is_default():
-        """True if this content object is the default content object of
-        the folder.
-        """
-
 
 class IAutoTOC(IContent):
-    """Auto TOC content
+    """Auto TOC content.
     """
 
 
 class IIndexer(IContent):
-    """Indexer content
+    """Indexer content.
     """
 
     def get_index_names():
