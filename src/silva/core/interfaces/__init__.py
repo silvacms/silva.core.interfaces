@@ -46,3 +46,6 @@ from silva.core.interfaces.adapters import *
 from silva.core.interfaces.events import *
 from silva.core.interfaces.auth import *
 from silva.core.interfaces.errors import *
+from silva.core.interfaces.silvaxml import *
+
+
