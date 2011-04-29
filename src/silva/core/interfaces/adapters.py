@@ -299,9 +299,12 @@ class IAddableContents(interface.Interface):
         restricted in that container).
         """
 
-    def get_all_addables():
+    def get_all_addables(require=None):
         """Get a list of all content that could be added in the
         adapted container (they can be added to the site).
+
+        If requires is not None, it is an interface that the all the
+        returned addable must implement.
         """
 
 
