@@ -286,24 +286,30 @@ class IAddableContents(interface.Interface):
     """Return addables that can be added in the adapted container.
     """
 
-    def get_authorized_addables():
+    def get_authorized_addables(require=None):
         """Get a list of content that the current user is allowed to
         add in the adapted container (they can be added to the site,
         are not restricted in that container, and the current user
         have the permission to add them).
+
+        If require is not None, it is an interface that the all the
+        returned addable must implement.
         """
 
-    def get_container_addables():
+    def get_container_addables(require=None):
         """Get a list of content that can be added in the adapter
         container (they can be added to the site, and are not
         restricted in that container).
+
+        If require is not None, it is an interface that the all the
+        returned addable must implement.
         """
 
     def get_all_addables(require=None):
         """Get a list of all content that could be added in the
         adapted container (they can be added to the site).
 
-        If requires is not None, it is an interface that the all the
+        If require is not None, it is an interface that the all the
         returned addable must implement.
         """
 
