@@ -9,7 +9,7 @@ from grokcore.component.interfaces import IContext
 zope.deferredimport.deprecated(
     'IFilesService moved to silva.core.services.interfaces. '
     'This import will be removed in Silva 3.1',
-    IFilesService='silva.core.services.interfaces:SMIView')
+    IFilesService='silva.core.services.interfaces:IFilesService')
 
 
 class IZMIObject(IContext):

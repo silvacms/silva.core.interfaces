@@ -32,4 +32,8 @@ setup(name='silva.core.interfaces',
         'zope.interface',
         'zope.schema',
         ],
+      entry_points= """
+        [zodbupdate]
+        renames = silva.core.interfaces:CLASS_CHANGES
+      """
       )
