@@ -50,6 +50,7 @@ from silva.core.interfaces.silvaxml import *
 
 
 CLASS_CHANGES = {
-    'silva.core.interfaces.service IFilesService',
-    'silva.core.services.interfaces IFilesService'
+    'silva.core.interfaces.service IFilesService':
+        'silva.core.services.interfaces IFilesService',
 }
+
