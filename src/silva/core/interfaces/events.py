@@ -4,6 +4,8 @@
 
 from zope.interface import Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
 
 
 # Ordered content move
@@ -26,7 +28,7 @@ class ContentOrderChangedEvent(ObjectEvent):
 
 # Content publication
 
-class IPublishingEvent(IObjectEvent):
+class IPublishingEvent(IObjectModifiedEvent):
     """A publication action has been done.
     """
 
@@ -90,7 +92,7 @@ class IContentExpiredEvent(IContentClosedEvent):
     """
 
 
-class PublishingEvent(ObjectEvent):
+class PublishingEvent(ObjectModifiedEvent):
     implements(IPublishingEvent)
 
 
