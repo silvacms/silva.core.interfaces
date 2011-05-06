@@ -136,11 +136,11 @@ class IPublishable(ISilvaObject):
         of the folder.
         """
 
-    def is_published(update_status=True):
+    def is_published():
         """Return true if this object is visible to the public.
         """
 
-    def is_approved(update_status=True):
+    def is_approved():
         """Return true if this object is versioned or contains
         versioned content that is approved.
         """
@@ -369,11 +369,11 @@ class IVersioning(interface.Interface):
 
     # ACCESSORS
 
-    def is_approved(update_status=True):
+    def is_approved():
         """Check whether there exists an approved version.
         """
 
-    def is_published(update_status=True):
+    def is_published():
         """Check whether there exists a published version.
         """
 
