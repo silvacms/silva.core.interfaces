@@ -8,10 +8,65 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
 
 
+# Root installation
+
+class IInstallEvent(IObjectEvent):
+    """An installation happened.
+    """
+
+
+class IInstallRootServicesEvent(IInstallEvent):
+    """Root default services are being installed.
+
+    Services should listen to this event to add themselves to a Silva
+    root.
+    """
+
+
+class InstallRootServicesEvent(ObjectEvent):
+    implements(IInstallRootServicesEvent)
+
+
+class IInstalledExtensionEvent(IObjectEvent):
+    """An extension have been installed.
+    """
+    root = Attribute(u"Root in which the extension have been installed")
+
+
+class InstalledExtensionEvent(ObjectEvent):
+    implements(IInstalledExtensionEvent)
+
+    def __init__(self, extension, root):
+        super(InstalledExtensionEvent, self).__init__(extension)
+        self.root = root
+
+
+class IInstalledServiceEvent(IObjectEvent):
+    """A service has been installed.
+
+    Code that want to configure a service after its installation
+    should listen to this event.
+    """
+
+
+class InstalledServiceEvent(ObjectEvent):
+    implements(IInstalledServiceEvent)
+
+
+class IInstallRootEvent(IInstallEvent):
+    """A Root is being installed. Root services are already installed
+    and should be usable.
+    """
+
+
+class InstallRootEvent(ObjectEvent):
+    implements(IInstallRootEvent)
+
+
 # Ordered content move
 
 class IContentOrderChangedEvent(IObjectEvent):
-    """A content order have changed.
+    """The position of a content have changed in an ordered container.
     """
     new_position = Attribute(u"New content position")
     old_position = Attribute(u"Old content position")
