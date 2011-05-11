@@ -22,3 +22,18 @@ class IImportSettings(IImportExportSettings):
     """
 
 
+class ISilvaXMLHandler(Interface):
+    """ import/export handler
+    """
+
+
+class ISilvaXMLImportHandler(ISilvaXMLHandler):
+    """ import Handler
+    """
+
+
+class ISilvaXMLExportHandler(ISilvaXMLHandler):
+    """ export Handler
+    """
+
+
