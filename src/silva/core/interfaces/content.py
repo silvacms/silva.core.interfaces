@@ -697,6 +697,9 @@ class IAsset(INonPublishable):
 class IVersionedAsset(IVersionable, IAsset):
     """A versioned asset"""
 
+class ICatalogedVersionedAsset(IVersionedAsset):
+    """Cataloged versioned asset"""
+
 class IFile(IAsset, IDirectlyRendered):
     """Silva File content to encapsulate "downloadable" data
     """
