@@ -282,10 +282,3 @@ class SecurityRoleAddedEvent(SecurityRoleChangedEvent):
 class SecurityRoleRemovedEvent(SecurityRoleChangedEvent):
     implements(ISecurityRoleRemovedEvent)
 
-
-class IInvalidateSidebarEvent(IObjectEvent):
-    """ flush sidebar cache for the object
-    """
-
-class InvalidateSidebarEvent(ObjectEvent):
-    implements(IInvalidateSidebarEvent)

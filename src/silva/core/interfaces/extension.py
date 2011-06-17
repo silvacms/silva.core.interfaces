@@ -42,7 +42,7 @@ class IExtensionInstaller(Interface):
     def uninstall(root):
         """Uninstall the extension in root.
         """
-        
+
     def refresh(root):
         """Refresh the extension in root."""
 
@@ -57,9 +57,12 @@ class IExtensionRegistry(IRegistry):
 
     # MANIPULATORS
 
-    def register(name, description, context, modules, install_module,
-                 depends_on=(u'Silva',)):
+    def register(name, description, install_module=None, module_path=None, depends_on=(u'Silva',)):
         """Register a new extension.
+        """
+
+    def add_addable(meta_type, priority):
+        """Declare a new addable.
         """
 
     def install(name, root):
@@ -72,6 +75,10 @@ class IExtensionRegistry(IRegistry):
 
     # ACCESSORS
 
+    def is_installed(name, root):
+        """Tells you if the given product is installed in this root.
+        """
+
     def get_names():
         """Return available extensions names.
         """
@@ -80,15 +87,14 @@ class IExtensionRegistry(IRegistry):
         """Return the given extension.
         """
 
-    def is_installed(name, root):
-        """Tells you if the given product is installed in this root.
-        """
-
-    def get_name_for_class(class_):
+    def get_name_for_class(cls):
         """Return the extension name to which belongs this class.
         """
 
     def get_addables():
-        """Return all addables content.
+        """Return all addables content information.
         """
 
+    def get_addable(content_type):
+        """Return a specific addable content information.
+        """

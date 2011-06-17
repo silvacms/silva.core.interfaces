@@ -11,10 +11,17 @@ class SilvaError(Exception):
     def reason(self):
         return self.args[0]
 
+
 class VersioningError(SilvaError):
     """Error on versioning system.
     """
 
+
 class PublicationWorkflowError(VersioningError):
     """Workflow errors.
+    """
+
+
+class ExternalReferenceError(SilvaError):
+    """A reference is referring external content.
     """
