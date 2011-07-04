@@ -402,3 +402,19 @@ class ITreeContents(interface.Interface):
         show the default object if available.  This is a list of
         indent, object tuples.
         """
+
+class IIconResolver(interface.Interface):
+    """Adapt a Zope request to return a content icon.
+    """
+
+    def get_tag(content):
+        """Return a tag that generate an icon associated to the content.
+        """
+
+    def get_content(content):
+        """Return the icon path associated to the given Zope content.
+        """
+
+    def get_content_url(content):
+        """Return the full icon URL associated to the given Zope content.
+        """
