@@ -1,13 +1,8 @@
 Changelog
 =========
 
-2.3.2 (unreleased)
-------------------
-
-* ...
-
-Bethel Changes
---------------
+2.3.1-bethel.1 (2011-07-07)
+---------------------------
 
 * add interfaces for VersionedAssets and exceptions (INotViewable, 
   INoDefaultDocument)
