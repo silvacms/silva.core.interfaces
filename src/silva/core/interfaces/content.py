@@ -30,7 +30,7 @@ class IDirectlyRendered(interface.Interface):
 
 
 class ISecurity(interface.Interface):
-    """Content with author and creator information.
+    """Content with author and creator information
     """
 
     def sec_get_last_author_info():
@@ -72,8 +72,7 @@ class ISilvaObject(IContext,
                    IAttributeAnnotatable,
                    ISecurity,
                    ITitledObject,
-                   IXMLExportable,
-                   ICustomizable):
+                   IXMLExportable):
     """Silva Content
     """
 
@@ -91,6 +90,15 @@ class ISilvaObject(IContext,
         """Get the editable version (may be object itself if no versioning).
         Returns None if there is no such version.
         """
+
+    def is_deletable():
+        """Returns True if object is deletable right now.
+        """
+
+
+class IViewableObject(ICustomizable):
+    """Silva Content viewable by the public
+    """
 
     def get_previewable():
         """Get the previewable version (may be the object itself if no
@@ -120,13 +128,9 @@ class ISilvaObject(IContext,
         obtained by get_viewable() to render the object to HTML.
         """
 
-    def is_deletable():
-        """Returns True if object is deletable right now.
-        """
 
-
-class IPublishable(ISilvaObject):
-    """Content that can be published to the public.
+class IPublishable(ISilvaObject, IViewableObject):
+    """Content that can be published to the public
 
     They can appear in table of contents.
     """
@@ -533,7 +537,7 @@ class INonPublishable(ISilvaObject):
     """
 
 
-class IAsset(INonPublishable):
+class IAsset(INonPublishable, IViewableObject):
     """Asset content
 
     An asset is a resource which is not a content object by itself,
