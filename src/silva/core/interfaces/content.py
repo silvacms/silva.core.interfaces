@@ -150,6 +150,14 @@ class IPublishable(ISilvaObject, IViewableObject):
         """
 
 
+class INonPublishable(ISilvaObject):
+    """A content which is not publicly viewable
+
+    A non publisable content never appears in the navigation or in
+    table of contents.
+    """
+
+
 ###############################################################
 ### Container
 ###############################################################
@@ -194,16 +202,20 @@ class IFolder(IOrderableContainer):
     """
 
     # Get content
-    def get_ordered_publishables():
+    def get_ordered_publishables(interface=IPublishable):
         """Get list of active publishables of this folder, in
         order.
+
+        You can restrict futher the list by providing an interface.
         """
 
-    def get_non_publishables():
+    def get_non_publishables(interface=INonPublishable):
         """Get a list of non-publishable objects in this folder,
         sorted in alphabetical order. This includes assets,
         configuration objects and anything else that is not a
         publishable.
+
+        You can restrict futher the list by providing an interface.
         """
 
     # Set addables
@@ -527,14 +539,6 @@ class ILink(IVersionedContent):
 ###############################################################
 ### Asset
 ###############################################################
-
-
-class INonPublishable(ISilvaObject):
-    """A content which is not publicly viewable
-
-    A non publisable content never appears in the navigation or in
-    table of contents.
-    """
 
 
 class IAsset(INonPublishable, IViewableObject):
