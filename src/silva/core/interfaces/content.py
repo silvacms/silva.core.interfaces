@@ -743,14 +743,14 @@ class IGhostAware(interface.Interface):
     """This mark any ghost content.
     """
 
+    def get_haunted():
+        """Return the final target object.
+        """
+
 
 class IGhostManagable(IGhostAware):
     """Interface for ghosts (and ghost folders).
     """
-
-    def get_haunted():
-        """Return the haunted object.
-        """
 
     def set_haunted(content):
         """Set content to be haunted.
