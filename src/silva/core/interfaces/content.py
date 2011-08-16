@@ -112,22 +112,6 @@ class IViewableObject(ICustomizable):
         Returns None if there is no such version.
         """
 
-    def preview():
-        """Render this object using the public view defined in the
-        view registry.
-
-        This should use methods on the object itself and the version object
-        obtained by ``get_previewable()`` to render the object to HTML.
-        """
-
-    def view():
-        """Render this object using the public view defined in the
-        view registry.
-
-        This should use methods on the object itself and the version object
-        obtained by get_viewable() to render the object to HTML.
-        """
-
 
 class IPublishable(ISilvaObject, IViewableObject):
     """Content that can be published to the public
