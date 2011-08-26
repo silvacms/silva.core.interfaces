@@ -1,23 +1,20 @@
-from zope.interface import Interface, Attribute
+# Copyright (c) 2002-2009 Infrae. All rights reserved.
+# See also LICENSE.txt
+# $Id$
+
+from zope.interface import Interface
 
 
-class IImportExportSettings(Interface):
+class ISettings(Interface):
     """ settings for import/export context information
     """
 
-    errors = Attribute('list of non fatal errors')
-
-    def append_error(error):
-        """ Add a non fatal error
-        """
-
-
-class IExportSettings(IImportExportSettings):
+class IExportSettings(ISettings):
     """ export settings
     """
 
 
-class IImportSettings(IImportExportSettings):
+class IImportSettings(ISettings):
     """ import settings
     """
 

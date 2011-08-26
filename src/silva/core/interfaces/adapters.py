@@ -37,7 +37,7 @@ class IZipFileImporter(IContentImporter):
         """Tests if the zip archive is a fullmedia archive
         """
 
-    def importFromZip(input_archive, replace=False):
+    def importFromZip(input_archive, request, replace=False):
         """Import Silva content from a full media opened zip
         file. Optionaly replace content.
         """
