@@ -11,6 +11,7 @@ class IExtension(Interface):
 
     name = Attribute("Name")
     version = Attribute("Version")
+    title = Attribute(u"Title")
     description = Attribute("Description")
     product = Attribute("Product name")
     installer = Attribute("Installer module")
