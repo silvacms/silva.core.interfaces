@@ -57,12 +57,16 @@ class IExtensionRegistry(IRegistry):
 
     # MANIPULATORS
 
-    def register(name, description, install_module=None, module_path=None, depends_on=(u'Silva',)):
+    def register(
+        name, title,
+        install_module=None, module_path=None, depends_on=(u'Silva',)):
         """Register a new extension.
         """
 
-    def add_addable(meta_type, priority):
-        """Declare a new addable.
+    def add_addable(meta_type, priority, content_type):
+        """Declare a new addable. Meta type is main content class,
+        content_type is the one holding the data. (which is different
+        of the first one in case of versioned content).
         """
 
     def install(name, root):
