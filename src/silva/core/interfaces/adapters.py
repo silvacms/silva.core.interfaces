@@ -258,10 +258,8 @@ class IPublicationWorkflow(interface.Interface):
         """Revoke the currently approved version.
         """
 
-    def publish(time=None):
-        """Approve unapproved or last closed version. Set the
-        publication date to the given ``time``, or to now if it is
-        None.
+    def publish():
+        """Approve unapproved or last closed version.
         """
 
     def approve(time=None):
