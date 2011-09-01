@@ -5,7 +5,35 @@
 
 from silva.translations import translate as _
 from OFS.interfaces import ITraversable
+from zope.schema.interfaces import InvalidValue
 
+# Ghost validation
+
+class InvalidTarget(InvalidValue):
+    __doc__ = _("Invalid ghost target.")
+
+
+class EmptyInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Missing required ghost target.")
+
+
+class CircularInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Ghost target creates a circular reference.")
+
+
+class GhostInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Ghost target is a ghost.")
+
+
+class ContainerInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Ghost target should be a container.")
+
+
+class ContentInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Ghost target should be a content.")
+
+
+# Silva errors
 
 class SilvaError(Exception):
     """Generic error.
