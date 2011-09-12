@@ -95,16 +95,6 @@ class ILanguageProvider(interface.Interface):
         """Gets the preferred language.
         """
 
-class IPath(interface.Interface):
-
-    def pathToUrl(path):
-        """Convert a physical path to a URL.
-        """
-
-    def urlToPath(url):
-        """Convert a HTTP URL to a physical path.
-        """
-
 
 class IFeedEntryProvider(interface.Interface):
     """Adapter to a object which provides a list feed entry that can
