@@ -331,14 +331,8 @@ class IContainerManager(interface.Interface):
 class IOrderManager(interface.Interface):
     """Manage order of a container content.
     """
-
     order = interface.Attribute(u"Order")
-    ordered_only = interface.Attribute(u"Interface restricting ordered content")
-
-    def move(content, index):
-        """Move content just before index.
-        Return true in case success.
-        """
+    order_only = interface.Attribute(u"Interface restricting ordered content")
 
     def add(content):
         """Add a new content to the order list, if possible.
@@ -348,12 +342,14 @@ class IOrderManager(interface.Interface):
         """Remove a content from the order list, if needed.
         """
 
-    def get_contents():
-        """Return ordered content in order.
+    def move(content, index):
+        """Move content just before index.
+        Return true in case of success, False in case of failure.
         """
 
     def get_position(content):
-        """Return the position of a content.
+        """Return the position of a content, or -1 if the content is
+        unknown or has no position.
         """
 
 
