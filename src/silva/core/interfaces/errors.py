@@ -80,6 +80,10 @@ class ExternalReferenceError(ExportError):
     """A reference is referring external content.
     """
 
+    def __init__(self, reason, content, references=None):
+        super(ExternalReferenceError, self).__init__(reason, content)
+        self.references = references
+
 
 class ImportError(ContentError):
     """An error during import.
