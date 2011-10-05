@@ -225,7 +225,7 @@ class IVersionManager(interface.Interface):
 class IPublicationWorkflow(interface.Interface):
     """ Publication workflow of silva objects.
 
-    All the following methods may raise a PublicationWorkflowError.
+    All the following methods may raise a PublicationError.
     """
 
     def new_version():

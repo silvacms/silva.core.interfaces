@@ -39,21 +39,39 @@ class SilvaError(Exception):
     """Generic error.
     """
 
-    def reason(self):
-        return self.args[0]
+    def __init__(self, reason):
+        self.reason = reason
 
 
-class VersioningError(SilvaError):
-    """Error on versioning system.
+class ContentError(SilvaError):
+    """An error that happened on content.
+    """
+
+    def __init__(self, reason, content):
+        super(ContentError, self).__init__(reason)
+        self.content = content
+
+
+class ContainerError(ContentError):
+    """An error happened while working on a container.
     """
 
 
-class PublicationWorkflowError(VersioningError):
+class VersioningError(ContentError):
+    """Error on versioning system.
+    """
+
+    def __init__(self, reason, content, version=None):
+        super(VersioningError, self).__init__(reason, content)
+        self.version = version
+
+
+class PublicationError(VersioningError):
     """Workflow errors.
     """
 
 
-class ExportError(SilvaError):
+class ExportError(ContentError):
     """An error during content export.
     """
 
@@ -63,7 +81,7 @@ class ExternalReferenceError(ExportError):
     """
 
 
-class ImportError(SilvaError):
+class ImportError(ContentError):
     """An error during import.
     """
 
