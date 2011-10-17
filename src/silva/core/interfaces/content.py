@@ -567,12 +567,12 @@ class IFile(IAsset, IDirectlyRendered):
     """
     # MANIPULATORS
 
-    def set_file_data(file):
+    def set_file(file):
         """Re-upload data for this file object. It will change the
         ``content_type``, however id, title, etc. will not change.
         """
 
-    def set_text_file_data(datastr):
+    def set_text(datastr):
         """Set content of the file from the given string.
         """
 
@@ -586,27 +586,39 @@ class IFile(IAsset, IDirectlyRendered):
         mime-type/extension of the file.
         """
 
+    def set_content_encoding(content_encoding):
+        """Set the file content encoding: gzip, bzip2 or none.
+        """
+
     # ACCESSORS
 
     def tag(**kw):
         """Generate a tag to download file content.
         """
 
-    def content_type():
+    def get_content_type():
         """Return the file content type as it is send to a visitor
         while downloading the file.
         """
 
-    def get_text_content():
+    def get_content_encoding():
+        """Return the file content encoding.
+        """
+
+    def get_text():
         """Return the text content of the file or TypesError is it's
         not a text file.
         """
 
-    def get_content():
+    def is_text():
+        """Return True if the file content is text based.
+        """
+
+    def get_file():
         """Return the content of the file in any cases.
         """
 
-    def get_content_fd():
+    def get_file_fd():
         """Return a file descriptor to access the file data.
         """
 
