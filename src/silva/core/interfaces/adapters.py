@@ -179,6 +179,27 @@ class IHaunted(interface.Interface):
         """
 
 
+class IRequestForApprovalStatus(interface.Interface):
+    """Status about the request for approval.
+    """
+    pending = interface.Attribute(
+        u'True if a request is pending')
+    messages = interface.Attribute(
+        u'List of messages associated with the request')
+
+    def comment(status, message=None):
+        """Update the request status, with an optional message.
+        """
+
+    def validate():
+        """The request is validated. It is finshed.
+        """
+
+    def reset():
+        """Reset the request. All history is lost forever.
+        """
+
+
 class IVersionManager(interface.Interface):
 
     def make_editable():

@@ -307,10 +307,8 @@ class IVersioning(interface.Interface):
     """
 
     # MANIPULATORS
-    def create_version(version_id,
-                       publication_datetime,
-                       expiration_datetime):
-        """Add unapproved version.
+    def create_copy(from_version_id=None):
+        """Copy a version as currently editable one.
         """
 
     def approve_version():
@@ -462,29 +460,6 @@ class IVersioning(interface.Interface):
     def get_last_closed_version():
         """Get the id of the version that was last closed, or None if
         no such version.
-        """
-
-    def get_approval_requester():
-        """Return the id of the user requesting approval
-        of the currently unapproved version.
-        XXX fishy: If the request for approval is withdrawn/rejected,
-        this returns the user id of the one having
-        withdrawn/rejected the request.
-        (Maybe write another method for this?)
-        """
-
-    def get_approval_request_message():
-        """Get the current message associated with
-        request for approval; i.e. argument passed the
-        on the last call to "set_approval_request_message".
-        May return None if there is no such message or
-        the message has been purged by an approval.
-        """
-
-    def get_approval_request_datetime():
-        """Get the date when the currently unapproved version
-        did get a request for approval as a DateTime object,
-        or None if there is no such version or request.
         """
 
 

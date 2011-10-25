@@ -6,6 +6,7 @@ from zope.interface import Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
+from silva.core.interfaces.adapters import IRequestForApprovalStatus
 
 
 # Root installation
@@ -91,7 +92,7 @@ class IPublishingEvent(IObjectModifiedEvent):
 class IApprovalEvent(IPublishingEvent):
     """A approval operation is going on.
     """
-    info = Attribute('request for approval infos')
+    status = Attribute('Request for approval status')
 
 
 class IContentApprovedEvent(IApprovalEvent):
@@ -117,19 +118,16 @@ class IRequestApprovalFailedEvent(IRequestApprovalEvent):
 class IContentRequestApprovalEvent(IRequestApprovalEvent):
     """A content seeks to be approved.
     """
-    last_author = Attribute("Last author")
 
 
 class IContentApprovalRequestWithdrawnEvent(IRequestApprovalFailedEvent):
     """A content request for approval have been cancelled.
     """
-    original_requester = Attribute("former author of the request approval")
 
 
 class IContentApprovalRequestRefusedEvent(IRequestApprovalFailedEvent):
     """A content request for approval have been refused.
     """
-    original_requester = Attribute("former author of the request approval")
 
 
 class IContentPublishedEvent(IPublishingEvent):
@@ -154,9 +152,11 @@ class PublishingEvent(ObjectModifiedEvent):
 class ApprovalEvent(PublishingEvent):
     implements(IApprovalEvent)
 
-    def __init__(self, obj, info):
+    def __init__(self, obj, status=None):
         super(ApprovalEvent, self).__init__(obj)
-        self.info = info
+        if status is None:
+            status = IRequestForApprovalStatus(obj)
+        self.status = status
 
 
 class ContentApprovedEvent(ApprovalEvent):
@@ -174,17 +174,9 @@ class ContentRequestApprovalEvent(ApprovalEvent):
 class ContentApprovalRequestWithdrawnEvent(ApprovalEvent):
     implements(IContentApprovalRequestWithdrawnEvent)
 
-    def __init__(self, obj, info, original_requester):
-        super(ContentApprovalRequestWithdrawnEvent, self).__init__(obj, info)
-        self.original_requester = original_requester
-
 
 class ContentApprovalRequestRefusedEvent(ApprovalEvent):
     implements(IContentApprovalRequestRefusedEvent)
-
-    def __init__(self, obj, info, original_requester):
-        super(ContentApprovalRequestRefusedEvent, self).__init__(obj, info)
-        self.original_requester = original_requester
 
 
 class ContentPublishedEvent(PublishingEvent):
