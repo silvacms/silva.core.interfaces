@@ -423,11 +423,6 @@ class IVersioning(interface.Interface):
         if there is no expiration datetime.
         """
 
-    def get_next_version_status():
-        """Get the status of the next version.
-        Result can be 'not_approved', 'approved', or 'no_next_version'.
-        """
-
     def get_public_version():
         """Get the id of the public version.
         """
@@ -444,11 +439,6 @@ class IVersioning(interface.Interface):
     def get_public_version_expiration_datetime():
         """Get the expiration datetime of the public version, or
         None if this version never expires.
-        """
-
-    def get_public_version_status():
-        """Get the status of the published version.  Result can be
-        ``published``, ``closed``, or ``no_public_version``.
         """
 
     def get_previous_versions():
