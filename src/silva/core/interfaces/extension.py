@@ -3,7 +3,8 @@
 # $Id$
 
 from zope.interface import Interface, Attribute
-from registry import IRegistry
+from silva.core.interfaces.registry import IRegistry
+
 
 class IExtension(Interface):
     """An extension to Silva.

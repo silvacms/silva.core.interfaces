@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.3.2dev'
+version = '3.0b1'
 
 setup(name='silva.core.interfaces',
       version=version,
@@ -27,9 +27,12 @@ setup(name='silva.core.interfaces',
       install_requires=[
         'grokcore.component',
         'setuptools',
+        'silva.translations',
         'zope.annotation',
         'zope.component',
+        'zope.deferredimport',
         'zope.interface',
+        'zope.lifecycleevent',
         'zope.schema',
         ],
       entry_points= """

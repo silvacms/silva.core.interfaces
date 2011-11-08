@@ -1,10 +1,14 @@
 Changelog
 =========
 
-2.3.2 (unreleased)
+3.0b1 (2011/11/08)
 ------------------
 
-* ...
+* Major API refactoring on Silva contents.
+
+* Add generic exceptions.
+
+* Improve events.
 
 2.3.1 (2010/12/20)
 ------------------
