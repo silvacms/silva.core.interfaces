@@ -423,3 +423,24 @@ class IIconResolver(interface.Interface):
     def get_content_url(content):
         """Return the full icon URL associated to the given Zope content.
         """
+
+
+class IDataManager(interface.Interface):
+    """Low-level adapter; on a data, a content and request to manage
+    this data.
+
+    This is used by CodeSources and ContentLayout editor.
+    """
+
+    def update(parameters):
+        """Update the value.
+        """
+
+    def render():
+        """Render the value.
+        """
+
+    def clear():
+        """Clear the value.
+        """
+
