@@ -426,7 +426,7 @@ class IIconResolver(interface.Interface):
 
 
 class IDataManager(interface.Interface):
-    """Low-level adapter; on a data, a content and request to manage
+    """Low-level adapter; on a given data, a content and request to manage
     this data.
 
     This is used by CodeSources and ContentLayout editor.
@@ -441,6 +441,6 @@ class IDataManager(interface.Interface):
         """
 
     def clear():
-        """Clear the value.
+        """Clear the value, earsing all stored data.
         """
 
