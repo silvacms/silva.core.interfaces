@@ -1,3 +1,4 @@
+
 # Copyright (c) 2002-2009 Infrae. All rights reserved.
 # See also LICENSE.txt
 # $Id$
@@ -47,16 +48,16 @@ class IIconRegistry(IRegistry):
     """A registry which contains icons.
     """
 
-    def getIcon(content):
+    def get_icon(content):
         """Get the icon associated with the content.
         """
 
-    def getIconByIdentifier(identifier):
+    def get_icon_by_identifier(identifier):
         """Get the icon associated with the identifier, which can by a
         meta_type or a mime type.
         """
 
-    def registerIcon(identifier, icon_url):
+    def register(identifier, icon_url):
         """Register the given icon url for the identifier (meta_type,
         or mime type).
         """
