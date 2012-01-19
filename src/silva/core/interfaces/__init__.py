@@ -31,6 +31,11 @@ class IMimeTypeClassifier(Interface):
     """Detect content_type and extension for files.
     """
 
+    def guess_filename(asset, basename):
+        """Given an ``IFile`` and a basename, set and return a correct
+        filename that would be usage for the file.
+        """
+
     def guess_extension(content_type):
         """Return the most plausible extension to use with a file of
         the given type.
