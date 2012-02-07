@@ -194,3 +194,42 @@ class IInvalidateSidebarEvent(IObjectEvent):
 
 class InvalidateSidebarEvent(ObjectEvent):
     implements(IInvalidateSidebarEvent)
+
+
+# Upgrade events
+
+class IUpgradeEvent(IObjectEvent):
+    """Upgrade related event.
+    """
+    from_version = Attribute(u"Orginal version")
+    to_version = Attribute(u"Final version")
+
+
+class IUpgradeStartedEvent(IUpgradeEvent):
+    """Upgrade started.
+    """
+
+
+class IUpgradeFinishedEvent(IUpgradeEvent):
+    """Upgrade finished.
+    """
+    success = Attribute(u"true if the upgrade was successful")
+
+
+class UpgradeStartedEvent(ObjectEvent):
+    implements(IUpgradeStartedEvent)
+
+    def __init__(self, obj, from_version, to_version):
+        super(UpgradeStartedEvent, self).__init__(obj)
+        self.from_version = from_version
+        self.to_version = to_version
+
+
+class UpgradeFinishedEvent(ObjectEvent):
+    implements(IUpgradeFinishedEvent)
+
+    def __init__(self, obj, from_version, to_version, success):
+        super(UpgradeFinishedEvent, self).__init__(obj)
+        self.from_version = from_version
+        self.to_version = to_version
+        self.success = success
