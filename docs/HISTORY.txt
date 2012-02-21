@@ -1,10 +1,12 @@
 Changelog
 =========
 
-2.3.2 (unreleased)
+2.3.2 (2012/02/21)
 ------------------
 
-* ...
+* Add events for upgrades.
+
+* Update upgrade interfaces.
 
 2.3.1 (2010/12/20)
 ------------------
