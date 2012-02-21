@@ -42,10 +42,6 @@ class IUpgradeRegistry(IRegistry):
         """Return the registered upgrade_handlers of meta_type.
         """
 
-    def upgradeObject(obj, version):
-        """Upgrade only one object up for the given version.
-        """
-
     def upgradeTree(obj, version):
         """Upgrade obj and all its children up for the given version.
         """
