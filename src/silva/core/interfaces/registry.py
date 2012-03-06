@@ -12,19 +12,6 @@ class IRegistry(interface.Interface):
     """
 
 
-class IContentExporterRegistry(IRegistry):
-    """Utility to manage export features.
-    """
-
-    def get(context, name):
-        """Create the given exporter.
-        """
-
-    def list(context):
-        """List available exporter for this context.
-        """
-
-
 class IContentMimetypeRegistry(IRegistry):
     """Associate content factory to content mimetype.
     """
