@@ -1,3 +1,4 @@
+
 # Copyright (c) 2002-2009 Infrae. All rights reserved.
 # See also LICENSE.txt
 # $Id$
@@ -371,6 +372,10 @@ class IOrderManager(interface.Interface):
     def get_position(content):
         """Return the position of a content, or -1 if the content is
         unknown or has no position.
+        """
+
+    def __len__():
+        """Return the number of content in the order list.
         """
 
 
