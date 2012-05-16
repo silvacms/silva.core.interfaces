@@ -332,35 +332,60 @@ class IAddableContents(interface.Interface):
 
 
 class IContainerManager(interface.Interface):
-    """Operation on container contents. Each method returns a comethod
+    """Operation on container contents. Each method returns a coroutine
     object, that can be used as a context manager.
     """
 
     def renamer():
         """Rename content into this container.
+
+        The coroutine takes as argument a tuple, containing a Silva
+        content, a new identifier, and a new title. It will rename
+        accordingly the content inside the current container. If you
+        do not wish the change the identifier or the title, you can
+        pass ``None`` instead for those values. It will return the
+        renamed content, or a ``ContentError`` in case of failure.
         """
 
     def copier():
         """Copy content into this container.
+
+        The coroutine takes as argument a Silva content, that is copied
+        in the current container, and return the copy, or a
+        ``ContentError`` is case of failure.
         """
 
     def mover():
         """Move content into this container.
+
+        The coroutine takes as argument a Silva content, that is moved
+        inside the current container, and return the moved content, or
+        a ``ContentError`` in case of failure.
         """
 
     def ghoster():
         """Ghost content into this container.
+
+        The coroutine takes as argument a Silva content, and will
+        either create a ghost of it inside the current container (if
+        it is publishable content), or will copy it inside the current
+        container (if it is an asset). The ghost or copy will be
+        return, or a ``ContentError`` in case of failure.
         """
 
     def deleter():
         """Delete content that are in this container.
+
+        The coroutine takes as argument a Silva content, and will
+        delete this content from the current container. It will return
+        the deleted content, or a ``ContentError`` in case of failure.
         """
 
 
 class IOrderManager(interface.Interface):
     """Manage order of a container content.
     """
-    order = interface.Attribute(u"Order")
+    order = interface.Attribute(u"List storing the order of the contents.")
     order_only = interface.Attribute(u"Interface restricting ordered content")
 
     def add(content):
