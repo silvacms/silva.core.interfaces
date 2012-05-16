@@ -3,8 +3,9 @@
 # See also LICENSE.txt
 # $Id$
 
-from silva.translations import translate as _
 from OFS.interfaces import ITraversable
+from silva.translations import translate as _
+from zope.interface import Interface, Attribute, implements
 from zope.schema.interfaces import InvalidValue
 
 # Ghost validation
@@ -35,17 +36,63 @@ class ContentInvalidTarget(InvalidTarget):
 
 # Silva errors
 
-class SilvaError(Exception):
-    """Generic error.
+class IError(Interface):
+    """A generic Silva error.
     """
+    reason = Attribute(
+        u'Translatable text message explaining the error.')
+
+
+class IContentError(IError):
+    """An error related to a specific content in Silva.
+    """
+    content = Attribute(
+        u'Related content to the error.')
+
+
+class IContainerError(IContentError):
+    """An error related to a specific content with a specific
+    container in Silva.
+    """
+
+
+class IVersioningError(IContentError):
+    """An error related to the versioning of a specific content in Silva.
+    """
+    version = Attribute(
+        u'Related content version that triggered the error, if applicable.')
+
+
+class IExportError(IContentError):
+    """An error related to the export of a content in Silva.
+    """
+
+
+class IExternalReferenceError(IExportError):
+    """An error related to the export of a content in Silva, that have
+    a reference to an another content not included inside of the
+    export tree.
+    """
+    exported = Attribute(
+        u'Exported content.')
+    target = Attribute(
+        u'Target of the reference.')
+
+
+class IImportError(IContentError):
+    """An error related to the import of a content in Silva.
+    """
+
+
+class Error(Exception):
+    implements(IError)
 
     def __init__(self, reason):
         self.reason = reason
 
 
-class ContentError(SilvaError):
-    """An error that happened on content.
-    """
+class ContentError(Error):
+    implements(IContentError)
 
     def __init__(self, reason, content):
         super(ContentError, self).__init__(reason)
@@ -53,32 +100,23 @@ class ContentError(SilvaError):
 
 
 class ContainerError(ContentError):
-    """An error happened while working on a container.
-    """
+    implements(IContainerError)
 
 
 class VersioningError(ContentError):
-    """Error on versioning system.
-    """
+    implements(IVersioningError)
 
     def __init__(self, reason, content, version=None):
         super(VersioningError, self).__init__(reason, content)
         self.version = version
 
 
-class PublicationError(VersioningError):
-    """Workflow errors.
-    """
-
-
 class ExportError(ContentError):
-    """An error during content export.
-    """
+    implements(IExportError)
 
 
 class ExternalReferenceError(ExportError):
-    """A reference is referring external content.
-    """
+    implements(IExternalReferenceError)
 
     def __init__(self, reason, content, target, exported):
         super(ExternalReferenceError, self).__init__(reason, content)
@@ -87,8 +125,7 @@ class ExternalReferenceError(ExportError):
 
 
 class ImportError(ContentError):
-    """An error during import.
-    """
+    implements(IImportError)
 
 
 class ImportWarning(ImportError):
