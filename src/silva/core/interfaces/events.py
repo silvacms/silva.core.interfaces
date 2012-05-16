@@ -17,10 +17,11 @@ class IInstallEvent(IObjectEvent):
 
 
 class IInstallRootServicesEvent(IInstallEvent):
-    """Root default services are being installed.
+    """Root default services are being installed in a newly created
+    Silva root.
 
-    Services should listen to this event to add themselves to a Silva
-    root.
+    Silva extensions should listen to this event to add theirs
+    required services to a newly created Silva root.
     """
 
 
@@ -45,8 +46,8 @@ class InstalledExtensionEvent(ObjectEvent):
 class IInstalledServiceEvent(IObjectEvent):
     """A service has been installed.
 
-    Code that want to configure a service after its installation
-    should listen to this event.
+    A Silva extensions that want to configure, or register itself to a
+    service after its installation should listen to this event.
     """
 
 
@@ -55,8 +56,11 @@ class InstalledServiceEvent(ObjectEvent):
 
 
 class IInstallRootEvent(IInstallEvent):
-    """A Root is being installed. Root services are already installed
-    and should be usable.
+    """A new Silva root is being installed. Root services are already
+    installed and should be usable.
+
+    Extensions should listen to this event if they wish to install
+    additional configuration inside the newly created Silva root.
     """
 
 
