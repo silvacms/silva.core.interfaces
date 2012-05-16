@@ -155,19 +155,26 @@ class IFeedEntry(interface.Interface):
 
 
 class ISiteManager(interface.Interface):
-    """Site Manager adapter.
+    """Adapt a publication to manage its local site status.
     """
 
-    def makeSite():
-        """Make the context become a local site.
+    def make_site():
+        """Make the publication become a local site.
+
+        It raises ``ValueError`` in case of error.
         """
 
-    def deleteSite():
-        """Release the context of being a local site.
+    def delete_site():
+        """Remove the local site from the publication. No local
+        services must be registered on the site for this to be
+        successful.
+
+        It raises ``ValueError`` in case of error.
         """
 
-    def isSite():
-        """Return true if the context is a local site.
+    def is_site():
+        """Return True if the publication is a local site, False if
+        not.
         """
 
 
