@@ -50,6 +50,19 @@ class IContentError(IError):
         u'Related content to the error.')
 
 
+class ISecurityError(IContentError):
+    """An error related to a security issue with a specific content in Silva.
+    """
+
+class IUnauthorizedRoleAssignement(ISecurityError):
+    """An unauthorized role assignement.
+    """
+    role = Attribute(
+        u"Role affected.")
+    identifier = Attribute(
+        u"Identifier to which the role modification is denied.")
+
+
 class IContainerError(IContentError):
     """An error related to a specific content with a specific
     container in Silva.
@@ -97,6 +110,19 @@ class ContentError(Error):
     def __init__(self, reason, content):
         super(ContentError, self).__init__(reason)
         self.content = content
+
+
+class SecurityError(ContentError):
+    implements(ISecurityError)
+
+
+class UnauthorizedRoleAssignement(SecurityError):
+    implements(IUnauthorizedRoleAssignement)
+
+    def __init__(self, reason, content, role, identifier):
+        super(UnauthorizedRoleAssignement, self).__init__(reason, content)
+        self.role = role
+        self.identifier = identifier
 
 
 class ContainerError(ContentError):

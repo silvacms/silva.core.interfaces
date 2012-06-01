@@ -158,8 +158,12 @@ class IAuthorizationManager(interface.Interface):
     """Adapter to manage authorization access at a given level.
     """
 
-    def get_user_role(user_id=None):
-        """Return a list of roles that ``user_id`` has. If ``user_id``
+    def get_user_id(identifier=None):
+        """Return the current user identifier, or ``identifier``.
+        """
+
+    def get_user_role(identifier=None):
+        """Return a list of roles that ``identifier`` has. If ``identifier``
         is None, return a list of roles for currently authenticated
         user.
         """
