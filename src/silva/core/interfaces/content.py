@@ -135,7 +135,7 @@ class IPublishable(ISilvaObject, IViewableObject):
 
 
 class INonPublishable(ISilvaObject):
-    """A content which is not publicly viewable
+    """A content which is not publicly directly viewable
 
     A non publisable content never appears in the navigation or in
     table of contents.
@@ -258,6 +258,7 @@ class IRoot(IPublication):
 ###############################################################
 ### Content
 ###############################################################
+
 
 class IContent(IPublishable):
     """Silva non-container content
@@ -453,7 +454,17 @@ class IVersioning(interface.Interface):
         """
 
 
-class IVersionedContent(IVersioning, IContent):
+class IVersionedObject(IVersioning, ISilvaObject, IViewableObject):
+    """Object that can have versions
+    """
+
+
+class IVersionedNonPublishable(IVersionedObject, INonPublishable):
+    """Non publishable object that can have versions
+    """
+
+
+class IVersionedContent(IVersionedObject, IContent):
     """Content that can have versions
     """
 
