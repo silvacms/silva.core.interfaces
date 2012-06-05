@@ -37,18 +37,19 @@ class IExtensionInstaller(Interface):
     """A Silva extension installer.
     """
 
-    def install(root):
+    def install(root, extension):
         """Install the extension in root.
         """
 
-    def uninstall(root):
+    def uninstall(root, extension):
         """Uninstall the extension in root.
         """
 
-    def refresh(root):
-        """Refresh the extension in root."""
+    def refresh(root, extension):
+        """Refresh the extension in root.
+        """
 
-    def is_installed(root):
+    def is_installed(root, extension):
         """Return true if the extension is installed in root.
         """
 
