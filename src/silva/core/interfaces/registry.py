@@ -54,16 +54,16 @@ class IUpgradeRegistry(IRegistry):
     """It's a registry for upgrade purpose.
     """
 
-    def registerUpgrader(upgrader, version=None, meta_type=None):
+    def register(upgrader, version=None, meta_type=None):
         """Register an upgrade step to go to the given version for the
         given object type.
         """
 
-    def getUpgraders(version, meta_type):
+    def get_upgraders(version, meta_type):
         """Return the registered upgrade_handlers of meta_type.
         """
 
-    def upgradeTree(obj, version):
+    def upgrade_tree(obj, version):
         """Upgrade obj and all its children up for the given version.
         """
 
