@@ -2,7 +2,7 @@
 # See also LICENSE.txt
 # $Id$
 
-from zope.interface import Attribute, implements
+from zope.interface import Interface, Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
@@ -290,6 +290,11 @@ class IUpgradeEvent(IObjectEvent):
     to_version = Attribute(u"Final version")
 
 
+class IUpgradeTransaction(Interface):
+    """A new upgrade transaction has started.
+    """
+
+
 class IUpgradeStartedEvent(IUpgradeEvent):
     """Upgrade started.
     """
@@ -299,6 +304,10 @@ class IUpgradeFinishedEvent(IUpgradeEvent):
     """Upgrade finished.
     """
     success = Attribute(u"true if the upgrade was successful")
+
+
+class UpgradeTransaction(object):
+    implements(IUpgradeTransaction)
 
 
 class UpgradeStartedEvent(ObjectEvent):
