@@ -33,13 +33,15 @@ class IInstalledExtensionEvent(IObjectEvent):
     """An extension have been installed.
     """
     root = Attribute(u"Root in which the extension have been installed")
+    extension = Attribute(u"Extension that have been installed")
 
 
 class InstalledExtensionEvent(ObjectEvent):
     implements(IInstalledExtensionEvent)
 
     def __init__(self, extension, root):
-        super(InstalledExtensionEvent, self).__init__(extension)
+        super(InstalledExtensionEvent, self).__init__(extension.installer)
+        self.extension = extension
         self.root = root
 
 
