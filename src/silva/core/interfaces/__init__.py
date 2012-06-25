@@ -16,17 +16,6 @@ class IContainerPolicy(Interface):
         """create default document in given container"""
 
 
-class IIcon(Interface):
-    # XXX I don't like the name
-
-    def getIconIdentifier():
-        """Returns icon identifier.
-
-        The icon registry should be able to return an icon from an
-        icon identifier.
-        """
-
-
 class IMimeTypeClassifier(Interface):
     """Detect content_type and extension for files.
     """

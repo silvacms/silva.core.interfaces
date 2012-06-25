@@ -448,20 +448,34 @@ class ITreeContents(Interface):
         indent, object tuples.
         """
 
+
 class IIconResolver(Interface):
     """Adapt a Zope request to return a content icon.
     """
 
-    def get_tag(content):
-        """Return a tag that generate an icon associated to the content.
+    def get_tag(content=None, identifier=None):
+        """Return a tag that generate an icon associated to the
+        content or identifier.
+        """
+
+    def get_identifier(identifier):
+        """Return the icon path associated to the given meta_type
+        identifier.
         """
 
     def get_content(content):
         """Return the icon path associated to the given Zope content.
         """
 
-    def get_content_url(content):
-        """Return the full icon URL associated to the given Zope content.
+    def get_identifier_url(identifier):
+        """Return the full icon URL associated to the given
+        meta_type_identifier.
         """
+
+    def get_content_url(content):
+        """Return the full icon URL associated to the given Zope
+        content.
+        """
+
 
 
