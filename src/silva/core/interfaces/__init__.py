@@ -49,15 +49,25 @@ class IMimeTypeClassifier(Interface):
 
 
 class IUpgrader(Interface):
-    """Interface for upgrade classes.
+    """Upgraders takes an object and modify its attributes in order to
+    make it conform to a newer version of Silva.
     """
 
-    def upgrade(anObject):
-        """Upgrades object
+    def validate(content):
+        """Return true if the upgrader apply to the given object.
+        """
+
+    def upgrade(content):
+        """Upgrades object, and return the upgraded object.
 
         During upgrade the object identity of the upgraded object may
         change.
         """
+
+class IPostUpgrader(Interface):
+    """Post upgraders execute themselves after regular upgraders.
+    """
+
 
 from silva.core.interfaces.content import *
 from silva.core.interfaces.extension import *
