@@ -50,8 +50,14 @@ class IContentError(IError):
         u'Related content to the error.')
 
 
+class IUpgradeError(IContentError):
+    """An error related to the upgrade of a content during the upgrade
+    process in Silva.
+    """
+
 class ISecurityError(IContentError):
-    """An error related to a security issue with a specific content in Silva.
+    """An error related to a security issue with a specific content in
+    Silva.
     """
 
 class IUnauthorizedRoleAssignement(ISecurityError):
@@ -110,6 +116,10 @@ class ContentError(Error):
     def __init__(self, reason, content):
         super(ContentError, self).__init__(reason)
         self.content = content
+
+
+class UpgradeError(ContentError):
+    implements(IUpgradeError)
 
 
 class SecurityError(ContentError):
