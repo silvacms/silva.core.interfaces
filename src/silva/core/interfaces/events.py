@@ -5,7 +5,9 @@
 from zope.interface import Interface, Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.lifecycleevent import ObjectModifiedEvent
+from zope.lifecycleevent import ObjectCreatedEvent
 from silva.core.interfaces.adapters import IRequestForApprovalStatus
 
 
@@ -68,6 +70,26 @@ class IInstallRootEvent(IInstallEvent):
 
 class InstallRootEvent(ObjectEvent):
     implements(IInstallRootEvent)
+
+
+# Content created event
+
+class IContentCreatedEvent(IObjectCreatedEvent):
+    """A new content have been created. This event is only called with
+    ISilvaObject objects. Other created object use the default Zope
+    event, ObjectCreatedEvent.
+    """
+    no_default_version = Attribute(u"True if no default version was created")
+    no_default_content = Attribute(u"True if no default content was created")
+
+
+class ContentCreatedEvent(ObjectCreatedEvent):
+    implements(IContentCreatedEvent)
+
+    def __init__(self, obj, no_default_version=False, no_default_content=False):
+        super(ContentCreatedEvent, self).__init__(obj)
+        self.no_default_version = no_default_version
+        self.no_default_content = no_default_content
 
 
 # Ordered content move
