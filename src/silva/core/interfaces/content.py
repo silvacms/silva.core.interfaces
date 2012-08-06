@@ -543,12 +543,14 @@ class IFile(IAsset, IDirectlyRendered):
     """
     # MANIPULATORS
 
-    def set_file(file):
+    def set_file(stream, content_type=None, content_encoding=None):
         """Re-upload data for this file object. It will change the
-        ``content_type``, however id, title, etc. will not change.
+        ``content_type`` and ``content_encoding``, however id, title,
+        etc. will not change. If ``content_type`` is None, it will be
+        detected with ``content_encoding``, if possible.
         """
 
-    def set_text(datastr):
+    def set_text(text):
         """Set content of the file from the given string.
         """
 
