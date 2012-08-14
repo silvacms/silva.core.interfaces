@@ -68,13 +68,39 @@ class ITitledObject(interface.Interface):
         """
 
 
+class IEditableTitledObject(ITitledObject):
+
+    def get_editable():
+        """Get the editable version (may be object itself). Returns
+        ``None`` if there is no such version.
+        """
+
+    def get_title_editable():
+        """Get the title of the editable version if possible.
+        """
+
+    def get_short_title_editable():
+        """Get the short title of the editable version if possible.
+        """
+
+    def get_title_or_id_editable():
+        """Get the title of the editable version if possible, or id if
+        not available.
+        """
+
+
 class ISilvaObject(IContext,
                    IAttributeAnnotatable,
                    ISecurity,
-                   ITitledObject,
+                   IEditableTitledObject,
                    IXMLExportable):
     """Silva Content
     """
+
+    def get_silva_object():
+        """Used by acquisition to get the nearest containing
+        SilvaObject.
+        """
 
     def get_creation_datetime():
         """Return of creation datetime of the object. Return None if
@@ -84,11 +110,6 @@ class ISilvaObject(IContext,
     def get_modification_datetime():
         """Return the last modification datetime of the object. Return
         None if not supported.
-        """
-
-    def get_editable():
-        """Get the editable version (may be object itself if no versioning).
-        Returns None if there is no such version.
         """
 
     def is_deletable():
@@ -268,7 +289,8 @@ class IContent(IPublishable):
     """
     # ACCESSORS
     def get_content():
-        """Used by acquisition to get the nearest containing content object.
+        """Used by acquisition to get the nearest containing content
+        object.
         """
 
 
