@@ -1,6 +1,6 @@
-# Copyright (c) 2009 Infrae. All rights reserved.
+# -*- coding: utf-8 -*-
+# Copyright (c) 2009-2012 Infrae. All rights reserved.
 # See also LICENSE.txt
-# $Id$
 
 from zope.interface import Interface, Attribute, implements
 from zope.component.interfaces import IObjectEvent, ObjectEvent
