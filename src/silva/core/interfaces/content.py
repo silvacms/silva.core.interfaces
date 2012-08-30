@@ -30,17 +30,21 @@ class IDirectlyRendered(interface.Interface):
 
 
 class ISecurity(interface.Interface):
-    """Content with author and creator information
+    """Content with author and creator information.
     """
 
-    def sec_get_last_author_info():
+    def get_creator_info():
+        """Return the member object corresponding to the creator of
+        this content object.
+        """
+
+    def get_last_author_info():
         """Return the member object corresponding to the last author
         who modified this content object.
         """
 
-    def sec_get_creator_info():
-        """Return the member object corresponding to the creator of
-        this content object.
+    def update_last_author_info():
+        """Update last author information to the currently logged in user.
         """
 
 
@@ -499,7 +503,7 @@ class IVersionedContent(IVersionedObject, IContent):
         """
 
 
-class IVersion(ITitledObject, IAttributeAnnotatable):
+class IVersion(ISecurity, ITitledObject, IAttributeAnnotatable):
     """Version of a versioned content
 
     A version effectively store the data of the content.
