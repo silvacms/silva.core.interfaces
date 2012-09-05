@@ -100,6 +100,8 @@ class IExternalReferenceError(IExportError):
 class IImportError(IContentError):
     """An error related to the import of a content in Silva.
     """
+    path = Attribute(u'object path that caused the error')
+    reason = Attribute(u'the translated human-readable message')
 
 
 class Error(Exception):
@@ -159,7 +161,7 @@ class ExternalReferenceError(ExportError):
         self.exported = exported
 
 
-class ImportError(ContentError):
+class ImportError(StandardError):
     implements(IImportError)
 
 
@@ -167,9 +169,10 @@ class ImportWarning(ImportError):
     """An non-fatal error during import.
     """
 
+    @property
     def reason(self):
         path, reason = self.args
         if ITraversable.providedBy(path):
             path = '/'.join(path.getPhysicalPath())
-        return _(u"Error while importing: ${path}: ${reason}",
+        return _(u"Error while importing `${path}`: ${reason}",
                  mapping=dict(path=path, reason=reason))
