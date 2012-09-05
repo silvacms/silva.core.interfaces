@@ -164,15 +164,20 @@ class ExternalReferenceError(ExportError):
 class ImportError(StandardError):
     implements(IImportError)
 
+    def __init__(self, path, message):
+        self.path = path
+        if ITraversable.providedBy(path):
+            self.path = '/'.join(path.getPhysicalPath())
+        self._message = message
+        super(ImportError, self).__init__(path, message)
+
+    @property
+    def reason(self):
+        return _(u"Error while importing `${path}`: ${reason}",
+                 mapping=dict(path=self.path, reason=self._message))
+
 
 class ImportWarning(ImportError):
     """An non-fatal error during import.
     """
 
-    @property
-    def reason(self):
-        path, reason = self.args
-        if ITraversable.providedBy(path):
-            path = '/'.join(path.getPhysicalPath())
-        return _(u"Error while importing `${path}`: ${reason}",
-                 mapping=dict(path=path, reason=reason))
