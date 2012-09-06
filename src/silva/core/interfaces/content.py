@@ -683,7 +683,7 @@ class IImage(IAsset, IDirectlyRendered):
         of the image.
         """
 
-    def tag(hires=0, thumbnail=0, **extra_attributes):
+    def tag(hires=False, thumbnail=False, request=None, preview=False, **extra_attributes):
         """Generate a image tag to render either the original version
         (if ``hires`` set to True), or the thumbnail (if ``thumbnail``
         set to True) or the web version (by default).
@@ -698,12 +698,16 @@ class IImage(IAsset, IDirectlyRendered):
         left and the bottom right corner.
         """
 
+    def get_canonical_web_scale(scale=None):
+        """returns (width, height) of web image
+        """
+
     def get_orientation():
         """Returns the image orientation: ``square``, ``landscape`` or
         ``portrait``.
         """
 
-    def get_dimensions(img=None):
+    def get_dimensions(thumbnail=False, hires=False):
         """Returns the width and height of the original image as a
         tuple.
 
@@ -727,7 +731,7 @@ class IImage(IAsset, IDirectlyRendered):
         the image.
         """
 
-    def get_image(hires=1, webformat=0):
+    def get_image(hires=True, webformat=False):
         """Return image raw data. If ``hires`` is set to True, the
         original image data is returned. If ``webformat`` is set to
         True, the web version image raw data is returned.
