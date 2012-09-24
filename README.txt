@@ -2,7 +2,7 @@
 silva.core.interfaces
 =====================
 
-``silva.core.interfaces`` defines interfaces describing default Silva
-API, theirs contents and functionalities.
+``silva.core.interfaces`` defines Zope interfaces to describe the
+default Silva APIs, theirs contents and functionalities.
 
 

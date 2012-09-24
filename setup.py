@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2012  Infrae. All rights reserved.
 # See also LICENSE.txt
+
 from setuptools import setup, find_packages
 import os
 
-version = '3.0dev'
+version = '3.0c1'
 
 setup(name='silva.core.interfaces',
       version=version,

@@ -1,10 +1,19 @@
 Changelog
 =========
 
-3.0 (unreleased)
-----------------
+3.0c1 (2012/09/24)
+------------------
 
-* ...
+* More API has been update to match pep8 recommandation.
+
+* Improve and add more Silva events.
+
+* Improve and add more Silva exceptions.
+
+* Add a new base, ``VersionedNonPublishable``, for versioned content
+  that are not publishable.
+
+* More API have been improved on images, titled object and security objects.
 
 3.0b1 (2011/11/08)
 ------------------
