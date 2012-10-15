@@ -139,6 +139,9 @@ class IAuthorization(interface.Interface):
         description=u"List of roles that the entity as here on this content.",
         source=role_vocabulary,
         required=False)
+    email = schema.Choice(
+        title=_(u"email"),
+        description=_(u"email of the user, None if group."))
 
     def grant(role):
         """Grant a new role to the user, if it doesn't already have it
