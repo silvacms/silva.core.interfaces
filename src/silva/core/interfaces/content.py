@@ -4,6 +4,7 @@
 
 
 from zope import interface
+from zope.container.interfaces import INameChooser
 from zope.annotation import IAttributeAnnotatable
 from grokcore.component.interfaces import IContext
 
@@ -779,3 +780,16 @@ class IGhost(IGhostAware, IVersionedContent):
 class IGhostFolder(IGhostManagable, IContainer):
     """Marker interface for Ghost Folders.
     """
+
+
+class ISilvaNameChooser(INameChooser):
+    """ Choose and check name for silva contents.
+    """
+
+    def checkName(name, content):
+        """ raise ContentError if name is invalid.
+        """
+
+    def chooseName(name, content, file=None, interface=None):
+        """ cook a name form name and content (both can be none).
+        """
