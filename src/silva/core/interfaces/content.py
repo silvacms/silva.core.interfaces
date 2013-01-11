@@ -14,12 +14,12 @@ class ICustomizable(interface.Interface):
     """
 
 
-class IXMLExportable(interface.Interface):
+class ISilvaXMLExportable(interface.Interface):
     """Exportable content in Silva XML
     """
 
 
-class IXMLZEXPExportable(IXMLExportable):
+class IXMLZEXPExportable(ISilvaXMLExportable):
     """Content that is exportable via the fallback ZEXP exportable
     handler.
     """
@@ -98,7 +98,7 @@ class ISilvaObject(IContext,
                    IAttributeAnnotatable,
                    ISecurity,
                    IEditableTitledObject,
-                   IXMLExportable):
+                   ISilvaXMLExportable):
     """Silva Content
     """
 

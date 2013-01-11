@@ -9,6 +9,7 @@ class ISettings(Interface):
     """ settings for import/export context information
     """
 
+
 class IExportSettings(ISettings):
     """ export settings
     """
@@ -19,18 +20,11 @@ class IImportSettings(ISettings):
     """
 
 
+class ISilvaXMLProducer(Interface):
+    """ export producer
+    """
+
+
 class ISilvaXMLHandler(Interface):
-    """ import/export handler
+    """ import handler
     """
-
-
-class ISilvaXMLImportHandler(ISilvaXMLHandler):
-    """ import Handler
-    """
-
-
-class ISilvaXMLExportHandler(ISilvaXMLHandler):
-    """ export Handler
-    """
-
-

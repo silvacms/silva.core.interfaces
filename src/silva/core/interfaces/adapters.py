@@ -57,7 +57,7 @@ class IContentExporter(Interface):
     options = Attribute(
         u"Interface describing the list of expected options.")
 
-    def export(**options):
+    def export(request, **options):
         """Export context with given settings.
         """
 

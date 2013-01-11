@@ -180,4 +180,3 @@ class ImportError(StandardError):
 class ImportWarning(ImportError):
     """An non-fatal error during import.
     """
-
