@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 # Copyright (c) 2002-2012 Infrae. All rights reserved.
 # See also LICENSE.txt
@@ -28,6 +29,10 @@ class IXMLZEXPExportable(ISilvaXMLExportable):
 class IDirectlyRendered(interface.Interface):
     """Content directly rendered without the help of a layout.
     """
+
+
+class IReferable(interface.Interface):
+    pass
 
 
 class ISecurity(interface.Interface):
@@ -95,6 +100,7 @@ class IEditableTitledObject(ITitledObject):
 
 
 class ISilvaObject(IContext,
+                   IReferable,
                    IAttributeAnnotatable,
                    ISecurity,
                    IEditableTitledObject,
@@ -504,7 +510,7 @@ class IVersionedContent(IVersionedObject, IContent):
         """
 
 
-class IVersion(ISecurity, ITitledObject, IAttributeAnnotatable):
+class IVersion(IReferable, ISecurity, ITitledObject, IAttributeAnnotatable):
     """Version of a versioned content
 
     A version effectively store the data of the content.

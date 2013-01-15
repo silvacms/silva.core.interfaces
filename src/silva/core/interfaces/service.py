@@ -5,6 +5,7 @@
 from zope.interface import Interface
 import zope.deferredimport
 from grokcore.component.interfaces import IContext
+from silva.core.interfaces.content import IReferable
 
 zope.deferredimport.deprecated(
     'IFilesService moved to silva.core.services.interfaces. '
@@ -12,7 +13,7 @@ zope.deferredimport.deprecated(
     IFilesService='silva.core.services.interfaces:IFilesService')
 
 
-class IZMIObject(IContext):
+class IZMIObject(IContext, IReferable):
     """An object in ZMI.
     """
 

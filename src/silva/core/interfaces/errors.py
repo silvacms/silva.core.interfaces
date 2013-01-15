@@ -2,7 +2,6 @@
 # Copyright (c) 2011-2012 Infrae. All rights reserved.
 # See also LICENSE.txt
 
-from OFS.interfaces import ITraversable
 from silva.translations import translate as _
 from zope.interface import Interface, Attribute, implements
 from zope.schema.interfaces import InvalidValue
@@ -97,12 +96,6 @@ class IExternalReferenceError(IExportError):
         u'Target of the reference.')
 
 
-class IImportError(IContentError):
-    """An error related to the import of a content in Silva.
-    """
-    path = Attribute(u'object path that caused the error')
-    reason = Attribute(u'the translated human-readable message')
-
 
 class Error(Exception):
     implements(IError)
@@ -160,23 +153,3 @@ class ExternalReferenceError(ExportError):
         self.target = target
         self.exported = exported
 
-
-class ImportError(StandardError):
-    implements(IImportError)
-
-    def __init__(self, path, message):
-        self.path = path
-        if ITraversable.providedBy(path):
-            self.path = '/'.join(path.getPhysicalPath())
-        self._message = message
-        super(ImportError, self).__init__(path, message)
-
-    @property
-    def reason(self):
-        return _(u"Error while importing `${path}`: ${reason}",
-                 mapping=dict(path=self.path, reason=self._message))
-
-
-class ImportWarning(ImportError):
-    """An non-fatal error during import.
-    """
