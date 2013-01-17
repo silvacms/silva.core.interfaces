@@ -67,10 +67,10 @@ class IDefaultContentExporter(IContentExporter):
     """
 
 
-class IAssetData(Interface):
-    def getData():
-        """ Get actual data stored for this asset as calling index_html()
-        for assets can have all kinds of unwanted side effects.
+class IAssetPayload(Interface):
+
+    def get_payload():
+        """ Get actual data stored for this asset, or None.
         """
 
 
