@@ -6,7 +6,7 @@ silva.core.interfaces
 default Silva APIs, theirs contents and functionalities.
 
 Those interfaces are used to generate the Developer documentation as
-well: http://docs.infrae.com/silva/latest.
+well: http://docs.silvacms.org/latest.
 
 Code repository
 ===============
