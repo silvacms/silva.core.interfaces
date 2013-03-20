@@ -3,11 +3,20 @@
 # See also LICENSE.txt
 
 
-
 from zope import interface
 from zope.container.interfaces import INameChooser
 from zope.annotation import IAttributeAnnotatable
 from grokcore.component.interfaces import IContext
+
+
+class IHTTPHeadersSettings(interface.Interface):
+    """Settings for IHTTPResponseHeaders on Silva objects.
+    """
+    # XXX Add an override for the developer to always disable caching without
+    # letting the user choose.
+    http_disable_cache = interface.Attribute('Prevent caching altogether')
+    http_max_age = interface.Attribute('Max caching ime')
+    http_last_modified = interface.Attribute('Add Last-Modified headers')
 
 
 class ICustomizable(interface.Interface):
