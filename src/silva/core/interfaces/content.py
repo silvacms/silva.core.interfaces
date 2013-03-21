@@ -801,10 +801,11 @@ class ISilvaNameChooser(INameChooser):
     """ Choose and check name for silva contents.
     """
 
-    def checkName(name, content):
-        """ raise ContentError if name is invalid.
+    def checkName(identifier, content, file=None, interface=None):
+        """Verify the identifier is valid. Raise ContentError if it is
+        not.
         """
 
-    def chooseName(name, content, file=None, interface=None):
-        """ cook a name form name and content (both can be none).
+    def chooseName(identifier, content, file=None, interface=None):
+        """Choose an identifier form name and content (both can be none).
         """
