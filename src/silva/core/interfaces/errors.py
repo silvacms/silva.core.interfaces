@@ -96,11 +96,11 @@ class IExternalReferenceError(IExportError):
         u'Target of the reference.')
 
 
-
 class Error(Exception):
     implements(IError)
 
     def __init__(self, reason):
+        super(Error, self).__init__(reason)
         self.reason = reason
 
 
