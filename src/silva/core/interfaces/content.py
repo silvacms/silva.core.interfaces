@@ -350,7 +350,7 @@ class IVersioning(interface.Interface):
     """
 
     # MANIPULATORS
-    def create_copy(from_version_id=None):
+    def create_copy(version_id=None):
         """Copy a version as currently editable one.
         """
 
