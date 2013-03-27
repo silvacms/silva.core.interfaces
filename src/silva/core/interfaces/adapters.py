@@ -413,6 +413,15 @@ class IOrderManager(Interface):
         """Return the number of content in the order list.
         """
 
+    def repair(contents):
+        """Ensure the order manages only the given contents. This can
+        be used if the order goes out of sync with the real
+        one. Return True in case of modification, False if nothing was
+        changed.
+
+        IF YOU GIVE THE WRONG CONTENTS TO THE MANAGER, ORDER WILL BE
+        LOST.
+        """
 
 class ITreeContents(Interface):
 
