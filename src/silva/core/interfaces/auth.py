@@ -127,21 +127,31 @@ class IAuthorization(interface.Interface):
     """
     identifier = schema.TextLine(
         title=_(u"identifier"),
-        description=u"Unique identifier of the authorized entity.")
-    type = interface.Attribute(u"``user`` or ``group`` depending of the authorized entity.")
+        description=u"unique identifier of the authorized entity.")
+    name = schema.TextLine(
+        title=_(u'name'),
+        description=u'full name of the authorized entity.')
+    type = interface.Attribute(
+        u"``user`` or ``group`` depending of the authorized entity.")
     acquired_role = schema.Choice(
         title=_(u"role defined above"),
-        description=u"List of roles that the entity as above this content.",
+        description=u"list of roles that the entity as above this content.",
         source=role_vocabulary,
         required=False)
     local_role = schema.Choice(
         title=_(u"role defined here"),
-        description=u"List of roles that the entity as here on this content.",
+        description=u"list of roles that the entity as here on this content.",
         source=role_vocabulary,
         required=False)
+    role = schema.Choice(
+        title=_(u'role'),
+        description=u'role that the entity have at this level ' \
+            u'(local or acquired role).',
+        source=role_vocabulary,
+        required=True)
     email = schema.TextLine(
         title=_(u"email"),
-        description=_(u"email of the user, None if group."),
+        description=_(u"email associated to the entity, ``None`` if group."),
         required=False)
 
     def grant(role):
