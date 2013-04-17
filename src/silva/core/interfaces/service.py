@@ -14,13 +14,9 @@ zope.deferredimport.deprecated(
 
 
 class IZMIObject(IContext, IReferable):
-    """An object in ZMI.
+    """A Zope object defined in Zope but that is only accessible via
+    the ZMI and not the SMI.
     """
-
-
-class IInvisibleService(Interface):
-    """Marker interface for services that want to be not visible in
-    the ZMI."""
 
 
 class ISilvaService(IZMIObject):
@@ -31,6 +27,17 @@ class ISilvaService(IZMIObject):
 class ISilvaLocalService(ISilvaService):
     """A Silva service which can be added in a local site.
     """
+
+
+class ISilvaInvisibleService(ISilvaService):
+    """A Silva service that is not visible in the ZMI.
+
+    It is usefull for services that doesn't have any settings and do
+    not require any views for forms.
+    """
+
+# BBB
+IInvisibleService = ISilvaInvisibleService
 
 
 class IMessageService(ISilvaService, ISilvaLocalService):
