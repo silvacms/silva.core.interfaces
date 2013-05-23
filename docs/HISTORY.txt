@@ -1,10 +1,14 @@
 Changelog
 =========
 
-3.0.2 (unreleased)
+3.0.2 (2013/05/23)
 ------------------
 
-* ...
+* Add an API ``IHTTPHeadersSettings``.
+
+* Add a ``repair`` method to ``IOrderManager``.
+
+* Fix some interface that were missing methods and attributes.
 
 3.0.1 (2013/03/06)
 ------------------
@@ -15,7 +19,6 @@ Changelog
 
 * Introduce an interface ``IReferable`` for content that can be
   referred to (include ZMI objects).
-
 
 3.0 (2012/12/11)
 ----------------
