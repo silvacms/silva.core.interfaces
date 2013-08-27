@@ -35,18 +35,15 @@ class IIconRegistry(IRegistry):
     """A registry which contains icons.
     """
 
-    def get_icon(content):
-        """Get the icon associated with the content.
+    def get(identifier, default):
+        """Get the icon associated with the identifier. If it is not
+        found and a default is provided, return the default, or raise
+        ``ValueError``.
         """
 
-    def get_icon_by_identifier(identifier):
-        """Get the icon associated with the identifier, which can by a
-        meta_type or a mime type.
-        """
-
-    def register(identifier, icon_url):
-        """Register the given icon url for the identifier (meta_type,
-        or mime type).
+    def register(identifier, icon):
+        """Register the given icon sub-url to the identifier
+        (meta_type, or mime type).
         """
 
 

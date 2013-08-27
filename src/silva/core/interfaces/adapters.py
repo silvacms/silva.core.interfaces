@@ -458,9 +458,23 @@ class ITreeContents(Interface):
         """
 
 
+class IIcon(Interface):
+    """An icon for a content type.
+    """
+    icon = Attribute('Icon')
+    template = Attribute('Template of a tag to render the icon')
+
+    def get_url(view, content):
+        """Return the URL of the icon for the given content.
+        """
+
+
 class IIconResolver(Interface):
     """Adapt a Zope request to return a content icon.
     """
+    sprite = Attribute('Sprite being used to lookup icons')
+
+    root_url = Attribute('URL of the site')
 
     def get_tag(content=None, identifier=None):
         """Return a tag that generate an icon associated to the
@@ -468,12 +482,12 @@ class IIconResolver(Interface):
         """
 
     def get_identifier(identifier):
-        """Return the icon path associated to the given meta_type
+        """Return the icon associated to the given meta_type
         identifier.
         """
 
     def get_content(content):
-        """Return the icon path associated to the given Zope content.
+        """Return the icon associated to the given Zope content.
         """
 
     def get_identifier_url(identifier):
