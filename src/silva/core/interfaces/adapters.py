@@ -481,18 +481,22 @@ class IIconResolver(Interface):
         content or identifier.
         """
 
-    def get_identifier(identifier):
+    def get_identifier(identifier, default):
         """Return the icon associated to the given meta_type
-        identifier.
+        identifier. If the icon is not found, an icon matching default
+        can be lookup for (not required). If it is not found, ``None``
+        is returned.
         """
 
     def get_content(content):
         """Return the icon associated to the given Zope content.
         """
 
-    def get_identifier_url(identifier):
+    def get_identifier_url(identifier, default):
         """Return the full icon URL associated to the given
-        meta_type_identifier.
+        meta_type_identifier. If the icon is not found, the URL of an
+        icon matching default can be looked up for (not required). If
+        it is not found, ``None`` is returned.
         """
 
     def get_content_url(content):
