@@ -58,8 +58,8 @@ class ISecurity(interface.Interface):
         who modified this content object.
         """
 
-    def update_last_author_info():
-        """Update last author information to the currently logged in user.
+    def set_last_author_info(user):
+        """Set the last author information to the given user.
         """
 
 
