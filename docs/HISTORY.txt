@@ -1,10 +1,12 @@
 Changelog
 =========
 
-3.0.3 (unreleased)
+3.0.3 (2013/10/08)
 ------------------
 
-* ...
+* Improve icon lookup API.
+
+* Review API to set last author on contents.
 
 3.0.2 (2013/05/23)
 ------------------
