@@ -61,7 +61,7 @@ class IQuotaContainer(interface.Interface):
     """
     used_space = interface.Attribute(u"Used space by quota items.")
 
-    def update_used_quota(delta, verify):
+    def update_used_space(delta, verify):
         """Update used space with ``delta``, and verify quota for this
         folder. This is a private method (meaning it can't be called
         from the ZODB).
