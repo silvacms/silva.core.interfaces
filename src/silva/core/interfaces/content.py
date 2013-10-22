@@ -10,7 +10,7 @@ from grokcore.component.interfaces import IContext
 
 
 class IHTTPHeadersSettings(interface.Interface):
-    """Settings for IHTTPResponseHeaders on Silva objects.
+    """Settings for IHTTPResponseHeaders on Silva objects
     """
     # XXX Add an override for the developer to always disable caching without
     # letting the user choose.
@@ -20,7 +20,7 @@ class IHTTPHeadersSettings(interface.Interface):
 
 
 class ICustomizable(interface.Interface):
-    """Layout-customizable content.
+    """Layout-customizable content
     """
 
 
@@ -36,16 +36,45 @@ class IXMLZEXPExportable(ISilvaXMLExportable):
 
 
 class IDirectlyRendered(interface.Interface):
-    """Content directly rendered without the help of a layout.
+    """Content directly rendered without the help of a layout
     """
 
 
+class IQuotaObject(interface.Interface):
+    """Content that can be accounted inside a site quota
+    """
+
+    def get_quota_usage():
+        """Return the space used by this content.
+        """
+
+    def update_quota():
+        """Update used space, and verify quota for this content.
+        """
+
+    def reset_quota():
+        """Reset the status of the quota.
+        """
+
+class IQuotaContainer(interface.Interface):
+    """Container that aggregate the usage of the contained quota items
+    """
+    used_space = interface.Attribute(u"Used space by quota items.")
+
+    def update_used_quota(delta, verify):
+        """Update used space with ``delta``, and verify quota for this
+        folder. This is a private method (meaning it can't be called
+        from the ZODB).
+        """
+
+
 class IReferable(interface.Interface):
-    pass
+    """Content can be referred by an another
+    """
 
 
 class ISecurity(interface.Interface):
-    """Content with author and creator information.
+    """Content with author and creator information
     """
 
     def get_creator_info():
@@ -187,17 +216,11 @@ class INonPublishable(ISilvaObject):
 ### Container
 ###############################################################
 
-class IContainer(IPublishable):
+class IContainer(IPublishable, IQuotaContainer):
     """Container
 
     Contains content.
     """
-    used_space = interface.Attribute(u"Used space by assets.")
-
-
-    def update_quota(delta):
-        """Update used space with ``delta``, and verify quota for this folder.
-        """
 
     # ACCESSORS
     def get_container():
@@ -315,12 +338,12 @@ class IContent(IPublishable):
 
 
 class IAutoTOC(IContent):
-    """Auto TOC content.
+    """Automatic table of content
     """
 
 
 class IIndexer(IContent):
-    """Indexer content.
+    """Indexer
     """
 
     def get_index_names():
@@ -543,22 +566,12 @@ class ILink(IVersionedContent):
 ###############################################################
 
 
-class IAsset(INonPublishable, IViewableObject):
+class IAsset(INonPublishable, IViewableObject, IQuotaObject):
     """Asset content
 
     An asset is a resource which is not a content object by itself,
     but contain data. Files and Images are assets for example.
     """
-
-    # MANIPULATORS
-
-    def update_quota():
-        """Update used space, and verify quota for this asset.
-        """
-
-    def reset_quota():
-        """Reset the status of the quota.
-        """
 
     # ACCESSORS
 
@@ -649,16 +662,19 @@ class IFile(IAsset, IDirectlyRendered):
 
 
 class IZODBFile(IFile):
-    """A file in ZODB.
+    """A file stored in ZODB
     """
+
 
 class IFileSystemFile(IFile):
-    """A file on the file system.
+    """A file stored on the file system
     """
 
+
 class IBlobFile(IFile):
-    """A file as a blob.
+    """A file stored with the help of a blob
     """
+
 
 class IImage(IAsset, IDirectlyRendered):
     """Silva Image
@@ -760,7 +776,7 @@ class IImage(IAsset, IDirectlyRendered):
 
 
 class IGhostAware(interface.Interface):
-    """This mark any ghost content.
+    """This mark any ghost content
     """
 
     def get_haunted():
@@ -783,22 +799,22 @@ class IGhostManagable(IGhostAware):
 
 
 class IGhostVersion(IGhostManagable, IVersion):
-    """Version of a ghost object.
+    """Version of a ghost
     """
 
 
 class IGhost(IGhostAware, IVersionedContent):
-    """Marker interface for "normal" ghosts, i.e. Silva.Ghost.Ghost.
+    """Ghost content
     """
 
 
 class IGhostFolder(IGhostManagable, IContainer):
-    """Marker interface for Ghost Folders.
+    """Ghost Folder
     """
 
 
 class ISilvaNameChooser(INameChooser):
-    """ Choose and check name for silva contents.
+    """Choose and check name for Silva content
     """
 
     def checkName(identifier, content, file=None, interface=None):
