@@ -2,7 +2,6 @@
 # Copyright (c) 2002-2013 Infrae. All rights reserved.
 # See also LICENSE.txt
 
-from zope.interface import Interface
 import zope.deferredimport
 from grokcore.component.interfaces import IContext
 from silva.core.interfaces.content import IReferable
@@ -26,6 +25,11 @@ class ISilvaService(IZMIObject):
 
 class ISilvaLocalService(ISilvaService):
     """A Silva service which can be added in a local site.
+    """
+
+
+class ISilvaConfigurableService(ISilvaService):
+    """A Silva service with configuration screen in SMI.
     """
 
 
