@@ -28,6 +28,10 @@ class ContainerInvalidTarget(InvalidTarget):
     __doc__ = _(u"Ghost target should be a container.")
 
 
+class AssetInvalidTarget(InvalidTarget):
+    __doc__ = _(u"Ghost target should be an asset.")
+
+
 class ContentInvalidTarget(InvalidTarget):
     __doc__ = _(u"Ghost target should be a content.")
 

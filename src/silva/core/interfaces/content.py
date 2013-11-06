@@ -593,7 +593,18 @@ class IAsset(INonPublishable, IViewableObject, IQuotaObject):
         """
 
 
-class IFile(IAsset, IDirectlyRendered):
+class IDownloableAsset(IAsset):
+
+    def get_html_tag(preview=False, request=None, **extra_attributes):
+        """Return an HTML tag that points to the asset.
+        """
+
+    def get_download_url(preview=False, request=None):
+        """Return an URL to download the asset.
+        """
+
+
+class IFile(IDownloableAsset, IDirectlyRendered):
     """Silva File content to encapsulate "downloadable" data
     """
     # MANIPULATORS
@@ -625,10 +636,6 @@ class IFile(IAsset, IDirectlyRendered):
 
     # ACCESSORS
 
-    def tag(**kw):
-        """Generate a tag to download file content.
-        """
-
     def get_content_type():
         """Return the file content type as it is send to a visitor
         while downloading the file.
@@ -655,11 +662,6 @@ class IFile(IAsset, IDirectlyRendered):
         """Return a file descriptor to access the file data.
         """
 
-    def get_download_url():
-        """Obtain the public URL the public could use to download this
-        file. Typically it's the URL used in ``tag``.
-        """
-
 
 class IZODBFile(IFile):
     """A file stored in ZODB
@@ -676,7 +678,7 @@ class IBlobFile(IFile):
     """
 
 
-class IImage(IAsset, IDirectlyRendered):
+class IImage(IDownloableAsset, IDirectlyRendered):
     """Silva Image
 
     A Silva Image can be used in a Silva Document. An image stored
@@ -715,13 +717,21 @@ class IImage(IAsset, IDirectlyRendered):
         of the image.
         """
 
-    def tag(hires=False, thumbnail=False, request=None, preview=False, **extra_attributes):
+    def get_html_tag(preview=False, request=None, hires=False, thumbnail=False,**extra_attributes):
         """Generate a image tag to render either the original version
         (if ``hires`` set to True), or the thumbnail (if ``thumbnail``
         set to True) or the web version (by default).
 
         If some ``extra_attributes`` are given, they will be added to
         the image tag as HTML attributes.
+        """
+
+
+    def get_download_url(preview=False, request=None, hires=False, thumbnail=False):
+        """Return an URL to download the corresponding image. If ``hires``
+        is True, the URL to the original version will be returned and
+        if ``thumbnail`` is True the URL to the thumbnail will be returned
+        instead.
         """
 
     def get_crop_box(crop=None):
@@ -810,6 +820,11 @@ class IGhost(IGhostAware, IVersionedContent):
 
 class IGhostFolder(IGhostManagable, IContainer):
     """Ghost Folder
+    """
+
+
+class IGhostAsset(IGhostManagable, IAsset, IDirectlyRendered):
+    """Ghost Asset
     """
 
 

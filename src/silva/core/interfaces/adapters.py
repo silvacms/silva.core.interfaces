@@ -43,6 +43,7 @@ class IZipFileImporter(IContentImporter):
         """
 
 
+# BBB
 IZipfileImporter = IZipFileImporter
 
 
@@ -456,6 +457,19 @@ class ITreeContents(Interface):
         show the default object if available.  This is a list of
         indent, object tuples.
         """
+
+
+class IGhostManager(Interface):
+
+    def modify(target, identifier=None):
+        """Return a ghost manipulator object to create, modify and
+        update it following a standard API.
+        """
+
+    def validate(target, adding=True):
+        """Validate target is valid for the given ghost object.
+        """
+
 
 
 class IIcon(Interface):
