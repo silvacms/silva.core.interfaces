@@ -166,6 +166,11 @@ class ISilvaObject(IContext,
         """
 
 
+class IImageIncluable(ISilvaObject):
+    """Content represent an image that can be included in text
+    """
+
+
 class IViewableObject(ICustomizable):
     """Silva Content viewable by the public
     """
@@ -678,7 +683,7 @@ class IBlobFile(IFile):
     """
 
 
-class IImage(IDownloableAsset, IDirectlyRendered):
+class IImage(IDownloableAsset, IImageIncluable, IDirectlyRendered):
     """Silva Image
 
     A Silva Image can be used in a Silva Document. An image stored
