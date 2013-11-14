@@ -52,6 +52,14 @@ class IContentError(IError):
         u'Related content to the error.')
 
 
+class IContentErrorBundle(IContentError):
+    """An error related to a specific content in Silva that is
+    actually due a bundle of other errors.
+    """
+    errors = Attribute(
+        u'List of errors')
+
+
 class IUpgradeError(IContentError):
     """An error related to the upgrade of a content during the upgrade
     process in Silva.
@@ -114,6 +122,14 @@ class ContentError(Error):
     def __init__(self, reason, content):
         super(ContentError, self).__init__(reason)
         self.content = content
+
+
+class ContentErrorBundle(ContentError):
+    implements(IContentErrorBundle)
+
+    def __init__(self, reason, content, errors):
+        super(ContentErrorBundle, self).__init__(reason, content)
+        self.errors = errors
 
 
 class UpgradeError(ContentError):
