@@ -11,5 +11,6 @@ well: http://docs.silvacms.org/latest.
 Code repository
 ===============
 
-You can find the code of this extension in Mercurial:
-https://hg.infrae.com/silva.core.interfaces
+You can find the code of this extension in Git:
+https://github.com/silvacms/silva.core.interfaces
+
