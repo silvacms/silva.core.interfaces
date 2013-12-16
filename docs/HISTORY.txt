@@ -1,10 +1,17 @@
 Changelog
 =========
 
-3.0.4 (unreleased)
+3.0.4 (2013/12/16)
 ------------------
 
-* ...
+* Add an interface for services editable in SMI.
+
+* Update some of the ghost interfaces.
+
+* Update some of the quota interfaces.
+
+* Add a bundle error, composed of multiple sub-errors.
+
 
 3.0.3 (2013/10/08)
 ------------------
